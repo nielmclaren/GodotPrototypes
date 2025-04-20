@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dktcsamb8p7ad"]
+[gd_scene load_steps=5 format=3 uid="uid://dktcsamb8p7ad"]
 
 [ext_resource type="Script" uid="uid://sb132ip2l2vv" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c0d15iwncuu2g" path="res://block.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://olc30uyw178h" path="res://static_bounds.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://c22kx7cganyvf" path="res://emitter.tscn" id="4_1bvp3"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
@@ -23,3 +24,7 @@ rotation = 1.81465
 input_pickable = true
 
 [node name="StaticBounds" parent="." instance=ExtResource("2_0xm2m")]
+
+[node name="Emitter" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(155, 174)
+gravity_scale = 0.0
