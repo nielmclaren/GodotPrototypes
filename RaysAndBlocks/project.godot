@@ -27,3 +27,7 @@ gdscript/warnings/unsafe_call_argument=2
 [dotnet]
 
 project/assembly_name="RaysAndBlocks"
+
+[editor]
+
+movie_writer/movie_file="/home/nmclaren/Code/GodotPrototypes/RaysAndBlocks/output.mp4.avi"
