@@ -11,6 +11,7 @@ func _ready() -> void:
 		block.clicked.connect(_on_pickable_clicked)
 
 	laser = laser_scene.instantiate()
+	laser.add_exception($Emitter as CollisionObject2D)
 	add_child(laser)
 
 func _process(_delta:float) -> void:
