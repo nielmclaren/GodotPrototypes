@@ -25,9 +25,9 @@ func _physics_process(_delta:float) -> void:
 		var mouse:Vector2 = get_global_mouse_position()
 
 		# Clicks further from the origin have a greater effect on the rotation.
-		var rotation_delta:float = lerp(0.0, 0.4, click_offset.length() / diameter)
-
+		var rotation_delta:float = _lerpf(0.4 * diameter, diameter, 0.0, 1.0, click_offset.length())
 		rotation = rotate_toward(rotation, (mouse - global_transform.origin).angle() - click_offset.angle(), rotation_delta)
+
 		global_transform.origin = mouse - click_offset.rotated(rotation)
 
 func pickup() -> void:
@@ -42,3 +42,6 @@ func drop(impulse:Vector2 = Vector2.ZERO) -> void:
 		apply_central_impulse(impulse.clampf(0, 4.0))
 		held = false
 		click_offset = Vector2.ZERO
+
+func _lerpf(in_low:float, in_high:float, out_low:float, out_high:float, value:float) -> float:
+	return clampf((value - in_low) / (in_high - in_low) * (out_high - out_low) + out_low, out_low, out_high)
