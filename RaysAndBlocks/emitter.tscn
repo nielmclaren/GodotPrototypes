@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c22kx7cganyvf"]
+[gd_scene load_steps=5 format=3 uid="uid://c22kx7cganyvf"]
 
 [ext_resource type="Script" uid="uid://issdw86eg1xq" path="res://emitter.gd" id="1_butph"]
 [ext_resource type="Texture2D" uid="uid://cuadof6a26o40" path="res://emitter.png" id="1_q2f0b"]
-[ext_resource type="PackedScene" uid="uid://dxnvwykrolsl4" path="res://laser.tscn" id="3_2ci5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_butph"]
 size = Vector2(29.0302, 17.9153)
@@ -29,5 +28,3 @@ curve = SubResource("Curve2D_q2f0b")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 position = Vector2(40, 0)
-
-[node name="Laser" parent="." instance=ExtResource("3_2ci5l")]
