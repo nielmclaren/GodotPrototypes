@@ -11,8 +11,8 @@ script = ExtResource("1_0xm2m")
 laser_scene = ExtResource("2_lquwl")
 
 [node name="Block" parent="." groups=["pickable"] instance=ExtResource("1_ig7tw")]
-position = Vector2(557, 176)
-rotation = 1.1917
+position = Vector2(393, 193)
+rotation = 0.82595
 input_pickable = true
 
 [node name="Block2" parent="." groups=["pickable"] instance=ExtResource("1_ig7tw")]
