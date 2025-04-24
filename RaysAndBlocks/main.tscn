@@ -12,8 +12,8 @@ script = ExtResource("1_0xm2m")
 laser_scene = ExtResource("2_lquwl")
 
 [node name="Block" parent="." groups=["pickable"] instance=ExtResource("1_ig7tw")]
-position = Vector2(605, 417)
-rotation = 0.82595
+position = Vector2(329, 240)
+rotation = -0.771164
 input_pickable = true
 
 [node name="Block2" parent="." groups=["pickable"] instance=ExtResource("1_ig7tw")]
@@ -33,11 +33,11 @@ position = Vector2(155, 174)
 gravity_scale = 0.0
 
 [node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("6_7mycd")]
-position = Vector2(427, 164)
+position = Vector2(886, 145)
 rotation = -0.81766
 input_pickable = true
 
 [node name="Mirror2" parent="." groups=["pickable"] instance=ExtResource("6_7mycd")]
-position = Vector2(403, 427)
-rotation = 2.31978
+position = Vector2(623, 488)
+rotation = 1.0938
 input_pickable = true

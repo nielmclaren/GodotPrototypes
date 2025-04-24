@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxnvwykrolsl4"]
+[gd_scene load_steps=3 format=3 uid="uid://dxnvwykrolsl4"]
 
 [ext_resource type="Script" uid="uid://cnen2sx8sj0av" path="res://laser.gd" id="1_fn5yt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fn5yt"]
+font_size = 12
 
 [node name="Laser" type="RayCast2D"]
 target_position = Vector2(300, 0)
@@ -11,10 +14,12 @@ points = PackedVector2Array(0, 0, 10, 0)
 width = 2.0
 
 [node name="DepthLabel" type="Label" parent="."]
-offset_left = 25.0
+offset_left = 5.0
 offset_top = 3.0
-offset_right = 65.0
+offset_right = 64.0
 offset_bottom = 26.0
+text = "0x"
+label_settings = SubResource("LabelSettings_fn5yt")
 
 [node name="RedLine" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 20, 0)

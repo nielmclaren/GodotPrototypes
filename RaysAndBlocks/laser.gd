@@ -49,11 +49,21 @@ func _process_internal_ray() -> void:
 
 		var normal:Vector2 = reverse_cast.get_collision_normal().rotated(PI)
 		var angle_of_refraction:float = _get_angle_of_refraction(normal, true)
+		
+		if PI/2 - abs(angle_of_refraction) < deg_to_rad(3):
+			# Internal reflection.
+			if not child_laser:
+				child_laser = _instantiate_laser(laser_depth + 1)
 
-		if PI/2 - angle_of_refraction < deg_to_rad(3):
-			if child_laser:
-				child_laser.queue_free()
-				child_laser = null
+			child_laser.clear_exceptions()
+			child_laser.add_exception(containing_body)
+
+			# Child laser will be inside the body.
+			child_laser.set_containing_body(containing_body)
+
+			child_laser.position = cast_point
+			child_laser.global_rotation = _get_reflection_global_rotation(normal)
+
 		else:
 			if not child_laser:
 				child_laser = _instantiate_laser(laser_depth + 1)
@@ -66,6 +76,7 @@ func _process_internal_ray() -> void:
 
 			child_laser.position = cast_point
 			child_laser.global_rotation = _get_refraction_global_rotation(normal, true)
+
 	else:
 		print("WARN: reverse raycast for internal laser didn't collide.")
 
