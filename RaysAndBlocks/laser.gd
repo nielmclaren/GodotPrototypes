@@ -11,8 +11,8 @@ var laser_scene:PackedScene
 var child_laser:Laser
 var laser_depth:int = 0
 
-# If the previous laser beam intersected with a block, this one will be inside that block.
-var containing_block:Block = null
+# If the previous laser beam intersected with a body, this one will be inside that body.
+var containing_body:RigidBody2D = null
 var reverse_cast:RayCast2D = null
 
 func _ready() -> void:
@@ -26,21 +26,21 @@ func _physics_process(_delta:float) -> void:
 		return
 
 	# Indicate depth and external vs. internal
-	($DepthLabel as Label).text = str(laser_depth) + ("i" if containing_block else "x")
+	($DepthLabel as Label).text = str(laser_depth) + ("i" if containing_body else "x")
 
 	var green_line:Line2D = $GreenLine
 	green_line.hide()
 
-	if containing_block:
+	if containing_body:
 		_process_internal_ray()
 
 	else:
 		_process_external_ray()
 
 func _process_internal_ray() -> void:
-	# The laser beam is inside a block. Reverse cast to find the exit intersection.
-	# Can't collide with anything else until the laser exits the containing block.
-	containing_block.set_collision_layer_value(REVERSE_CAST_COLLISION_LAYER, true)
+	# The laser beam is inside a body. Reverse cast to find the exit intersection.
+	# Can't collide with anything else until the laser exits the containing body.
+	containing_body.set_collision_layer_value(REVERSE_CAST_COLLISION_LAYER, true)
 
 	reverse_cast.force_raycast_update()
 	if reverse_cast.is_colliding():
@@ -59,10 +59,10 @@ func _process_internal_ray() -> void:
 				child_laser = _instantiate_laser(laser_depth + 1)
 
 			child_laser.clear_exceptions()
-			child_laser.add_exception(containing_block as CollisionObject2D)
+			child_laser.add_exception(containing_body as CollisionObject2D)
 
-			# Child laser will be outside the block.
-			child_laser.set_containing_block(null)
+			# Child laser will be outside the body.
+			child_laser.set_containing_body(null)
 
 			child_laser.position = cast_point
 			child_laser.global_rotation = _get_child_laser_global_rotation(normal, true)
@@ -75,7 +75,7 @@ func _process_internal_ray() -> void:
 
 		_update_art(Vector2.ZERO, Vector2.ZERO)
 
-	containing_block.set_collision_layer_value(REVERSE_CAST_COLLISION_LAYER, false)
+	containing_body.set_collision_layer_value(REVERSE_CAST_COLLISION_LAYER, false)
 
 func _process_external_ray() -> void:
 	var cast_point:Vector2 = target_position
@@ -92,8 +92,8 @@ func _process_external_ray() -> void:
 		child_laser.clear_exceptions()
 		child_laser.add_exception(get_collider() as CollisionObject2D)
 
-		# Child laser will be inside the block.
-		child_laser.set_containing_block(get_collider() as Block)
+		# Child laser will be inside the body.
+		child_laser.set_containing_body(get_collider() as RigidBody2D)
 
 		child_laser.position = cast_point
 		child_laser.global_rotation = _get_child_laser_global_rotation(get_collision_normal(), false)
@@ -104,10 +104,10 @@ func _process_external_ray() -> void:
 
 	_update_art(cast_point, normal)
 
-func set_containing_block(block:Block) -> void:
-	containing_block = block
+func set_containing_body(body:RigidBody2D) -> void:
+	containing_body = body
 
-	if containing_block:
+	if containing_body:
 		reverse_cast = RayCast2D.new()
 		reverse_cast.enabled = true
 		reverse_cast.position = target_position
@@ -124,8 +124,8 @@ func set_containing_block(block:Block) -> void:
 func _get_reverse_cast_collision() -> Dictionary:
 	var result:Dictionary = {}
 
-	# Can't collide with anything else until the laser exits the containing block.
-	containing_block.set_collision_layer_value(REVERSE_CAST_COLLISION_LAYER, true)
+	# Can't collide with anything else until the laser exits the containing body.
+	containing_body.set_collision_layer_value(REVERSE_CAST_COLLISION_LAYER, true)
 
 	reverse_cast.force_raycast_update()
 	if reverse_cast.is_colliding():
@@ -135,7 +135,7 @@ func _get_reverse_cast_collision() -> Dictionary:
 									"collider": reverse_cast.get_collider()
 					}
 
-	containing_block.set_collision_layer_value(REVERSE_CAST_COLLISION_LAYER, false)
+	containing_body.set_collision_layer_value(REVERSE_CAST_COLLISION_LAYER, false)
 	return result
 
 func _instantiate_laser(depth:int) -> Laser:

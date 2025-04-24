@@ -2,13 +2,14 @@ extends Node2D
 
 @export var laser_scene: PackedScene
 
-var held_object:Block = null
+var held_object:Draggable = null
 var laser:Laser = null
 
 func _ready() -> void:
 	for node:Node2D in get_tree().get_nodes_in_group("pickable"):
-		var block:Block = node
-		block.clicked.connect(_on_pickable_clicked)
+		if node.has_node("Draggable"):
+			var draggable:Draggable = node.get_node("Draggable")
+			draggable.clicked.connect(_on_pickable_clicked)
 
 	laser = laser_scene.instantiate()
 	laser.add_exception($Emitter as CollisionObject2D)
@@ -19,7 +20,7 @@ func _process(_delta:float) -> void:
 	laser.position = emitter.global_position
 	laser.rotation = emitter.global_rotation
 
-func _on_pickable_clicked(object:Block) -> void:
+func _on_pickable_clicked(object:Draggable) -> void:
 	if !held_object:
 		object.pickup()
 		held_object = object

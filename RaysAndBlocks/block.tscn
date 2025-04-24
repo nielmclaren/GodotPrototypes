@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0d15iwncuu2g"]
+[gd_scene load_steps=5 format=3 uid="uid://c0d15iwncuu2g"]
 
 [ext_resource type="Texture2D" uid="uid://twr35hjxj4wm" path="res://block.png" id="1_im0tn"]
-[ext_resource type="Script" uid="uid://mvubve1te2fb" path="res://block.gd" id="1_xfwl5"]
+[ext_resource type="Script" uid="uid://c3re07t0hjvbh" path="res://block.gd" id="1_xfwl5"]
+[ext_resource type="PackedScene" uid="uid://c674osus2odbj" path="res://draggable.tscn" id="2_xfwl5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfwl5"]
 size = Vector2(30, 180)
@@ -16,3 +17,5 @@ shape = SubResource("RectangleShape2D_xfwl5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_im0tn")
+
+[node name="Draggable" parent="." instance=ExtResource("2_xfwl5")]
