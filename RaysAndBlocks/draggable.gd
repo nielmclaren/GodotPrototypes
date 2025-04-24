@@ -12,6 +12,9 @@ var diameter:float = 0
 func _ready() -> void:
 	parent = get_parent()
 	
+	DragManager.register_draggable(self)
+
+	# NOTE: Assumes the centroid is at the origin. For a RigidBody2D it's a fair assumption.
 	var collision_shape:CollisionShape2D = parent.get_node("CollisionShape2D")
 	var half:Vector2 = collision_shape.get_shape().get_rect().size / 2
 	diameter = sqrt(half.x * half.x + half.y * half.y)
@@ -20,8 +23,12 @@ func input_event(_viewport:Viewport, event:InputEvent, _shape_idx:int) -> void:
 	if event is InputEventMouseButton:
 		var mouse_event:InputEventMouseButton = event
 		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.pressed:
-			click_offset = (parent.get_global_mouse_position() - parent.global_transform.origin).rotated(-parent.rotation)
-			clicked.emit(self)
+			_mouse_pressed()
+
+func _mouse_pressed() -> void:
+	var to_mouse:Vector2 = (parent.get_global_mouse_position() - parent.global_transform.origin)
+	click_offset = to_mouse.rotated(-parent.rotation)
+	clicked.emit(self)
 
 func _physics_process(_delta:float) -> void:
 	if held:
@@ -29,7 +36,8 @@ func _physics_process(_delta:float) -> void:
 
 		# Clicks further from the origin have a greater effect on the rotation.
 		var rotation_delta:float = _lerpf(0.4 * diameter, diameter, 0.0, 1.0, click_offset.length())
-		parent.rotation = rotate_toward(parent.rotation, (mouse - parent.global_transform.origin).angle() - click_offset.angle(), rotation_delta)
+		var target_angle:float = (mouse - parent.global_transform.origin).angle() - click_offset.angle()
+		parent.rotation = rotate_toward(parent.rotation, target_angle, rotation_delta)
 
 		parent.global_transform.origin = mouse - click_offset.rotated(parent.rotation)
 
