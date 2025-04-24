@@ -12,7 +12,7 @@ var child_laser:Laser
 var laser_depth:int = 0
 
 # If the previous laser beam intersected with a body, this one will be inside that body.
-var containing_body:RigidBody2D = null
+var containing_body:CollisionObject2D = null
 var reverse_cast:RayCast2D = null
 
 func _ready() -> void:
@@ -59,7 +59,7 @@ func _process_internal_ray() -> void:
 				child_laser = _instantiate_laser(laser_depth + 1)
 
 			child_laser.clear_exceptions()
-			child_laser.add_exception(containing_body as CollisionObject2D)
+			child_laser.add_exception(containing_body)
 
 			# Child laser will be outside the body.
 			child_laser.set_containing_body(null)
@@ -83,6 +83,7 @@ func _process_external_ray() -> void:
 
 	force_raycast_update()
 	if is_colliding():
+		var collider:CollisionObject2D = get_collider()
 		cast_point = to_local(get_collision_point())
 		normal = get_collision_normal()
 
@@ -90,10 +91,10 @@ func _process_external_ray() -> void:
 			child_laser = _instantiate_laser(laser_depth + 1)
 
 		child_laser.clear_exceptions()
-		child_laser.add_exception(get_collider() as CollisionObject2D)
+		child_laser.add_exception(collider)
 
 		# Child laser will be inside the body.
-		child_laser.set_containing_body(get_collider() as RigidBody2D)
+		child_laser.set_containing_body(collider)
 
 		child_laser.position = cast_point
 		child_laser.global_rotation = _get_child_laser_global_rotation(get_collision_normal(), false)
@@ -104,7 +105,7 @@ func _process_external_ray() -> void:
 
 	_update_art(cast_point, normal)
 
-func set_containing_body(body:RigidBody2D) -> void:
+func set_containing_body(body:CollisionObject2D) -> void:
 	containing_body = body
 
 	if containing_body:
