@@ -4,7 +4,7 @@ class_name Laser
 
 const DEFAULT_COLLISION_LAYER:int = 1
 const REVERSE_CAST_COLLISION_LAYER:int = 2
-const MAX_LASER_DEPTH:int = 5
+const MAX_LASER_DEPTH:int = 10
 const REFRACTIVE_INDEX_GLASS:float = 1.52
 
 var laser_scene:PackedScene
@@ -65,7 +65,7 @@ func _process_internal_ray() -> void:
 			child_laser.set_containing_body(null)
 
 			child_laser.position = cast_point
-			child_laser.global_rotation = _get_child_laser_global_rotation(normal, true)
+			child_laser.global_rotation = _get_refraction_global_rotation(normal, true)
 	else:
 		print("WARN: reverse raycast for internal laser didn't collide.")
 
@@ -84,20 +84,37 @@ func _process_external_ray() -> void:
 	force_raycast_update()
 	if is_colliding():
 		var collider:CollisionObject2D = get_collider()
-		cast_point = to_local(get_collision_point())
-		normal = get_collision_normal()
+		if collider is Block:
+			cast_point = to_local(get_collision_point())
+			normal = get_collision_normal()
 
-		if not child_laser:
-			child_laser = _instantiate_laser(laser_depth + 1)
+			if not child_laser:
+				child_laser = _instantiate_laser(laser_depth + 1)
 
-		child_laser.clear_exceptions()
-		child_laser.add_exception(collider)
+			child_laser.clear_exceptions()
+			child_laser.add_exception(collider)
 
-		# Child laser will be inside the body.
-		child_laser.set_containing_body(collider)
+			# Child laser will be inside the body.
+			child_laser.set_containing_body(collider)
 
-		child_laser.position = cast_point
-		child_laser.global_rotation = _get_child_laser_global_rotation(get_collision_normal(), false)
+			child_laser.position = cast_point
+			child_laser.global_rotation = _get_refraction_global_rotation(get_collision_normal(), false)
+
+		elif collider is Mirror:
+			cast_point = to_local(get_collision_point())
+			normal = get_collision_normal()
+
+			if not child_laser:
+				child_laser = _instantiate_laser(laser_depth + 1)
+
+			child_laser.clear_exceptions()
+			child_laser.add_exception(collider)
+
+			# Child laser will be outside the body.
+			child_laser.set_containing_body(null)
+
+			child_laser.position = cast_point
+			child_laser.global_rotation = _get_reflection_global_rotation(get_collision_normal())
 
 	elif child_laser:
 		child_laser.queue_free()
@@ -155,10 +172,15 @@ func _get_angle_of_refraction(normal:Vector2, is_internal:bool) -> float:
 
 	return asin( sin(in_angle) / REFRACTIVE_INDEX_GLASS )
 
-func _get_child_laser_global_rotation(normal:Vector2, is_internal:bool) -> float:
+func _get_refraction_global_rotation(normal:Vector2, is_internal:bool) -> float:
 	var reverse_normal:Vector2 = normal.rotated(PI)
 	var out_angle:float = _get_angle_of_refraction(normal, is_internal)
 	return reverse_normal.rotated(out_angle).angle()
+
+func _get_reflection_global_rotation(normal:Vector2) -> float:
+	var direction:Vector2 = Vector2.from_angle(global_rotation).rotated(PI)
+	var reverse_normal:Vector2 = normal.rotated(PI)
+	return direction.rotated(2*direction.angle_to(reverse_normal)).angle()
 
 func _update_art(target_point:Vector2, normal:Vector2) -> void:
 	var line:Line2D = $Line2D
