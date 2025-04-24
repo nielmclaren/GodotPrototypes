@@ -130,11 +130,11 @@ func _get_reverse_cast_collision() -> Dictionary:
 
 	reverse_cast.force_raycast_update()
 	if reverse_cast.is_colliding():
-					result = {
-									"position": to_local(reverse_cast.get_collision_point()),
-									"normal": reverse_cast.get_collision_normal(),
-									"collider": reverse_cast.get_collider()
-					}
+		result = {
+			"position": to_local(reverse_cast.get_collision_point()),
+			"normal": reverse_cast.get_collision_normal(),
+			"collider": reverse_cast.get_collider()
+		}
 
 	containing_body.set_collision_layer_value(REVERSE_CAST_COLLISION_LAYER, false)
 	return result
