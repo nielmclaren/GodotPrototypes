@@ -12,7 +12,7 @@ _data = {
 }
 point_count = 2
 
-[node name="Emitter" type="RigidBody2D"]
+[node name="Emitter" type="StaticBody2D"]
 script = ExtResource("1_butph")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

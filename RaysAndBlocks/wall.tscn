@@ -1,16 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo2x88vroirym"]
+[gd_scene load_steps=3 format=3 uid="uid://bo2x88vroirym"]
 
-[ext_resource type="Script" uid="uid://cjyekopd8bbk2" path="res://wall.gd" id="1_iuee5"]
 [ext_resource type="Texture2D" uid="uid://dy2qypvvx5p1f" path="res://wall.png" id="2_xduj2"]
-[ext_resource type="PackedScene" uid="uid://c674osus2odbj" path="res://draggable.tscn" id="3_bbgl8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfwl5"]
 size = Vector2(30, 180)
 
-[node name="Wall" type="RigidBody2D"]
-gravity_scale = 0.0
-linear_damp = 6.733
-script = ExtResource("1_iuee5")
+[node name="Wall" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -18,5 +13,3 @@ shape = SubResource("RectangleShape2D_xfwl5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_xduj2")
-
-[node name="Draggable" parent="." instance=ExtResource("3_bbgl8")]
