@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dktcsamb8p7ad"]
+[gd_scene load_steps=9 format=3 uid="uid://dktcsamb8p7ad"]
 
 [ext_resource type="Script" uid="uid://sb132ip2l2vv" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c0d15iwncuu2g" path="res://block.tscn" id="1_ig7tw"]
@@ -7,13 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://c22kx7cganyvf" path="res://emitter.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ddr6it3x0aj6o" path="res://mirror.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bo2x88vroirym" path="res://wall.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://tnrc34yi6e02" path="res://sensor.tscn" id="8_5vw27"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
 laser_scene = ExtResource("2_lquwl")
 
 [node name="Block" parent="." groups=["pickable"] instance=ExtResource("1_ig7tw")]
-position = Vector2(322, 171)
+position = Vector2(335, 371)
 rotation = -0.771164
 input_pickable = true
 
@@ -53,3 +54,6 @@ position = Vector2(724, 82)
 position = Vector2(532, 172)
 rotation = 0.70859
 input_pickable = true
+
+[node name="Sensor" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(412, 178)

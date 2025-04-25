@@ -2,7 +2,6 @@ extends RayCast2D
 
 class_name Laser
 
-
 const DEFAULT_COLLISION_LAYER:int = 1
 
 # Collision layer for finding the exit point of an internal ray.
@@ -74,7 +73,7 @@ func _process_internal_ray() -> void:
 
 func _process_internal_ray_collision(collision_point:Vector2, normal:Vector2) -> void:
 	var angle_of_refraction:float = _get_angle_of_refraction(normal, true)
-		
+
 	if not child_laser:
 		child_laser = _instantiate_laser(laser_depth + 1)
 
@@ -150,6 +149,14 @@ func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
 
 		child_laser.position = point
 		child_laser.global_rotation = _get_reflection_global_rotation(normal)
+
+	elif collider is Sensor:
+		var sensor:Sensor = collider
+		sensor.register_laser_collision(self)
+
+		if child_laser:
+			child_laser.queue_free()
+			child_laser = null
 
 	else:
 		# Collided with a wall or viewport bounds. Dead end.
