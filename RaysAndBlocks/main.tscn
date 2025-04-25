@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dktcsamb8p7ad"]
+[gd_scene load_steps=8 format=3 uid="uid://dktcsamb8p7ad"]
 
 [ext_resource type="Script" uid="uid://sb132ip2l2vv" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c0d15iwncuu2g" path="res://block.tscn" id="1_ig7tw"]
@@ -6,13 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://dxnvwykrolsl4" path="res://laser.tscn" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c22kx7cganyvf" path="res://emitter.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ddr6it3x0aj6o" path="res://mirror.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bo2x88vroirym" path="res://wall.tscn" id="7_272bh"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
 laser_scene = ExtResource("2_lquwl")
 
 [node name="Block" parent="." groups=["pickable"] instance=ExtResource("1_ig7tw")]
-position = Vector2(329, 240)
+position = Vector2(322, 171)
 rotation = -0.771164
 input_pickable = true
 
@@ -38,6 +39,17 @@ rotation = -0.81766
 input_pickable = true
 
 [node name="Mirror2" parent="." groups=["pickable"] instance=ExtResource("6_7mycd")]
-position = Vector2(623, 488)
+position = Vector2(557, 489)
 rotation = 1.0938
+input_pickable = true
+
+[node name="Wall" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(724, 256)
+
+[node name="Wall2" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(724, 82)
+
+[node name="Wall3" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(532, 172)
+rotation = 0.70859
 input_pickable = true
