@@ -1,9 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dktcsamb8p7ad"]
+[gd_scene load_steps=7 format=3 uid="uid://dktcsamb8p7ad"]
 
 [ext_resource type="Script" uid="uid://sb132ip2l2vv" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://c0d15iwncuu2g" path="res://block.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://olc30uyw178h" path="res://static_bounds.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://dxnvwykrolsl4" path="res://laser.tscn" id="2_lquwl"]
 [ext_resource type="PackedScene" uid="uid://c22kx7cganyvf" path="res://emitter.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://ddr6it3x0aj6o" path="res://mirror.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bo2x88vroirym" path="res://wall.tscn" id="7_272bh"]
@@ -11,49 +9,34 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
-laser_scene = ExtResource("2_lquwl")
-
-[node name="Block" parent="." groups=["pickable"] instance=ExtResource("1_ig7tw")]
-position = Vector2(335, 371)
-rotation = -0.771164
-input_pickable = true
-
-[node name="Block2" parent="." groups=["pickable"] instance=ExtResource("1_ig7tw")]
-position = Vector2(980, 472)
-rotation = -0.487309
-input_pickable = true
-
-[node name="Block3" parent="." groups=["pickable"] instance=ExtResource("1_ig7tw")]
-position = Vector2(171, 535)
-rotation = 1.81465
-input_pickable = true
 
 [node name="StaticBounds" parent="." instance=ExtResource("2_0xm2m")]
 
 [node name="Emitter" parent="." instance=ExtResource("4_1bvp3")]
 position = Vector2(155, 174)
-gravity_scale = 0.0
+
+[node name="Emitter" parent="Emitter" instance=ExtResource("4_1bvp3")]
+position = Vector2(411, -105)
+rotation = 2.59557
 
 [node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("6_7mycd")]
-position = Vector2(886, 145)
+position = Vector2(1064, 171)
 rotation = -0.81766
 input_pickable = true
 
 [node name="Mirror2" parent="." groups=["pickable"] instance=ExtResource("6_7mycd")]
-position = Vector2(557, 489)
-rotation = 1.0938
+position = Vector2(374, 221)
+rotation = -0.605994
 input_pickable = true
 
 [node name="Wall" parent="." instance=ExtResource("7_272bh")]
-position = Vector2(724, 256)
+position = Vector2(968, 561)
 
 [node name="Wall2" parent="." instance=ExtResource("7_272bh")]
-position = Vector2(724, 82)
-
-[node name="Wall3" parent="." instance=ExtResource("7_272bh")]
-position = Vector2(532, 172)
-rotation = 0.70859
-input_pickable = true
+position = Vector2(970, 387)
 
 [node name="Sensor" parent="." instance=ExtResource("8_5vw27")]
-position = Vector2(412, 178)
+position = Vector2(1058, 542)
+
+[node name="Sensor2" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(179, 522)
