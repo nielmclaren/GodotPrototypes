@@ -7,7 +7,7 @@
 script = ExtResource("1_0xm2m")
 
 [node name="Block" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(512, 442)
+position = Vector2(284, 302)
 
 [node name="Block2" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(774, 345)

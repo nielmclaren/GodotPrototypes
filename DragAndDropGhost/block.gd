@@ -5,6 +5,14 @@ class_name Block
 signal drag_start
 
 var block_scene: PackedScene
+var cell_size: Vector2 = Vector2(32, 32)
+
+func _enter_tree() -> void:
+	set_notify_transform(true)
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSFORM_CHANGED:
+		position = snapped(position, cell_size)
 
 func _ready() -> void:
 	input_pickable = true
