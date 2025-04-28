@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcby0c3uuoj4f"]
+
+[ext_resource type="Script" uid="uid://pdi2vvslvup5" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://1w1joqhu4n2l" path="res://block.tscn" id="1_ig7tw"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0xm2m")
+
+[node name="Block" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(512, 442)
+
+[node name="Block2" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(774, 345)
+rotation = 0.754726
+
+[node name="Block3" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(242, 289)

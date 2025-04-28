@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://1w1joqhu4n2l"]
+
+[ext_resource type="Script" uid="uid://cuipubdh2vice" path="res://block.gd" id="1_xfwl5"]
+[ext_resource type="Texture2D" uid="uid://004rl6cnyfpo" path="res://mirror.png" id="2_xfwl5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfwl5"]
+size = Vector2(30, 180)
+
+[node name="Block" type="StaticBody2D"]
+script = ExtResource("1_xfwl5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xfwl5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_xfwl5")
