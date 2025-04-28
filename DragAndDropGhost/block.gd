@@ -2,7 +2,7 @@ extends StaticBody2D
 
 class_name Block
 
-signal clicked
+signal drag_start
 
 var block_scene: PackedScene
 
@@ -17,7 +17,27 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void
 			_mouse_pressed()
 
 func _mouse_pressed() -> void:
-	clicked.emit(self)
+	drag_start.emit(self)
+
+func set_drag_and_drop_state(state: int) -> void:
+	match state:
+		DragAndDrop.STATE_GHOST:
+			modulate.a = 0.4
+			modulate.r = 1.0
+			modulate.g = 1.0
+			modulate.b = 1.0
+
+		DragAndDrop.STATE_COLLISION:
+			modulate.a = 0.4
+			modulate.r = 1.0
+			modulate.g = 0.2
+			modulate.b = 0.2
+
+		_:
+			modulate.a = 1.0
+			modulate.r = 1.0
+			modulate.g = 1.0
+			modulate.b = 1.0
 
 func clone() -> Block:
 	var clone: Block = block_scene.instantiate()
