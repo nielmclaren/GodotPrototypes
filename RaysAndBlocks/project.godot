@@ -35,3 +35,7 @@ project/assembly_name="RaysAndBlocks"
 [editor]
 
 movie_writer/movie_file="/home/nmclaren/Code/GodotPrototypes/RaysAndBlocks/output.mp4.avi"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
