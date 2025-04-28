@@ -7,6 +7,7 @@
 size = Vector2(30, 180)
 
 [node name="Block" type="StaticBody2D"]
+input_pickable = true
 script = ExtResource("1_xfwl5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

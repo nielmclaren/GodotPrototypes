@@ -7,11 +7,11 @@
 script = ExtResource("1_0xm2m")
 
 [node name="Block" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(284, 302)
+position = Vector2(320, 352)
 
 [node name="Block2" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(774, 345)
+position = Vector2(640, 320)
 rotation = 0.754726
 
 [node name="Block3" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(242, 289)
+position = Vector2(256, 288)
