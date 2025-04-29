@@ -6,13 +6,15 @@ class_name Block
 signal drag_start
 
 var block_scene: PackedScene
+
+var is_snapped: bool = true
 var cell_size: Vector2 = Vector2(32, 32)
 
 func _enter_tree() -> void:
 	set_notify_transform(true)
 
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_TRANSFORM_CHANGED:
+	if what == NOTIFICATION_TRANSFORM_CHANGED and is_snapped:
 		position = snapped(position, cell_size)
 
 func _ready() -> void:
@@ -24,7 +26,7 @@ func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void
 		var mouse_event: InputEventMouseButton = event
 		if mouse_event.button_index == MOUSE_BUTTON_LEFT and mouse_event.pressed:
 			_mouse_pressed()
-
+ 
 func _mouse_pressed() -> void:
 	drag_start.emit(self)
 

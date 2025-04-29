@@ -9,6 +9,7 @@ const STATE_COLLISION: int = 2
 var scene: Node2D = null
 var drag_node: CollisionObject2D = null
 var drag_ghost: CollisionObject2D = null
+var click_offset: Vector2 = Vector2.ZERO
 
 # Adds functionality to any children that implement the `drag_start` signal and
 # the `clone()` method.
@@ -23,9 +24,11 @@ func _register_draggable_children(scene: Node2D) -> void:
 			child.drag_start.connect(_node_clicked)
 
 func _node_clicked(node: CollisionObject2D) -> void:
+	click_offset = scene.get_global_mouse_position() - node.global_position
 	drag_node = node
+
 	drag_ghost = node.clone()
-	drag_ghost.global_position = scene.get_global_mouse_position()
+	drag_ghost.global_position = scene.get_global_mouse_position() - click_offset
 	if drag_ghost.has_method("set_drag_and_drop_state"):
 		drag_ghost.set_drag_and_drop_state(STATE_GHOST)
 	drag_ghost.add_collision_exception_with(node)
@@ -33,8 +36,8 @@ func _node_clicked(node: CollisionObject2D) -> void:
 
 func physics_process(_delta: float) -> void:
 	if drag_ghost:
-		var collision: KinematicCollision2D = drag_ghost.move_and_collide(scene.get_global_mouse_position() - drag_ghost.global_position, true)
-		drag_ghost.global_position = scene.get_global_mouse_position()
+		drag_ghost.global_position = scene.get_global_mouse_position() - click_offset
+		var collision: KinematicCollision2D = drag_ghost.move_and_collide(Vector2.ZERO, true)
 
 		if drag_ghost.has_method("set_drag_and_drop_state"):
 			if collision:
@@ -50,13 +53,14 @@ func unhandled_input(event: InputEvent) -> void:
 
 func _mouse_released() -> void:
 	if drag_ghost:
-		var collision: KinematicCollision2D = drag_ghost.move_and_collide(scene.get_global_mouse_position() - drag_ghost.global_position, true)
-		drag_ghost.global_position = scene.get_global_mouse_position()
+		drag_ghost.global_position = scene.get_global_mouse_position() - click_offset
+		var collision: KinematicCollision2D = drag_ghost.move_and_collide(Vector2.ZERO, true)
 
 		if collision:
+			drag_ghost.is_snapped = false
 			var tween: Tween = drag_ghost.create_tween()
 			tween.tween_property(drag_ghost, "position", drag_node.position, 0.3)
-			tween.parallel().tween_property(drag_ghost, "modulate:r", 0, 0.3)
+			tween.parallel().tween_property(drag_ghost, "modulate:a", 0, 0.3)
 
 			# Use currying to ensure the correct ghost is freed. This solves an issue where the
 			# new ghost is freed if a node is dragged before the previous tween is finished.
