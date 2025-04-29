@@ -11,6 +11,8 @@ var drag_node: CollisionObject2D = null
 var drag_ghost: CollisionObject2D = null
 var click_offset: Vector2 = Vector2.ZERO
 
+var cell_size: Vector2 = Vector2(32, 32)
+
 # Adds functionality to any children that implement the `drag_start` signal and
 # the `clone()` method.
 func init(s: Node2D) -> void:
@@ -36,7 +38,7 @@ func _node_clicked(node: CollisionObject2D) -> void:
 
 func physics_process(_delta: float) -> void:
 	if drag_ghost:
-		drag_ghost.global_position = scene.get_global_mouse_position() - click_offset
+		drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, cell_size)
 		var collision: KinematicCollision2D = drag_ghost.move_and_collide(Vector2.ZERO, true)
 
 		if drag_ghost.has_method("set_drag_and_drop_state"):
