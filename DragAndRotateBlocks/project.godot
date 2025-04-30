@@ -14,3 +14,7 @@ config/name="DragAndRotateBlocks"
 run/main_scene="uid://bcby0c3uuoj4f"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+CursorManager="*res://cursor_manager.gd"

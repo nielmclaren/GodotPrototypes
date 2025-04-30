@@ -7,11 +7,11 @@ signal drag_start
 
 var block_scene: PackedScene
 
+var is_dragging: bool = false
 var is_rotating: bool = false
 var previous_rotation: float = 0
 var click_offset: Vector2 = Vector2.ZERO
 var is_mouse_over:bool = false
-var cursor_rotate: Resource
 
 var is_snapped: bool = true
 var cell_size: Vector2 = Vector2(32, 32)
@@ -32,20 +32,20 @@ func _ready() -> void:
 	block_scene = load(scene_file_path) as PackedScene
 
 	previous_rotation = rotation
-	drag_handle_radius = 0.6 * _get_radius($CollisionShape2D.shape)
+	drag_handle_radius = 0.4 * _get_radius($CollisionShape2D.shape)
 
-	cursor_rotate = load("res://cursor_rotate.png")
 	mouse_entered.connect(_mouse_entered)
 	mouse_exited.connect(_mouse_exited)
+
+	CursorManager.cursor_set_shape(Input.CURSOR_ARROW)
 
 func _mouse_entered() -> void:
 	is_mouse_over = true
 
 func _mouse_exited() -> void:
 	is_mouse_over = false
-	if !is_rotating:
-		DisplayServer.cursor_set_custom_image(null)
-		DisplayServer.cursor_set_shape(DisplayServer.CURSOR_ARROW)
+	if !is_dragging and !is_rotating:
+		CursorManager.cursor_set_shape(Input.CURSOR_ARROW)
 
 func _get_radius(shape: Shape2D) -> float:
 	var size: Vector2 = shape.get_rect().size
@@ -55,14 +55,15 @@ func _physics_process(_delta: float) -> void:
 	if is_mouse_over:
 		var mouse_dist: float = get_local_mouse_position().length()
 		if mouse_dist < drag_handle_radius:
-			DisplayServer.cursor_set_custom_image(null)
-			DisplayServer.cursor_set_shape(DisplayServer.CURSOR_DRAG)
+			CursorManager.cursor_set_shape(Input.CURSOR_DRAG)
 		else:
-			DisplayServer.cursor_set_custom_image(cursor_rotate)
+			CursorManager.cursor_set_shape(Input.CURSOR_CROSS)
+
+	if is_dragging:
+		CursorManager.cursor_set_shape(Input.CURSOR_DRAG)
 
 	if is_rotating:
 		rotation = rotate_toward(rotation, (get_global_mouse_position() - global_position).angle() - click_offset.angle(), 1)
-		DisplayServer.cursor_set_custom_image(cursor_rotate)
 
 		var collision: KinematicCollision2D = move_and_collide(Vector2.ZERO, true)
 		# FIXME: Don't use DragAndDrop state logic for Block rotation.
@@ -70,6 +71,8 @@ func _physics_process(_delta: float) -> void:
 			set_drag_and_drop_state(DragAndDrop.STATE_COLLISION)
 		else:
 			set_drag_and_drop_state(DragAndDrop.STATE_DEFAULT)
+
+		CursorManager.cursor_set_shape(Input.CURSOR_CROSS)
 
 func _input_event(viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
@@ -83,6 +86,7 @@ func _mouse_pressed() -> void:
 
 	var mouse_dist: float = get_local_mouse_position().length()
 	if mouse_dist < drag_handle_radius:
+		is_dragging = true
 		drag_start.emit(self)
 	else:
 		is_rotating = true
@@ -94,9 +98,9 @@ func _input(event: InputEvent) -> void:
 			_mouse_released()
 
 func _mouse_released() -> void:
+	is_dragging = false
 	is_rotating = false
-	DisplayServer.cursor_set_custom_image(null)
-	DisplayServer.cursor_set_shape(DisplayServer.CURSOR_ARROW)
+	CursorManager.cursor_set_shape(Input.CURSOR_ARROW)
 
 	# FIXME: Don't use DragAndDrop state logic for Block rotation.
 	set_drag_and_drop_state(DragAndDrop.STATE_DEFAULT)

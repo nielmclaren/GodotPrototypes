@@ -30,7 +30,7 @@ func _node_clicked(node: CollisionObject2D) -> void:
 	drag_node = node
 
 	drag_ghost = node.clone()
-	drag_ghost.global_position = scene.get_global_mouse_position() - click_offset
+	drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, cell_size)
 	if drag_ghost.has_method("set_drag_and_drop_state"):
 		drag_ghost.set_drag_and_drop_state(STATE_GHOST)
 	drag_ghost.add_collision_exception_with(node)
@@ -55,7 +55,7 @@ func unhandled_input(event: InputEvent) -> void:
 
 func _mouse_released() -> void:
 	if drag_ghost:
-		drag_ghost.global_position = scene.get_global_mouse_position() - click_offset
+		drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, cell_size)
 		var collision: KinematicCollision2D = drag_ghost.move_and_collide(Vector2.ZERO, true)
 
 		if collision:

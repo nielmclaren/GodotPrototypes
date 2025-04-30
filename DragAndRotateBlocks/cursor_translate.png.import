@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2r6qao8oobg8"
-path="res://.godot/imported/cursor_rotate_original.png-174373d00572454b3962beb9f0c63ad6.ctex"
+uid="uid://ci187wu4a480s"
+path="res://.godot/imported/cursor_translate.png-98f40e939475e31bc1394a94aae9af7a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cursor_rotate_original.png"
-dest_files=["res://.godot/imported/cursor_rotate_original.png-174373d00572454b3962beb9f0c63ad6.ctex"]
+source_file="res://cursor_translate.png"
+dest_files=["res://.godot/imported/cursor_translate.png-98f40e939475e31bc1394a94aae9af7a.ctex"]
 
 [params]
 
