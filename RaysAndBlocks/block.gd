@@ -1,6 +1,13 @@
-extends RigidBody2D
+extends Interactible
 
 class_name Block
 
-func _input_event(viewport:Viewport, event:InputEvent, shape_idx:int) -> void:
-	($Draggable as Draggable).input_event(viewport, event, shape_idx)
+var block_scene: PackedScene
+
+func _ready() -> void:
+	block_scene = load(scene_file_path) as PackedScene
+
+func clone() -> Block:
+	var block: Block = block_scene.instantiate()
+	block.rotation = rotation
+	return block

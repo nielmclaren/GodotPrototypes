@@ -1,6 +1,17 @@
-extends RigidBody2D
+extends Interactible
 
 class_name Mirror
 
-func _input_event(viewport:Viewport, event:InputEvent, shape_idx:int) -> void:
-	($Draggable as Draggable).input_event(viewport, event, shape_idx)
+var mirror_scene: PackedScene
+
+func _ready() -> void:
+	super._ready()
+
+	mirror_scene = load(scene_file_path) as PackedScene
+
+	drag_handle_radius = 0.4 * _get_radius(($CollisionShape2D as CollisionShape2D).shape)
+
+func clone() -> Mirror:
+	var mirror: Mirror = mirror_scene.instantiate()
+	mirror.rotation = rotation
+	return mirror

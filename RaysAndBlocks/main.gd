@@ -1,8 +1,13 @@
 extends Node2D
 
-func _unhandled_input(event:InputEvent) -> void:
-	if event is InputEventMouseButton:
-		var mouse_event:InputEventMouseButton = event
-		if mouse_event.button_index == MOUSE_BUTTON_LEFT \
-				and !mouse_event.pressed:
-			DragManager.release()
+var drag_and_drop: DragAndDrop
+
+func _ready() -> void:
+	drag_and_drop = DragAndDrop.new()
+	drag_and_drop.init(self)
+
+func _physics_process(delta: float) -> void:
+	drag_and_drop.physics_process(delta)
+
+func _unhandled_input(event: InputEvent) -> void:
+	drag_and_drop.unhandled_input(event)
