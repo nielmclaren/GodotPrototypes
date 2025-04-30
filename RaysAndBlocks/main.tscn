@@ -13,20 +13,21 @@ script = ExtResource("1_0xm2m")
 [node name="StaticBounds" parent="." instance=ExtResource("2_0xm2m")]
 
 [node name="Emitter" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(90, 306)
+position = Vector2(67, 397)
+rotation = -0.303898
 
-[node name="Emitter" parent="Emitter" instance=ExtResource("4_1bvp3")]
-position = Vector2(412, -233)
-rotation = 2.00702
+[node name="Emitter2" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(344, 164)
+rotation = 1.45228
 
 [node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("6_7mycd")]
-position = Vector2(477, 186)
-rotation = 1.00191
+position = Vector2(192, 224)
+rotation = 4.32161
 input_pickable = true
 
 [node name="Mirror2" parent="." groups=["pickable"] instance=ExtResource("6_7mycd")]
-position = Vector2(225, 146)
-rotation = -2.39717
+position = Vector2(416, 416)
+rotation = -1.98234
 input_pickable = true
 
 [node name="Wall" parent="." instance=ExtResource("7_272bh")]
@@ -45,4 +46,12 @@ position = Vector2(241, 589)
 position = Vector2(296, 562)
 
 [node name="Wall4" parent="." instance=ExtResource("7_272bh")]
-position = Vector2(295, 448)
+position = Vector2(297, 485)
+
+[node name="Wall5" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(418, 102)
+rotation = 0.797028
+
+[node name="Wall6" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(259, 129)
+rotation = -1.1123
