@@ -1,4 +1,3 @@
-@tool
 extends StaticBody2D
 
 class_name Block
@@ -9,7 +8,7 @@ var block_scene: PackedScene
 
 var is_dragging: bool = false
 var is_rotating: bool = false
-var previous_rotation: float = 0
+var prev_rotation: float = 0
 var click_offset: Vector2 = Vector2.ZERO
 var is_mouse_over:bool = false
 
@@ -31,7 +30,7 @@ func _ready() -> void:
 	input_pickable = true
 	block_scene = load(scene_file_path) as PackedScene
 
-	previous_rotation = rotation
+	prev_rotation = rotation
 	drag_handle_radius = 0.4 * _get_radius($CollisionShape2D.shape)
 
 	mouse_entered.connect(_mouse_entered)
@@ -107,7 +106,9 @@ func _mouse_released() -> void:
 
 	var collision: KinematicCollision2D = move_and_collide(Vector2.ZERO, true)
 	if collision:
-		rotation = previous_rotation
+		rotation = prev_rotation
+	else:
+		prev_rotation = rotation
 
 func set_drag_and_drop_state(state: int) -> void:
 	match state:
