@@ -10,6 +10,8 @@ func _ready() -> void:
 	Input.set_custom_mouse_cursor(load("res://cursor_translate.png"), Input.CURSOR_DRAG, Vector2(16, 16))
 	Input.set_custom_mouse_cursor(load("res://cursor_rotate.png"), Input.CURSOR_CROSS, Vector2(16, 16))
 
+	CursorManager.cursor_set_shape(Input.CURSOR_ARROW)
+
 func _process(_delta: float) -> void:
 	if pending:
 		var now: int = Time.get_ticks_msec()
