@@ -1,3 +1,8 @@
 extends Node
 
-const cell_size: Vector2 = Vector2(32, 32)
+const DEFAULT_COLLISION_LAYER:int = 1
+
+# Collision layer for finding the exit point of an internal ray.
+const LASER_REVERSE_CAST_COLLISION_LAYER:int = 2
+
+const CELL_SIZE: Vector2 = Vector2(32, 32)

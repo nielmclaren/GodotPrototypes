@@ -1,4 +1,3 @@
-@tool
 extends StaticBody2D
 
 class_name Interactible
@@ -7,6 +6,7 @@ signal drag_start
 
 var interactible_scene: PackedScene
 
+# TODO: Change to Enum.
 const STATE_DEFAULT: int = 0
 const STATE_GHOST: int = 1
 const STATE_GHOST_REVERT: int = 2
@@ -34,7 +34,7 @@ func _enter_tree() -> void:
 
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSFORM_CHANGED and is_snapped:
-		position = snapped(position, Constants.cell_size)
+		position = snapped(position, Constants.CELL_SIZE)
 
 func _ready() -> void:
 	input_pickable = true
@@ -129,6 +129,7 @@ func set_edit_state(state: int) -> void:
 			modulate.g = 1.0
 			modulate.b = 1.0
 			is_snapped = true
+			set_collision_layer_value(Constants.DEFAULT_COLLISION_LAYER, false)
 
 		STATE_GHOST_COLLISION:
 			modulate.a = 0.4
@@ -136,6 +137,7 @@ func set_edit_state(state: int) -> void:
 			modulate.g = 0.2
 			modulate.b = 0.2
 			is_snapped = true
+			set_collision_layer_value(Constants.DEFAULT_COLLISION_LAYER, false)
 
 		STATE_GHOST_REVERT:
 			modulate.a = 0.4
@@ -143,6 +145,7 @@ func set_edit_state(state: int) -> void:
 			modulate.g = 0.2
 			modulate.b = 0.2
 			is_snapped = false
+			set_collision_layer_value(Constants.DEFAULT_COLLISION_LAYER, false)
 
 		_:
 			modulate.a = 1.0
@@ -150,6 +153,7 @@ func set_edit_state(state: int) -> void:
 			modulate.g = 1.0
 			modulate.b = 1.0
 			is_snapped = true
+			set_collision_layer_value(Constants.DEFAULT_COLLISION_LAYER, true)
 
 func clone() -> Variant:
 	var interactible: Interactible = interactible_scene.instantiate()

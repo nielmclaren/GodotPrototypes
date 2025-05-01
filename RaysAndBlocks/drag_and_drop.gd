@@ -25,19 +25,18 @@ func _register_draggable_children(parent_scene: Node2D) -> void:
 			interactible.drag_start.connect(_node_clicked)
 
 func _node_clicked(node: Interactible) -> void:
-	print("node_clicked")
 	click_offset = scene.get_global_mouse_position() - node.global_position
 	drag_node = node
 
 	drag_ghost = node.clone()
-	drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, Constants.cell_size)
+	drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, Constants.CELL_SIZE)
 	drag_ghost.set_edit_state(Block.STATE_GHOST)
 	drag_ghost.add_collision_exception_with(node)
 	scene.add_child(drag_ghost)
 
 func physics_process(_delta: float) -> void:
 	if drag_ghost:
-		drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, Constants.cell_size)
+		drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, Constants.CELL_SIZE)
 		var collision: KinematicCollision2D = drag_ghost.move_and_collide(Vector2.ZERO, true)
 
 		if collision:
@@ -53,7 +52,7 @@ func unhandled_input(event: InputEvent) -> void:
 
 func _mouse_released() -> void:
 	if drag_ghost:
-		drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, Constants.cell_size)
+		drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, Constants.CELL_SIZE)
 		var collision: KinematicCollision2D = drag_ghost.move_and_collide(Vector2.ZERO, true)
 
 		if collision:
@@ -71,7 +70,7 @@ func _revert_drag() -> void:
 
 	var tween: Tween = drag_ghost.create_tween()
 	tween.tween_property(drag_ghost, "position", drag_node.position, 0.3)
-	tween.parallel().tween_property(drag_ghost, "modulate:a", 0, 0.3)
+	tween.parallel().tween_property(drag_ghost, "modulate:a", 0.2, 0.3)
 
 	# Use currying to ensure the correct ghost is freed. This solves an issue where the
 	# new ghost is freed if a node is dragged before the previous tween is finished.

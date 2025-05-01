@@ -22,13 +22,11 @@ rotation = 1.45228
 
 [node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("6_7mycd")]
 position = Vector2(192, 224)
-rotation = 4.32161
-input_pickable = true
+rotation = 1.18576
 
 [node name="Mirror2" parent="." groups=["pickable"] instance=ExtResource("6_7mycd")]
 position = Vector2(416, 416)
-rotation = -1.98234
-input_pickable = true
+rotation = -5.10866
 
 [node name="Wall" parent="." instance=ExtResource("7_272bh")]
 position = Vector2(968, 561)

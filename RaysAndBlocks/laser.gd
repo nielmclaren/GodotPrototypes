@@ -2,11 +2,6 @@ extends RayCast2D
 
 class_name Laser
 
-const DEFAULT_COLLISION_LAYER:int = 1
-
-# Collision layer for finding the exit point of an internal ray.
-const REVERSE_CAST_COLLISION_LAYER:int = 2
-
 # The maximum number of reflections or refractions originating from a single ray.
 const MAX_LASER_DEPTH:int = 10
 const REFRACTIVE_INDEX_GLASS:float = 1.52
@@ -49,7 +44,7 @@ func _physics_process(_delta:float) -> void:
 func _process_internal_ray() -> void:
 	# The laser beam is inside a body. Reverse cast to find the exit intersection.
 	# Can't collide with anything else until the laser exits the containing body.
-	containing_body.set_collision_layer_value(REVERSE_CAST_COLLISION_LAYER, true)
+	containing_body.set_collision_layer_value(Constants.LASER_REVERSE_CAST_COLLISION_LAYER, true)
 
 	reverse_cast.force_raycast_update()
 
@@ -69,7 +64,7 @@ func _process_internal_ray() -> void:
 
 		_update_art(Vector2.ZERO, Vector2.ZERO)
 
-	containing_body.set_collision_layer_value(REVERSE_CAST_COLLISION_LAYER, false)
+	containing_body.set_collision_layer_value(Constants.LASER_REVERSE_CAST_COLLISION_LAYER, false)
 
 func _process_internal_ray_collision(collision_point:Vector2, normal:Vector2) -> void:
 	var angle_of_refraction:float = _get_angle_of_refraction(normal, true)
@@ -174,8 +169,8 @@ func _set_containing_body(body:CollisionObject2D) -> void:
 		reverse_cast.target_position = target_position.rotated(PI)
 
 		# FIXME: Make collision layer implementation more robust.
-		reverse_cast.set_collision_mask_value(DEFAULT_COLLISION_LAYER, false)
-		reverse_cast.set_collision_mask_value(REVERSE_CAST_COLLISION_LAYER, true)
+		reverse_cast.set_collision_mask_value(Constants.DEFAULT_COLLISION_LAYER, false)
+		reverse_cast.set_collision_mask_value(Constants.LASER_REVERSE_CAST_COLLISION_LAYER, true)
 
 		add_child(reverse_cast)
 	elif reverse_cast:

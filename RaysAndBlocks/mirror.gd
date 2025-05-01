@@ -1,4 +1,3 @@
-@tool
 extends Interactible
 
 class_name Mirror
