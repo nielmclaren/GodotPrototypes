@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ilangteccixn"
-path="res://.godot/imported/check_mark.png-8bc8970d27652f21a955a5c57ef18105.ctex"
+uid="uid://epn7np6jpxda"
+path="res://.godot/imported/cursor_rotate.png-d0ca34633958e9d1df1e1f675e5165ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://check_mark.png"
-dest_files=["res://.godot/imported/check_mark.png-8bc8970d27652f21a955a5c57ef18105.ctex"]
+source_file="res://assets/cursor_rotate.png"
+dest_files=["res://.godot/imported/cursor_rotate.png-d0ca34633958e9d1df1e1f675e5165ab.ctex"]
 
 [params]
 

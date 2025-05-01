@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6asmiyujl3dq"
-path="res://.godot/imported/sensor_active.png-1182170fb3c1292312f00d86fc603158.ctex"
+uid="uid://uyjn6wm0ix2b"
+path="res://.godot/imported/cursor_translate.png-8acbec5353dacf00786f83983979a122.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sensor_active.png"
-dest_files=["res://.godot/imported/sensor_active.png-1182170fb3c1292312f00d86fc603158.ctex"]
+source_file="res://assets/cursor_translate.png"
+dest_files=["res://.godot/imported/cursor_translate.png-8acbec5353dacf00786f83983979a122.ctex"]
 
 [params]
 

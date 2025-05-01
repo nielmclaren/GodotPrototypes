@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhxu78oe064rl"
-path="res://.godot/imported/sensor.png-5796040a134b2d1ebdaa35e7b47dd761.ctex"
+uid="uid://cuadof6a26o40"
+path="res://.godot/imported/emitter.png-cffeab9783160cff79ec80b82b32d4f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sensor.png"
-dest_files=["res://.godot/imported/sensor.png-5796040a134b2d1ebdaa35e7b47dd761.ctex"]
+source_file="res://assets/emitter.png"
+dest_files=["res://.godot/imported/emitter.png-cffeab9783160cff79ec80b82b32d4f9.ctex"]
 
 [params]
 

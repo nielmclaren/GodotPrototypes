@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="RaysAndBlocks"
-run/main_scene="uid://dktcsamb8p7ad"
+run/main_scene="uid://d3i6bcss0er0i"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Constants="*res://constants.gd"
-CursorManager="*res://cursor_manager.gd"
+Constants="*res://scripts/constants.gd"
+CursorManager="*res://scripts/cursor_manager.gd"
 
 [debug]
 

@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dktcsamb8p7ad"]
+[gd_scene load_steps=8 format=3 uid="uid://d3i6bcss0er0i"]
 
-[ext_resource type="Script" uid="uid://sb132ip2l2vv" path="res://main.gd" id="1_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://olc30uyw178h" path="res://static_bounds.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://d0uj330bisn3v" path="res://wall_01_outline.tscn" id="3_272bh"]
-[ext_resource type="PackedScene" uid="uid://c22kx7cganyvf" path="res://emitter.tscn" id="4_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://ddr6it3x0aj6o" path="res://mirror.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://b2ut4fgucff6t" path="res://wall_01.tscn" id="7_5vw27"]
-[ext_resource type="PackedScene" uid="uid://tnrc34yi6e02" path="res://sensor.tscn" id="8_5vw27"]
+[ext_resource type="Script" uid="uid://sb132ip2l2vv" path="res://scenes/main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://olc30uyw178h" path="res://scenes/static_bounds.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://d0uj330bisn3v" path="res://scenes/wall_01_outline.tscn" id="3_272bh"]
+[ext_resource type="PackedScene" uid="uid://c22kx7cganyvf" path="res://scenes/emitter.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://ddr6it3x0aj6o" path="res://scenes/mirror.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://b2ut4fgucff6t" path="res://scenes/wall_01.tscn" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://tnrc34yi6e02" path="res://scenes/sensor.tscn" id="8_5vw27"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
@@ -31,7 +31,6 @@ metadata/_edit_lock_ = true
 [node name="WallOutline03" parent="WallOutlines" instance=ExtResource("3_272bh")]
 position = Vector2(-29, 33)
 rotation = -0.0395212
-scale = Vector2(1, 1)
 metadata/_edit_lock_ = true
 
 [node name="WallOutline04" parent="WallOutlines" instance=ExtResource("3_272bh")]
@@ -42,7 +41,6 @@ metadata/_edit_lock_ = true
 [node name="WallOutline05" parent="WallOutlines" instance=ExtResource("3_272bh")]
 position = Vector2(429, -78)
 rotation = 0.969898
-scale = Vector2(1, 1)
 metadata/_edit_lock_ = true
 
 [node name="WallOutline06" parent="WallOutlines" instance=ExtResource("3_272bh")]

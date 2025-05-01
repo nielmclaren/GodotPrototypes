@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1jum3qu46yfw"
-path="res://.godot/imported/mirror_hover.png-c40a9460edc7daba75f6fc430f11d603.ctex"
+uid="uid://cdx1vyhe0bey"
+path="res://.godot/imported/walls.svg-fec54b39db1570f059a246281e8c2998.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mirror_hover.png"
-dest_files=["res://.godot/imported/mirror_hover.png-c40a9460edc7daba75f6fc430f11d603.ctex"]
+source_file="res://assets/walls.svg"
+dest_files=["res://.godot/imported/walls.svg-fec54b39db1570f059a246281e8c2998.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
