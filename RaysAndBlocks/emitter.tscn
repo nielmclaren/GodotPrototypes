@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dxnvwykrolsl4" path="res://laser.tscn" id="3_2ci5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_butph"]
-size = Vector2(29.0302, 17.9153)
+size = Vector2(24.3128, 17.9153)
 
 [node name="Emitter" type="StaticBody2D"]
 
@@ -12,7 +12,7 @@ size = Vector2(29.0302, 17.9153)
 texture = ExtResource("1_q2f0b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.43051e-06, 4.17233e-07)
+position = Vector2(-6.49999, 4.17233e-07)
 scale = Vector2(2.75575, -1.67454)
 shape = SubResource("RectangleShape2D_butph")
 
