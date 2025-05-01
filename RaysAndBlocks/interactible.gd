@@ -8,9 +8,10 @@ var interactible_scene: PackedScene
 
 # TODO: Change to Enum.
 const STATE_DEFAULT: int = 0
-const STATE_GHOST: int = 1
-const STATE_GHOST_REVERT: int = 2
-const STATE_GHOST_COLLISION: int = 3
+const STATE_HOVER: int = 1
+const STATE_GHOST: int = 2
+const STATE_GHOST_REVERT: int = 3
+const STATE_GHOST_COLLISION: int = 4
 
 # Whether this body should be snapped to the grid.
 var is_snapped: bool = true
@@ -49,11 +50,13 @@ func _ready() -> void:
 
 func _mouse_entered() -> void:
 	is_mouse_over = true
+	set_edit_state(STATE_HOVER)
 
 func _mouse_exited() -> void:
 	is_mouse_over = false
 	if !is_dragging and !is_rotating:
 		CursorManager.cursor_set_shape(Input.CURSOR_ARROW)
+		set_edit_state(STATE_DEFAULT)
 
 func _get_radius(shape: Shape2D) -> float:
 	var size: Vector2 = shape.get_rect().size
@@ -69,7 +72,7 @@ func _physics_process(_delta: float) -> void:
 		if collision:
 			set_edit_state(STATE_GHOST_COLLISION)
 		else:
-			set_edit_state(STATE_DEFAULT)
+			set_edit_state(STATE_HOVER)
 
 func _update_mouse_cursor() -> void:
 	if is_dragging:
@@ -123,6 +126,14 @@ func _mouse_released() -> void:
 
 func set_edit_state(state: int) -> void:
 	match state:
+		STATE_HOVER:
+			modulate.a = 1.0
+			modulate.r = 1.0
+			modulate.g = 1.0
+			modulate.b = 1.0
+			is_snapped = true
+			set_collision_layer_value(Constants.DEFAULT_COLLISION_LAYER, true)
+
 		STATE_GHOST:
 			modulate.a = 0.4
 			modulate.r = 1.0
