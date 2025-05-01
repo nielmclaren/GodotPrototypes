@@ -13,13 +13,9 @@ script = ExtResource("1_0xm2m")
 [node name="StaticBounds" parent="." instance=ExtResource("2_0xm2m")]
 metadata/_edit_lock_ = true
 
-[node name="Emitter" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(67, 397)
-rotation = -0.303898
-
-[node name="Emitter2" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(448, 183)
-rotation = 1.96685
+[node name="WallOutlines" type="Node2D" parent="."]
+modulate = Color(0.505344, 0.505344, 0.505344, 1)
+metadata/_edit_lock_ = true
 
 [node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("6_7mycd")]
 position = Vector2(891, 142)
@@ -35,84 +31,111 @@ position = Vector2(1034, 562)
 [node name="Sensor2" parent="." instance=ExtResource("8_5vw27")]
 position = Vector2(253, 544)
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Walls" type="Node2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
-[node name="Wall01" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall01" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(1099, -53.0001)
 rotation = -1.16396
+metadata/_edit_lock_ = true
 
-[node name="Wall08" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall08" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(772, -88)
 rotation = 1.10708
+metadata/_edit_lock_ = true
 
-[node name="Wall15" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall15" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(-29, 33)
 rotation = -0.0395212
+metadata/_edit_lock_ = true
 
-[node name="Wall16" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall16" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(-129, 249)
 rotation = 3.23173
+metadata/_edit_lock_ = true
 
-[node name="Wall12" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall12" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(429, -78)
 rotation = 0.969898
+metadata/_edit_lock_ = true
 
-[node name="Wall02" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall02" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(944, 658)
 rotation = -1.78923
 scale = Vector2(0.514286, 0.606061)
+metadata/_edit_lock_ = true
 
-[node name="Wall03" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall03" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(1187, 722)
 rotation = 3.02835
 scale = Vector2(1.03244, 1.35341)
+metadata/_edit_lock_ = true
 
-[node name="Wall07" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall07" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(589, 711)
 rotation = 4.37592
 scale = Vector2(1.17089, 1.66147)
+metadata/_edit_lock_ = true
 
-[node name="Wall04" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall04" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(1291, 325)
 rotation = 4.91218
 scale = Vector2(1.32446, 0.930607)
+metadata/_edit_lock_ = true
 
-[node name="Wall05" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall05" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(877, 561)
 rotation = 9.95844
 scale = Vector2(-0.570547, 0.6704)
+metadata/_edit_lock_ = true
 
-[node name="Wall11" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall11" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(351, 523)
 rotation = 9.00113
 scale = Vector2(0.286, 0.702)
+metadata/_edit_lock_ = true
 
-[node name="Wall13" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall13" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(233, 695)
 rotation = 10.1619
 scale = Vector2(0.742, 0.815)
+metadata/_edit_lock_ = true
 
-[node name="Wall06" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall06" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(1189, 251)
 rotation = 7.00796
 scale = Vector2(-0.522, 0.588)
+metadata/_edit_lock_ = true
 
-[node name="Wall09" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall09" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(469, 60)
 rotation = 8.83182
 scale = Vector2(-0.522, 0.588)
+metadata/_edit_lock_ = true
 
-[node name="Wall14" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall14" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(-98, 513)
 rotation = 6.3093
 scale = Vector2(-0.95991, 1.1699)
+metadata/_edit_lock_ = true
 
-[node name="Wall10" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall10" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(233, -81)
 rotation = 4.98468
 scale = Vector2(-0.853877, 1.02251)
+metadata/_edit_lock_ = true
 
-[node name="Wall17" parent="Node2D" instance=ExtResource("7_5vw27")]
+[node name="Wall17" parent="Walls" instance=ExtResource("7_5vw27")]
 position = Vector2(776, 628)
 rotation = 1.13949
 scale = Vector2(0.514286, 0.606061)
+metadata/_edit_lock_ = true
+
+[node name="Emitter" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(67, 397)
+rotation = -0.303898
+
+[node name="Emitter2" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(448, 183)
+rotation = 1.96685
