@@ -6,9 +6,9 @@ var updated: int = 0
 var pending: bool = false
 
 func _ready() -> void:
-	Input.set_custom_mouse_cursor(load("res://cursor_arrow.png"), Input.CURSOR_ARROW, Vector2(5, 5))
-	Input.set_custom_mouse_cursor(load("res://cursor_translate.png"), Input.CURSOR_DRAG, Vector2(16, 16))
-	Input.set_custom_mouse_cursor(load("res://cursor_rotate.png"), Input.CURSOR_CROSS, Vector2(16, 16))
+	Input.set_custom_mouse_cursor(load("res://assets/cursor_arrow.png"), Input.CURSOR_ARROW, Vector2(5, 5))
+	Input.set_custom_mouse_cursor(load("res://assets/cursor_translate.png"), Input.CURSOR_DRAG, Vector2(16, 16))
+	Input.set_custom_mouse_cursor(load("res://assets/cursor_rotate.png"), Input.CURSOR_CROSS, Vector2(16, 16))
 
 	CursorManager.cursor_set_shape(Input.CURSOR_ARROW)
 
