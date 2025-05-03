@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ddr6it3x0aj6o"]
 
-[ext_resource type="Script" uid="uid://bfh1pr2ltv6lb" path="res://mirror.gd" id="1_dx1wu"]
-[ext_resource type="Texture2D" uid="uid://dxx14s46a07g8" path="res://mirror.png" id="1_scjey"]
-[ext_resource type="Texture2D" uid="uid://d1jum3qu46yfw" path="res://mirror_hover.png" id="3_dx1wu"]
+[ext_resource type="Script" uid="uid://bfh1pr2ltv6lb" path="res://scenes/mirror.gd" id="1_dx1wu"]
+[ext_resource type="Texture2D" uid="uid://dxx14s46a07g8" path="res://assets/mirror.png" id="1_scjey"]
+[ext_resource type="Texture2D" uid="uid://d1jum3qu46yfw" path="res://assets/mirror_hover.png" id="3_dx1wu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfwl5"]
 size = Vector2(30, 180)
