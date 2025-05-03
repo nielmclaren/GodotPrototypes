@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://d34ohfj6pbvqn"]
+
+[ext_resource type="Script" uid="uid://8wrbv3afua4b" path="res://scenes/level_change_ui.gd" id="1_pm6wq"]
+
+[node name="LevelChangeUI" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+script = ExtResource("1_pm6wq")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="HFlowContainer"]
+layout_mode = 2
+text = "Level"

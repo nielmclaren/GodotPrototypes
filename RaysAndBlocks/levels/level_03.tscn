@@ -1,0 +1,235 @@
+[gd_scene load_steps=7 format=3 uid="uid://cg3tirahb02rl"]
+
+[ext_resource type="Script" uid="uid://1sxmh78i5ee3" path="res://scenes/level.gd" id="1_wq170"]
+[ext_resource type="PackedScene" uid="uid://d0uj330bisn3v" path="res://scenes/wall_01_outline.tscn" id="2_6hrdw"]
+[ext_resource type="PackedScene" uid="uid://ddr6it3x0aj6o" path="res://scenes/mirror.tscn" id="3_2wlag"]
+[ext_resource type="PackedScene" uid="uid://tnrc34yi6e02" path="res://scenes/sensor.tscn" id="4_3ew82"]
+[ext_resource type="PackedScene" uid="uid://b2ut4fgucff6t" path="res://scenes/wall_01.tscn" id="5_0bj1y"]
+[ext_resource type="PackedScene" uid="uid://c22kx7cganyvf" path="res://scenes/emitter.tscn" id="6_6181x"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_wq170")
+
+[node name="WallOutlines" type="Node2D" parent="."]
+modulate = Color(0.505344, 0.505344, 0.505344, 1)
+metadata/_edit_lock_ = true
+
+[node name="WallOutline01" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(1099, -53.0001)
+rotation = -1.16396
+metadata/_edit_lock_ = true
+
+[node name="WallOutline02" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(772, -89)
+rotation = 1.09087
+metadata/_edit_lock_ = true
+
+[node name="WallOutline03" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(-29, 33)
+rotation = -0.0395212
+metadata/_edit_lock_ = true
+
+[node name="WallOutline04" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(-131, 251)
+rotation = -3.05146
+metadata/_edit_lock_ = true
+
+[node name="WallOutline05" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(429, -78)
+rotation = 0.969898
+metadata/_edit_lock_ = true
+
+[node name="WallOutline06" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(944, 658)
+rotation = -1.78923
+scale = Vector2(0.528985, 0.622664)
+metadata/_edit_lock_ = true
+
+[node name="WallOutline07" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(1187, 722)
+rotation = 3.02835
+scale = Vector2(1.03244, 1.35341)
+metadata/_edit_lock_ = true
+
+[node name="WallOutline08" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(589, 711)
+rotation = -1.90726
+scale = Vector2(1.14411, 1.63408)
+metadata/_edit_lock_ = true
+
+[node name="WallOutline09" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(1291, 325)
+rotation = -1.37101
+scale = Vector2(1.32446, 0.930607)
+metadata/_edit_lock_ = true
+
+[node name="WallOutline10" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(875, 563)
+rotation = 0.564595
+scale = Vector2(0.610742, -0.674469)
+metadata/_edit_lock_ = true
+
+[node name="WallOutline11" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(349, 523)
+rotation = 2.71794
+scale = Vector2(0.321405, 0.699908)
+metadata/_edit_lock_ = true
+
+[node name="WallOutline12" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(233, 695)
+rotation = -2.40451
+scale = Vector2(0.742, 0.815)
+metadata/_edit_lock_ = true
+
+[node name="WallOutline13" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(1189, 251)
+rotation = -2.41682
+scale = Vector2(0.537191, -0.599113)
+metadata/_edit_lock_ = true
+
+[node name="WallOutline14" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(469, 62)
+rotation = -0.568339
+scale = Vector2(0.541099, -0.587423)
+metadata/_edit_lock_ = true
+
+[node name="WallOutline15" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(-98, 513)
+rotation = -3.11547
+scale = Vector2(0.95991, -1.1699)
+metadata/_edit_lock_ = true
+
+[node name="WallOutline16" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(224, -82)
+rotation = 1.80374
+scale = Vector2(0.857834, -0.988452)
+metadata/_edit_lock_ = true
+
+[node name="WallOutline17" parent="WallOutlines" instance=ExtResource("2_6hrdw")]
+position = Vector2(776, 628)
+rotation = 1.13949
+scale = Vector2(0.53295, 0.578037)
+metadata/_edit_lock_ = true
+
+[node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("3_2wlag")]
+position = Vector2(891, 142)
+rotation = 2.04582
+
+[node name="Mirror2" parent="." groups=["pickable"] instance=ExtResource("3_2wlag")]
+position = Vector2(440, 358)
+rotation = 1.5708
+
+[node name="Sensor" parent="." instance=ExtResource("4_3ew82")]
+position = Vector2(1034, 562)
+
+[node name="Sensor2" parent="." instance=ExtResource("4_3ew82")]
+position = Vector2(253, 544)
+
+[node name="Walls" type="Node2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Wall01" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(1099, -53.0001)
+rotation = -1.16396
+metadata/_edit_lock_ = true
+
+[node name="Wall08" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(772, -88)
+rotation = 1.10708
+metadata/_edit_lock_ = true
+
+[node name="Wall15" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(-29, 33)
+rotation = -0.0395212
+metadata/_edit_lock_ = true
+
+[node name="Wall16" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(-129, 249)
+rotation = 3.23173
+metadata/_edit_lock_ = true
+
+[node name="Wall12" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(429, -78)
+rotation = 0.969898
+metadata/_edit_lock_ = true
+
+[node name="Wall02" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(944, 658)
+rotation = -1.78923
+scale = Vector2(0.514286, 0.606061)
+metadata/_edit_lock_ = true
+
+[node name="Wall03" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(1187, 722)
+rotation = 3.02835
+scale = Vector2(1.03244, 1.35341)
+metadata/_edit_lock_ = true
+
+[node name="Wall07" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(589, 711)
+rotation = 4.37592
+scale = Vector2(1.17089, 1.66147)
+metadata/_edit_lock_ = true
+
+[node name="Wall04" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(1291, 325)
+rotation = 4.91218
+scale = Vector2(1.32446, 0.930607)
+metadata/_edit_lock_ = true
+
+[node name="Wall05" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(877, 561)
+rotation = 9.95844
+scale = Vector2(-0.570547, 0.6704)
+metadata/_edit_lock_ = true
+
+[node name="Wall11" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(351, 523)
+rotation = 9.00113
+scale = Vector2(0.286, 0.702)
+metadata/_edit_lock_ = true
+
+[node name="Wall13" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(233, 695)
+rotation = 10.1619
+scale = Vector2(0.742, 0.815)
+metadata/_edit_lock_ = true
+
+[node name="Wall06" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(1189, 251)
+rotation = 7.00796
+scale = Vector2(-0.522, 0.588)
+metadata/_edit_lock_ = true
+
+[node name="Wall09" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(469, 60)
+rotation = 8.83182
+scale = Vector2(-0.522, 0.588)
+metadata/_edit_lock_ = true
+
+[node name="Wall14" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(-98, 513)
+rotation = 6.3093
+scale = Vector2(-0.95991, 1.1699)
+metadata/_edit_lock_ = true
+
+[node name="Wall10" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(233, -81)
+rotation = 4.98468
+scale = Vector2(-0.853877, 1.02251)
+metadata/_edit_lock_ = true
+
+[node name="Wall17" parent="Walls" instance=ExtResource("5_0bj1y")]
+position = Vector2(776, 628)
+rotation = 1.13949
+scale = Vector2(0.514286, 0.606061)
+metadata/_edit_lock_ = true
+
+[node name="Emitter" parent="." instance=ExtResource("6_6181x")]
+position = Vector2(67, 397)
+rotation = -0.303898
+
+[node name="Emitter2" parent="." instance=ExtResource("6_6181x")]
+position = Vector2(448, 183)
+rotation = 1.96685
