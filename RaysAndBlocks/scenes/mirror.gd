@@ -11,6 +11,9 @@ func _ready() -> void:
 
 	drag_handle_radius = 0.4 * _get_radius(($CollisionShape2D as CollisionShape2D).shape)
 
+	set_collision_layer_value(Constants.DEFAULT_COLLISION_LAYER, true)
+	set_collision_layer_value(Constants.LASER_COLLISION_LAYER, true)
+
 	($DefaultSprite as Sprite2D).show()
 	($HoverSprite as Sprite2D).hide()
 

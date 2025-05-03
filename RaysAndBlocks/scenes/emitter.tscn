@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://c22kx7cganyvf"]
+[gd_scene load_steps=5 format=3 uid="uid://c22kx7cganyvf"]
 
-[ext_resource type="Texture2D" uid="uid://cuadof6a26o40" path="res://emitter.png" id="1_q2f0b"]
-[ext_resource type="PackedScene" uid="uid://dxnvwykrolsl4" path="res://laser.tscn" id="3_2ci5l"]
+[ext_resource type="Script" uid="uid://c5q6jyrxhucas" path="res://scripts/collidable.gd" id="1_68xa4"]
+[ext_resource type="Texture2D" uid="uid://cuadof6a26o40" path="res://assets/emitter.png" id="1_q2f0b"]
+[ext_resource type="PackedScene" uid="uid://dxnvwykrolsl4" path="res://scenes/laser.tscn" id="3_2ci5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_butph"]
 size = Vector2(24.3128, 17.9153)
 
 [node name="Emitter" type="StaticBody2D"]
+script = ExtResource("1_68xa4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_q2f0b")

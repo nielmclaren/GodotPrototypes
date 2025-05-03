@@ -7,6 +7,10 @@ var is_active:bool = false
 func _ready() -> void:
 	is_active = false
 
+	set_collision_layer_value(Constants.DEFAULT_COLLISION_LAYER, true)
+	set_collision_layer_value(Constants.LASER_COLLISION_LAYER, true)
+
+
 func _process(_delta:float) -> void:
 	if is_active:
 		($SpriteActive as Sprite2D).show()

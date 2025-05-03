@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://caymiojso6htf"]
+[gd_scene load_steps=8 format=3 uid="uid://caymiojso6htf"]
 
 [ext_resource type="Script" uid="uid://1sxmh78i5ee3" path="res://scenes/level.gd" id="1_mllcm"]
+[ext_resource type="PackedScene" uid="uid://dv1osd0b5ylf6" path="res://scenes/pit.tscn" id="2_q7ibo"]
 [ext_resource type="PackedScene" uid="uid://ddr6it3x0aj6o" path="res://scenes/mirror.tscn" id="3_j0sdw"]
 [ext_resource type="PackedScene" uid="uid://tnrc34yi6e02" path="res://scenes/sensor.tscn" id="4_jy02f"]
 [ext_resource type="PackedScene" uid="uid://b2ut4fgucff6t" path="res://scenes/wall_01.tscn" id="5_5dxk1"]
 [ext_resource type="PackedScene" uid="uid://c22kx7cganyvf" path="res://scenes/emitter.tscn" id="6_kjd3d"]
+[ext_resource type="PackedScene" uid="uid://bo2x88vroirym" path="res://scenes/wall.tscn" id="6_q7ibo"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_mllcm")
@@ -12,13 +14,17 @@ script = ExtResource("1_mllcm")
 [node name="WallOutlines" type="Node2D" parent="."]
 modulate = Color(0.505344, 0.505344, 0.505344, 1)
 
+[node name="Pit" parent="." instance=ExtResource("2_q7ibo")]
+position = Vector2(401, 19)
+scale = Vector2(1.4191, 2.31062)
+
 [node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("3_j0sdw")]
-position = Vector2(903, 199)
-rotation = 2.92518
+position = Vector2(915, 172)
+rotation = 2.39817
 
 [node name="Mirror2" parent="." groups=["pickable"] instance=ExtResource("3_j0sdw")]
-position = Vector2(255, 460)
-rotation = 2.93487
+position = Vector2(996, 491)
+rotation = 0.541405
 
 [node name="Sensor" parent="." instance=ExtResource("4_jy02f")]
 position = Vector2(909, 472)
@@ -103,4 +109,28 @@ scale = Vector2(-1.1387, -1.1387)
 metadata/_edit_lock_ = true
 
 [node name="Emitter" parent="." instance=ExtResource("6_kjd3d")]
-position = Vector2(193, 180)
+position = Vector2(253, 191)
+
+[node name="Wall" parent="." instance=ExtResource("6_q7ibo")]
+position = Vector2(116, 309)
+rotation = 1.5708
+
+[node name="Wall2" parent="." instance=ExtResource("6_q7ibo")]
+position = Vector2(251, 309)
+rotation = 1.5708
+
+[node name="Wall3" parent="." instance=ExtResource("6_q7ibo")]
+position = Vector2(364, 309)
+rotation = 1.5708
+
+[node name="Wall4" parent="." instance=ExtResource("6_q7ibo")]
+position = Vector2(798, 310)
+rotation = 1.5708
+
+[node name="Wall5" parent="." instance=ExtResource("6_q7ibo")]
+position = Vector2(933, 310)
+rotation = 1.5708
+
+[node name="Wall6" parent="." instance=ExtResource("6_q7ibo")]
+position = Vector2(1046, 310)
+rotation = 1.5708

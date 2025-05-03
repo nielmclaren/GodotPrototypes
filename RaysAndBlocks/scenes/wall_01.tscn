@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2ut4fgucff6t"]
+[gd_scene load_steps=3 format=3 uid="uid://b2ut4fgucff6t"]
 
-[ext_resource type="Texture2D" uid="uid://b2qn7vmrc3oe1" path="res://wall01.svg" id="1_0mn0u"]
+[ext_resource type="Texture2D" uid="uid://b2qn7vmrc3oe1" path="res://assets/wall01.svg" id="1_0mn0u"]
+[ext_resource type="Script" uid="uid://c5q6jyrxhucas" path="res://scripts/collidable.gd" id="1_mpo6a"]
 
 [node name="Wall01" type="StaticBody2D"]
+script = ExtResource("1_mpo6a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_0mn0u")

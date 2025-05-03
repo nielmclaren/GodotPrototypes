@@ -3,7 +3,7 @@ extends RayCast2D
 class_name Laser
 
 # The maximum number of reflections or refractions originating from a single ray.
-const MAX_LASER_DEPTH:int = 10
+const MAX_LASER_DEPTH:int = 30
 const REFRACTIVE_INDEX_GLASS:float = 1.52
 
 # A refraction is considered an internal reflection instead if it's within ±(error) of ±π.
@@ -21,6 +21,9 @@ var reverse_cast:RayCast2D = null
 
 func _ready() -> void:
 	laser_scene = load(scene_file_path) as PackedScene
+
+	set_collision_mask_value(Constants.DEFAULT_COLLISION_LAYER, false)
+	set_collision_mask_value(Constants.LASER_COLLISION_LAYER, true)
 
 	var line:Line2D = $Line2D
 	line.hide()
