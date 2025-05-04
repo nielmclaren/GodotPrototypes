@@ -1,0 +1,110 @@
+[gd_scene load_steps=7 format=3 uid="uid://8c52wcie8rys"]
+
+[ext_resource type="Script" uid="uid://1sxmh78i5ee3" path="res://scenes/level.gd" id="1_n8w53"]
+[ext_resource type="PackedScene" uid="uid://dviimd2m2uwof" path="res://scenes/prism_rectangle.tscn" id="2_g3bu7"]
+[ext_resource type="PackedScene" uid="uid://tnrc34yi6e02" path="res://scenes/sensor.tscn" id="4_plso3"]
+[ext_resource type="PackedScene" uid="uid://b2ut4fgucff6t" path="res://scenes/wall_01.tscn" id="5_7wg3r"]
+[ext_resource type="PackedScene" uid="uid://c22kx7cganyvf" path="res://scenes/emitter.tscn" id="6_6q6br"]
+[ext_resource type="PackedScene" uid="uid://cpba4hwya5x58" path="res://scenes/prism_triangle.tscn" id="6_g3bu7"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_n8w53")
+
+[node name="WallOutlines" type="Node2D" parent="."]
+modulate = Color(0.505344, 0.505344, 0.505344, 1)
+
+[node name="PrismRect" parent="." instance=ExtResource("2_g3bu7")]
+position = Vector2(571, 199)
+rotation = 1.56772
+
+[node name="PrismRect2" parent="." instance=ExtResource("2_g3bu7")]
+position = Vector2(624, 388)
+rotation = 1.56772
+
+[node name="Sensor" parent="." instance=ExtResource("4_plso3")]
+position = Vector2(909, 472)
+
+[node name="Walls" type="Node2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Wall01" parent="Walls" instance=ExtResource("5_7wg3r")]
+position = Vector2(650, -141)
+metadata/_edit_lock_ = true
+
+[node name="Wall02" parent="Walls" instance=ExtResource("5_7wg3r")]
+position = Vector2(730, -138)
+rotation = -2.35045
+metadata/_edit_lock_ = true
+
+[node name="Wall03" parent="Walls" instance=ExtResource("5_7wg3r")]
+position = Vector2(955, -154)
+rotation = 3.71616
+scale = Vector2(1.19595, 1.19595)
+metadata/_edit_lock_ = true
+
+[node name="Wall04" parent="Walls" instance=ExtResource("5_7wg3r")]
+position = Vector2(1192, 149)
+rotation = 2.1699
+scale = Vector2(1.00105, 1.00105)
+metadata/_edit_lock_ = true
+
+[node name="Wall05" parent="Walls" instance=ExtResource("5_7wg3r")]
+position = Vector2(1300, 374)
+rotation = -1.45543
+scale = Vector2(1.00105, 1.00105)
+metadata/_edit_lock_ = true
+
+[node name="Wall06" parent="Walls" instance=ExtResource("5_7wg3r")]
+position = Vector2(1151, 590)
+rotation = -3.15822
+scale = Vector2(0.792634, 0.792634)
+metadata/_edit_lock_ = true
+
+[node name="Wall07" parent="Walls" instance=ExtResource("5_7wg3r")]
+position = Vector2(887, 793)
+rotation = -5.84636
+scale = Vector2(1.07867, 1.07867)
+metadata/_edit_lock_ = true
+
+[node name="Wall08" parent="Walls" instance=ExtResource("5_7wg3r")]
+position = Vector2(685, 721)
+rotation = -8.44522
+scale = Vector2(0.968697, 0.968697)
+metadata/_edit_lock_ = true
+
+[node name="Wall09" parent="Walls" instance=ExtResource("5_7wg3r")]
+position = Vector2(374, 727)
+rotation = -8.71432
+scale = Vector2(1.07867, 1.07867)
+metadata/_edit_lock_ = true
+
+[node name="Wall10" parent="Walls" instance=ExtResource("5_7wg3r")]
+position = Vector2(-2.99999, 737)
+rotation = -10.4162
+scale = Vector2(1.38522, 1.38522)
+metadata/_edit_lock_ = true
+
+[node name="Wall11" parent="Walls" instance=ExtResource("5_7wg3r")]
+position = Vector2(-158, 386)
+rotation = -12.813
+scale = Vector2(1.38522, 1.38522)
+metadata/_edit_lock_ = true
+
+[node name="Wall12" parent="Walls" instance=ExtResource("5_7wg3r")]
+position = Vector2(-56, 125)
+rotation = -12.4683
+scale = Vector2(-0.925019, -0.925019)
+metadata/_edit_lock_ = true
+
+[node name="Wall13" parent="Walls" instance=ExtResource("5_7wg3r")]
+position = Vector2(247, -98)
+rotation = -11.4426
+scale = Vector2(-1.1387, -1.1387)
+metadata/_edit_lock_ = true
+
+[node name="Emitter" parent="." instance=ExtResource("6_6q6br")]
+position = Vector2(253, 191)
+
+[node name="PrismTriangle" parent="." instance=ExtResource("6_g3bu7")]
+position = Vector2(331, 390)

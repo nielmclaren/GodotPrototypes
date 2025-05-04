@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://dviimd2m2uwof"]
+
+[ext_resource type="Script" uid="uid://du5bh3va3f882" path="res://scenes/prism_rectangle.gd" id="1_jap6m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jap6m"]
+size = Vector2(128, 128)
+
+[node name="PrismRectangle" type="StaticBody2D"]
+script = ExtResource("1_jap6m")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-64, 64)
+color = Color(1, 1, 1, 0.12549)
+polygon = PackedVector2Array(0, 0, 128, 0, 128, -128, 0, -128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jap6m")
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-38.6, 40.4)
+points = PackedVector2Array(-25.4, -104.4, 102.6, -104.4)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2(-38.6, 40.4)
+points = PackedVector2Array(102.6, -104.4, 102.6, 23.6)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="."]
+position = Vector2(-38.6, 40.4)
+points = PackedVector2Array(102.6, 23.6, -25.4, 23.6)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D4" type="Line2D" parent="."]
+position = Vector2(-38.6, 40.4)
+points = PackedVector2Array(-25.4, 23.6, -25.4, -104.4)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2

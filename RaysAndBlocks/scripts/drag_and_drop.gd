@@ -28,10 +28,14 @@ func _node_clicked(node: Interactible) -> void:
 	click_offset = scene.get_global_mouse_position() - node.global_position
 	drag_node = node
 
+	drag_node.set_collision_layer_value(Constants.LASER_COLLISION_LAYER, false)
+
 	drag_ghost = node.clone()
 	drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, Constants.CELL_SIZE)
 	drag_ghost.set_edit_state(Block.STATE_GHOST)
 	drag_ghost.add_collision_exception_with(node)
+	drag_ghost.set_collision_layer_value(Constants.DEFAULT_COLLISION_LAYER, true)
+	drag_ghost.set_collision_layer_value(Constants.LASER_COLLISION_LAYER, true)
 	scene.add_child(drag_ghost)
 
 func physics_process(_delta: float) -> void:
@@ -51,6 +55,9 @@ func unhandled_input(event: InputEvent) -> void:
 			_mouse_released()
 
 func _mouse_released() -> void:
+	if drag_node:
+		drag_node.set_collision_layer_value(Constants.LASER_COLLISION_LAYER, true)
+
 	if drag_ghost:
 		drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, Constants.CELL_SIZE)
 		var collision: KinematicCollision2D = drag_ghost.move_and_collide(Vector2.ZERO, true)
@@ -60,6 +67,7 @@ func _mouse_released() -> void:
 
 		else:
 			drag_node.global_position = drag_ghost.global_position
+			drag_node = null
 
 			drag_ghost.queue_free()
 			drag_ghost = null

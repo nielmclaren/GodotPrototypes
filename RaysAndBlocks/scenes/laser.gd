@@ -3,7 +3,7 @@ extends RayCast2D
 class_name Laser
 
 # The maximum number of reflections or refractions originating from a single ray.
-const MAX_LASER_DEPTH:int = 30
+const MAX_LASER_DEPTH:int = 10
 const REFRACTIVE_INDEX_GLASS:float = 1.52
 
 # A refraction is considered an internal reflection instead if it's within ±(error) of ±π.
@@ -116,7 +116,7 @@ func _process_external_ray() -> void:
 
 func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
 	var collider:CollisionObject2D = get_collider()
-	if collider is Block:
+	if collider is Block or collider is PrismRectangle or collider is PrismTriangle:
 		# Refraction.
 
 		if not child_laser:

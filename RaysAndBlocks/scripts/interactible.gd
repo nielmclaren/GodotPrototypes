@@ -43,7 +43,6 @@ func _ready() -> void:
 	interactible_scene = load(scene_file_path) as PackedScene
 
 	prev_rotation = rotation
-	drag_handle_radius = 0.4 * _get_radius(($CollisionShape2D as CollisionShape2D).shape)
 
 	mouse_entered.connect(_mouse_entered)
 	mouse_exited.connect(_mouse_exited)
@@ -169,4 +168,3 @@ func set_edit_state(state: int) -> void:
 func clone() -> Variant:
 	var interactible: Interactible = interactible_scene.instantiate()
 	return interactible
-
