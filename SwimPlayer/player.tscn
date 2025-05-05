@@ -16,7 +16,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.133333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-1.41685, 0.0]
+"values": [0.00867803, 1.56824]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -52,7 +52,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.133333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.43925, 0.0]
+"values": [3.17514, 1.56852]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -91,7 +91,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [1.54787]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -127,7 +127,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [1.59433]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -167,7 +167,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -1.41685]
+"values": [1.56824, 0.00867803]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -203,7 +203,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 1.43925]
+"values": [1.56852, 3.17514]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -241,10 +241,11 @@ _data = {
 script = ExtResource("1_onrkg")
 
 [node name="Body" parent="." instance=ExtResource("1_i3pqv")]
-metadata/_edit_lock_ = true
+rotation = 1.57038
 
 [node name="RLeg" type="Node2D" parent="."]
-position = Vector2(5, 58)
+position = Vector2(-57.9979, 5.02433)
+rotation = 1.54787
 
 [node name="Polygon2D" type="Polygon2D" parent="RLeg"]
 polygon = PackedVector2Array(-4, -2, -1, -5, 3, -5, 5, -2, 6, 15, 7, 26, 6, 44, 6, 47, 4, 49, 1, 48, 0, 46, -1, 36, -2, 32, -2, 24, -2, 17, -4, 3)
@@ -269,7 +270,9 @@ polygon = PackedVector2Array(1.21338, -15.9644, 21.2134, -5.96436, 21.2134, 14.0
 metadata/_edit_lock_ = true
 
 [node name="LLeg" type="Node2D" parent="."]
-position = Vector2(-5, 58)
+position = Vector2(-58.0021, -4.97566)
+rotation = 1.59433
+scale = Vector2(1, 1)
 
 [node name="Polygon2D" type="Polygon2D" parent="LLeg"]
 rotation = 3.14159

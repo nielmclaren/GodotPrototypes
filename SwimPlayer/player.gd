@@ -69,21 +69,45 @@ func _start_push() -> void:
 
 	# Don't push as hard if no wind up.
 	var charge: float = progress * progress * progress
-	velocity = Vector2(0, -speed * charge).rotated(rotation)
+	velocity = Vector2(speed * charge, 0).rotated(rotation)
 	pose = Pose.PUSH
 
 func _process(delta: float) -> void:
-	var damping: float
+	var damping: float = 0
+	var rotation_delta: float = 0
 	match pose:
 		Pose.RECOVERY:
 			damping = damping_coefficient_high
+			rotation_delta = 0.8
 		Pose.PRIMED:
 			damping = damping_coefficient_high
+			rotation_delta = 0.8
 		Pose.PUSH:
 			damping = damping_coefficient_low
+			rotation_delta = 0.2
 		Pose.GLIDE:
 			damping = damping_coefficient_low
+			rotation_delta = 0.2
+
+	var direction: Vector2 = _get_controller_direction()
+	if direction.length() > 0:
+		rotation = rotate_toward(rotation, direction.angle(), rotation_delta * 0.2)
 
 	velocity -= velocity * damping
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
+
+func _get_controller_direction() -> Vector2:
+	var direction: Vector2 = Vector2.ZERO
+	if Input.is_action_pressed("move_left"):
+		direction.x -= 1
+	if Input.is_action_pressed("move_right"):
+		direction.x += 1
+	if Input.is_action_pressed("move_up"):
+		direction.y -= 1
+	if Input.is_action_pressed("move_down"):
+		direction.y += 1
+
+	if direction.length() > 0:
+		return direction.normalized()
+	return direction

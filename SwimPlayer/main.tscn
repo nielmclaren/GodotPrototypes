@@ -9,6 +9,5 @@ script = ExtResource("1_0xm2m")
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(149, 39)
-rotation = 1.5708
+position = Vector2(585, 502)
 scale = Vector2(0.75, 0.75)
