@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmy73mvy8vkon"]
+
+[ext_resource type="PackedScene" uid="uid://bp20k0666yoyt" path="res://r_lower_leg.tscn" id="1_nyjn2"]
+
+[node name="RLeg" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-4, -2, -1, -5, 3, -5, 5, -2, 6, 15, 7, 26, 6, 44, 6, 47, 4, 49, 1, 48, 0, 46, -1, 36, -2, 32, -2, 24, -2, 17, -4, 3)
+
+[node name="RLowerLeg" parent="." instance=ExtResource("1_nyjn2")]
+position = Vector2(3, 46)

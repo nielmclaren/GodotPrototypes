@@ -1,0 +1,297 @@
+[gd_scene load_steps=6 format=3 uid="uid://b6emy01ko2773"]
+
+[ext_resource type="PackedScene" uid="uid://cqiaf1pgjg2mj" path="res://body.tscn" id="1_jhiff"]
+
+[sub_resource type="Animation" id="Animation_05qjl"]
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwimAnimation/RLeg:rotation")
+tracks/0/interp = 3
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.466667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.48067, 0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwimAnimation/RLeg/RLowerLeg:rotation")
+tracks/1/interp = 3
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.466667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 2.84877, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwimAnimation/RLeg/RLowerLeg/RFoot:rotation")
+tracks/2/interp = 3
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.433333, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.06099, -2.66892, 4.8465, 0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwimAnimation/LLeg:rotation")
+tracks/3/interp = 3
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.46694, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwimAnimation/LLeg/LLowerLeg:rotation")
+tracks/4/interp = 3
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.466667, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -2.81472, 0.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SwimAnimation/LLeg/LLowerLeg/LFoot:rotation")
+tracks/5/interp = 3
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.433333, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.03438, 2.6958, 1.35929, 0.0756257, 0.0756257]
+}
+
+[sub_resource type="Animation" id="Animation_jhiff"]
+resource_name = "push"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwimAnimation/RLeg:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.48067, 0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwimAnimation/RLeg/RLowerLeg:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.84877, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwimAnimation/RLeg/RLowerLeg/RFoot:rotation")
+tracks/2/interp = 4
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-2.66892, 4.8465, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwimAnimation/LLeg:rotation")
+tracks/3/interp = 4
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.46694, 0.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwimAnimation/LLeg/LLowerLeg:rotation")
+tracks/4/interp = 4
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-2.81472, 0.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SwimAnimation/LLeg/LLowerLeg/LFoot:rotation")
+tracks/5/interp = 4
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.6958, 1.35929, 0.0756257]
+}
+
+[sub_resource type="Animation" id="Animation_ghifk"]
+resource_name = "recover"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SwimAnimation/RLeg:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.48067]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SwimAnimation/RLeg/RLowerLeg:rotation")
+tracks/1/interp = 4
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.84877]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SwimAnimation/RLeg/RLowerLeg/RFoot:rotation")
+tracks/2/interp = 4
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -1.06099, -2.66892]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SwimAnimation/LLeg:rotation")
+tracks/3/interp = 4
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.46694]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SwimAnimation/LLeg/LLowerLeg:rotation")
+tracks/4/interp = 4
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -2.81472]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SwimAnimation/LLeg/LLowerLeg/LFoot:rotation")
+tracks/5/interp = 4
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.03438, 2.6958]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oxee7"]
+_data = {
+&"RESET": SubResource("Animation_05qjl"),
+&"push": SubResource("Animation_jhiff"),
+&"recover": SubResource("Animation_ghifk")
+}
+
+[node name="SwimAnimation" type="AnimationPlayer"]
+libraries = {
+&"": SubResource("AnimationLibrary_oxee7")
+}
+
+[node name="Body" parent="." instance=ExtResource("1_jhiff")]
+metadata/_edit_lock_ = true
+
+[node name="RLeg" type="Node2D" parent="."]
+position = Vector2(5, 58)
+
+[node name="Polygon2D" type="Polygon2D" parent="RLeg"]
+polygon = PackedVector2Array(-4, -2, -1, -5, 3, -5, 5, -2, 6, 15, 7, 26, 6, 44, 6, 47, 4, 49, 1, 48, 0, 46, -1, 36, -2, 32, -2, 24, -2, 17, -4, 3)
+metadata/_edit_lock_ = true
+
+[node name="RLowerLeg" type="Node2D" parent="RLeg"]
+position = Vector2(3, 45)
+
+[node name="Polygon2D" type="Polygon2D" parent="RLeg/RLowerLeg"]
+rotation = 3.14159
+scale = Vector2(1, -1)
+polygon = PackedVector2Array(-0.165405, -3.16599, 2.83459, -1.16599, 2.83459, 1.83401, 2, 4, 3, 7, 3, 26, 4, 45, 4, 48, 2, 49, 0, 48, 0, 45, -2, 27, -3.16541, 15.834, -4, 8, -4, 4, -3.16541, 0.834015, -3.16541, -2.16599)
+metadata/_edit_lock_ = true
+
+[node name="RFoot" type="Node2D" parent="RLeg/RLowerLeg"]
+position = Vector2(-2, 46)
+
+[node name="Polygon2D" type="Polygon2D" parent="RLeg/RLowerLeg/RFoot"]
+position = Vector2(2.84217e-14, -1.19209e-07)
+scale = Vector2(0.1, 0.1)
+polygon = PackedVector2Array(1.21338, -15.9644, 21.2134, -5.96436, 21.2134, 14.0356, 21.2134, 44.0356, 31.2134, 74.0356, 41.2134, 224.036, 51.2134, 244.036, 41.2134, 254.036, -28.7866, 254.036, -38.7866, 234.036, -28.7866, 214.036, -8.78662, 154.036, -8.78662, 94.0356, -28.7866, 34.0356, -18.7866, -5.96436)
+metadata/_edit_lock_ = true
+
+[node name="LLeg" type="Node2D" parent="."]
+position = Vector2(-5, 58)
+
+[node name="Polygon2D" type="Polygon2D" parent="LLeg"]
+rotation = 3.14159
+scale = Vector2(1, -1)
+polygon = PackedVector2Array(-4, -2, -1, -5, 3, -5, 5, -2, 6, 15, 7, 26, 6, 44, 6, 47, 4, 49, 1, 48, 0, 46, -1, 36, -2, 32, -2, 24, -2, 17, -4, 3)
+metadata/_edit_lock_ = true
+
+[node name="LLowerLeg" type="Node2D" parent="LLeg"]
+position = Vector2(-3, 45)
+
+[node name="Polygon2D" type="Polygon2D" parent="LLeg/LLowerLeg"]
+polygon = PackedVector2Array(-0.165405, -3.16599, 2.83459, -1.16599, 2.83459, 1.83401, 2, 4, 3, 7, 3, 26, 4, 45, 4, 48, 2, 49, 0, 48, 0, 45, -2, 27, -3.16541, 15.834, -4, 8, -4, 4, -3.16541, 0.834015, -3.16541, -2.16599)
+metadata/_edit_lock_ = true
+
+[node name="LFoot" type="Node2D" parent="LLeg/LLowerLeg"]
+position = Vector2(2, 46)
+
+[node name="Polygon2D" type="Polygon2D" parent="LLeg/LLowerLeg/LFoot"]
+position = Vector2(2.27377e-13, -3.69549e-06)
+rotation = 3.14951
+scale = Vector2(0.1, -0.1)
+polygon = PackedVector2Array(1.21338, -15.9644, 21.2134, -5.96436, 21.2134, 14.0356, 21.2134, 44.0356, 31.2134, 74.0356, 41.2134, 224.036, 51.2134, 244.036, 41.2134, 254.036, -28.7866, 254.036, -38.7866, 234.036, -28.7866, 214.036, -8.78662, 154.036, -8.78662, 94.0356, -28.7866, 34.0356, -18.7866, -5.96436)
+metadata/_edit_lock_ = true

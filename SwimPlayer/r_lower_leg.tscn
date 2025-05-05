@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bp20k0666yoyt"]
+
+[ext_resource type="PackedScene" uid="uid://bs3ih8jhcbkl3" path="res://r_foot.tscn" id="1_fyri4"]
+
+[node name="RLowerLeg" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+rotation = 3.14159
+scale = Vector2(1, -1)
+polygon = PackedVector2Array(-0.165405, -3.16599, 2.83459, -1.16599, 2.83459, 1.83401, 2, 4, 3, 7, 3, 26, 4, 45, 4, 48, 2, 49, 0, 48, 0, 45, -2, 27, -3.16541, 15.834, -4, 8, -4, 4, -3.16541, 0.834015, -3.16541, -2.16599)
+
+[node name="RFoot" parent="." instance=ExtResource("1_fyri4")]
+position = Vector2(-2, 46)
