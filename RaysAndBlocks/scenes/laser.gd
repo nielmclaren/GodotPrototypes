@@ -166,8 +166,9 @@ func _set_containing_body(body:CollisionObject2D) -> void:
 	containing_body = body
 
 	if containing_body:
-		reverse_cast = RayCast2D.new()
-		reverse_cast.enabled = true
+		if !reverse_cast:
+			reverse_cast = RayCast2D.new()
+
 		reverse_cast.position = target_position
 		reverse_cast.target_position = target_position.rotated(PI)
 
