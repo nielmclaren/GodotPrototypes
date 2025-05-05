@@ -9,6 +9,7 @@ var player: AnimationPlayer
 var speed: float = 600
 var damping_coefficient_low: float = 0.02
 var damping_coefficient_high: float = 0.08
+var drag_damping: float = 0.01
 var velocity: Vector2 = Vector2.ZERO
 
 var pose: Pose = Pose.GLIDE
@@ -74,26 +75,27 @@ func _start_push() -> void:
 
 func _process(delta: float) -> void:
 	var damping: float = 0
-	var rotation_delta: float = 0
 	match pose:
 		Pose.RECOVERY:
 			damping = damping_coefficient_high
-			rotation_delta = 0.8
 		Pose.PRIMED:
 			damping = damping_coefficient_high
-			rotation_delta = 0.8
 		Pose.PUSH:
 			damping = damping_coefficient_low
-			rotation_delta = 0.2
 		Pose.GLIDE:
 			damping = damping_coefficient_low
-			rotation_delta = 0.2
 
 	var rotation_direction: float = _get_controller_rotation_direction()
 	if rotation_direction != 0:
-		rotation += rotation_direction * rotation_delta * 0.1
+		var rotation_delta: float = rotation_direction * velocity.length() * 0.004 * delta
+		rotation += rotation_delta
+		velocity = velocity.rotated(rotation_delta)
+
+		# Apply a bit more drag due to the turn.
+		damping += drag_damping
 
 	velocity -= velocity * damping
+
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 
