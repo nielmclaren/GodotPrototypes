@@ -15,6 +15,10 @@ run/main_scene="uid://bgk7q8ya5rh0l"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor]
+
+movie_writer/movie_file="/home/nmclaren/Code/GodotPrototypes/output/gameplay.png"
+
 [input]
 
 move_up={

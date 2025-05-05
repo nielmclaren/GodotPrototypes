@@ -53,7 +53,7 @@ func _reset() -> void:
 func _start_recover() -> void:
 	player.play("recover")
 	pose = Pose.RECOVERY
-	velocity -= Vector2(0, 50).rotated(-rotation)
+	velocity -= Vector2(-50, 0).rotated(-rotation)
 
 func _start_push() -> void:
 	var animation_position: float = player.current_animation_position
@@ -89,13 +89,21 @@ func _process(delta: float) -> void:
 			damping = damping_coefficient_low
 			rotation_delta = 0.2
 
-	var direction: Vector2 = _get_controller_direction()
-	if direction.length() > 0:
-		rotation = rotate_toward(rotation, direction.angle(), rotation_delta * 0.2)
+	var rotation_direction: float = _get_controller_rotation_direction()
+	if rotation_direction != 0:
+		rotation += rotation_direction * rotation_delta * 0.1
 
 	velocity -= velocity * damping
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
+
+func _get_controller_rotation_direction() -> float:
+	var direction: float = 0
+	if Input.is_action_pressed("move_left"):
+		direction -= 1
+	if Input.is_action_pressed("move_right"):
+		direction += 1
+	return direction
 
 func _get_controller_direction() -> Vector2:
 	var direction: Vector2 = Vector2.ZERO
