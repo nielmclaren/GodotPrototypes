@@ -9,7 +9,7 @@ var player: AnimationPlayer
 var speed: float = 600
 var damping_coefficient_low: float = 0.02
 var damping_coefficient_high: float = 0.08
-var drag_damping: float = 0.01
+var drag_damping: float = 0.005
 var velocity: Vector2 = Vector2.ZERO
 
 var pose: Pose = Pose.GLIDE
