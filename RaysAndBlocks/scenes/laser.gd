@@ -115,32 +115,34 @@ func _process_external_ray() -> void:
 			child_laser = null
 
 func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
-	var collider:CollisionObject2D = get_collider()
+	var collider:Object = get_collider()
 	if collider is Block or collider is PrismRectangle or collider is PrismTriangle:
 		# Refraction.
+		var collision_object: CollisionObject2D = collider
 
 		if not child_laser:
 			child_laser = _instantiate_laser(laser_depth + 1)
 
 		# Prevent child laser from colliding with the body where it originates.
 		child_laser.clear_exceptions()
-		child_laser.add_exception(collider)
+		child_laser.add_exception(collision_object)
 
 		# Child laser will be inside the body.
-		child_laser._set_containing_body(collider)
+		child_laser._set_containing_body(collision_object)
 
 		child_laser.position = point
 		child_laser.global_rotation = _get_refraction_global_rotation(normal, false)
 
 	elif collider is Mirror:
 		# Reflection.
+		var collision_object: CollisionObject2D = collider
 
 		if not child_laser:
 			child_laser = _instantiate_laser(laser_depth + 1)
 
 		# Prevent child laser from colliding with the body where it originates.
 		child_laser.clear_exceptions()
-		child_laser.add_exception(collider)
+		child_laser.add_exception(collision_object)
 
 		# Child laser will be outside the body.
 		child_laser._set_containing_body(null)

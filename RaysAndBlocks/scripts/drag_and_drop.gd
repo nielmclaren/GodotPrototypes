@@ -31,7 +31,7 @@ func _node_clicked(node: Interactible) -> void:
 	drag_node.set_collision_layer_value(Constants.LASER_COLLISION_LAYER, false)
 
 	drag_ghost = node.clone()
-	drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, Constants.CELL_SIZE)
+	drag_ghost.global_position = scene.get_global_mouse_position() - click_offset
 	drag_ghost.set_edit_state(Block.STATE_GHOST)
 	drag_ghost.add_collision_exception_with(node)
 	drag_ghost.set_collision_layer_value(Constants.DEFAULT_COLLISION_LAYER, true)
@@ -40,10 +40,9 @@ func _node_clicked(node: Interactible) -> void:
 
 func physics_process(_delta: float) -> void:
 	if drag_ghost:
-		drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, Constants.CELL_SIZE)
-		var collision: KinematicCollision2D = drag_ghost.move_and_collide(Vector2.ZERO, true)
+		drag_ghost.global_position = scene.get_global_mouse_position() - click_offset
 
-		if collision:
+		if _is_colliding():
 			drag_ghost.set_edit_state(Block.STATE_GHOST_COLLISION)
 		else:
 			drag_ghost.set_edit_state(Block.STATE_GHOST)
@@ -59,10 +58,9 @@ func _mouse_released() -> void:
 		drag_node.set_collision_layer_value(Constants.LASER_COLLISION_LAYER, true)
 
 	if drag_ghost:
-		drag_ghost.global_position = snapped(scene.get_global_mouse_position() - click_offset, Constants.CELL_SIZE)
-		var collision: KinematicCollision2D = drag_ghost.move_and_collide(Vector2.ZERO, true)
+		drag_ghost.global_position = scene.get_global_mouse_position() - click_offset
 
-		if collision:
+		if _is_colliding():
 			_revert_drag()
 
 		else:
@@ -71,6 +69,9 @@ func _mouse_released() -> void:
 
 			drag_ghost.queue_free()
 			drag_ghost = null
+
+func _is_colliding() -> bool:
+	return drag_ghost.test_move(drag_ghost.global_transform, Vector2.ZERO, null, 0.08, true)
 
 func _revert_drag() -> void:
 	# Turn off snapping for the revert animation.

@@ -29,14 +29,6 @@ var click_offset: Vector2 = Vector2.ZERO
 # that radius they initiate rotations.
 var drag_handle_radius: float = 0
 
-func _enter_tree() -> void:
-	# Use transform notifications for snapping to a grid.
-	set_notify_transform(true)
-
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_TRANSFORM_CHANGED and is_snapped:
-		position = snapped(position, Constants.CELL_SIZE)
-
 func _ready() -> void:
 	input_pickable = true
 
