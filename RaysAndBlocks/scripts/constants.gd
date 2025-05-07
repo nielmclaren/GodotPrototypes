@@ -10,4 +10,4 @@ const LASER_COLLISION_LAYER: int = 2
 # Bodies are added to it as needed.
 const LASER_REVERSE_CAST_COLLISION_LAYER: int = 3
 
-const START_LEVEL_NUM: int = 5
+const START_LEVEL_NUM: int = 0

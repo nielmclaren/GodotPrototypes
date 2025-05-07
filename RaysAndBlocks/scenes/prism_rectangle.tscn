@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://du5bh3va3f882" path="res://scenes/prism_rectangle.gd" id="1_jap6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jap6m"]
-size = Vector2(128, 128)
+size = Vector2(96, 112)
 
 [node name="PrismRectangle" type="StaticBody2D"]
 script = ExtResource("1_jap6m")
@@ -11,14 +11,14 @@ script = ExtResource("1_jap6m")
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(-64, 64)
 color = Color(1, 1, 1, 0.12549)
-polygon = PackedVector2Array(0, 0, 128, 0, 128, -128, 0, -128)
+polygon = PackedVector2Array(16, -8, 112, -8, 112, -120, 16, -120)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jap6m")
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(-38.6, 40.4)
-points = PackedVector2Array(-25.4, -104.4, 102.6, -104.4)
+points = PackedVector2Array(-9.4, -96.4, 86.6, -96.4)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
@@ -26,7 +26,7 @@ end_cap_mode = 2
 
 [node name="Line2D2" type="Line2D" parent="."]
 position = Vector2(-38.6, 40.4)
-points = PackedVector2Array(102.6, -104.4, 102.6, 23.6)
+points = PackedVector2Array(86.6, -96.4, 86.6, 15.6)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
@@ -34,7 +34,7 @@ end_cap_mode = 2
 
 [node name="Line2D3" type="Line2D" parent="."]
 position = Vector2(-38.6, 40.4)
-points = PackedVector2Array(102.6, 23.6, -25.4, 23.6)
+points = PackedVector2Array(86.6, 15.6, -9.4, 15.6)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
@@ -42,7 +42,7 @@ end_cap_mode = 2
 
 [node name="Line2D4" type="Line2D" parent="."]
 position = Vector2(-38.6, 40.4)
-points = PackedVector2Array(-25.4, 23.6, -25.4, -104.4)
+points = PackedVector2Array(-9.4, 15.6, -9.4, -96.4)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
