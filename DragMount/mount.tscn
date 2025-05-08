@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq2te2vggb5mn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxbu3"]
+size = Vector2(64, 64)
+
+[node name="Mount" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cxbu3")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)

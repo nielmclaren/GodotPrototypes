@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://s5r5au403csc"]
+
+[ext_resource type="Script" uid="uid://b2kl271yj55ya" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dhmefkkn7on66" path="res://mirror.tscn" id="1_ig7tw"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_0xm2m")
+
+[node name="Mirror" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(767, 366)
+rotation = -0.55166
+
+[node name="Mirror2" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(407, 361)
+
+[node name="Mirror3" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(585, 291)
+rotation = 0.571885
