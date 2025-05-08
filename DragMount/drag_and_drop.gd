@@ -15,6 +15,7 @@ var is_invalid: bool = false
 func init(s: Node2D) -> void:
 	scene = s
 	_register_draggable_children(scene)
+	invalidate()
 
 func _register_draggable_children(parent_scene: Node2D) -> void:
 	var children: Array[Node] = parent_scene.get_children()
@@ -44,6 +45,7 @@ func validate() -> void:
 func _node_clicked(node: Mirror) -> void:
 	click_offset = scene.get_global_mouse_position() - node.global_position
 	drag_node = node
+	drag_node.set_is_drag_original(true)
 
 	drag_ghost = node.clone()
 	scene.add_child(drag_ghost)
@@ -68,7 +70,7 @@ func unhandled_input(event: InputEvent) -> void:
 
 func _mouse_released() -> void:
 	if drag_node:
-		drag_node.set_is_drag_ghost(false)
+		drag_node.set_is_drag_original(false)
 
 	if drag_ghost:
 		drag_ghost.global_position = scene.get_global_mouse_position() - click_offset
