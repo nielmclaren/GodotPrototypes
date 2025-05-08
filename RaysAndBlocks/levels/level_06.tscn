@@ -44,11 +44,11 @@ tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAA
 tile_set = SubResource("TileSet_kdo1k")
 
 [node name="PrismRect" parent="." instance=ExtResource("4_k8ise")]
-position = Vector2(972, 380)
+position = Vector2(136, 127)
 rotation = 1.5708
 
 [node name="PrismRect2" parent="." instance=ExtResource("4_k8ise")]
-position = Vector2(382, 377)
+position = Vector2(910, 470)
 
 [node name="Sensor" parent="." instance=ExtResource("5_0ffyv")]
 position = Vector2(583, 292)
@@ -58,8 +58,8 @@ position = Vector2(72, 546)
 rotation = -1.52839
 
 [node name="Mirror" parent="." instance=ExtResource("7_lljxk")]
-position = Vector2(127, 164)
+position = Vector2(915, 151)
 
 [node name="Mirror2" parent="." instance=ExtResource("7_lljxk")]
-position = Vector2(675, 514)
+position = Vector2(464, 491)
 rotation = 1.5708
