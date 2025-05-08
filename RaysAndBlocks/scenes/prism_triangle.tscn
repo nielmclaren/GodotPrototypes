@@ -1,20 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpba4hwya5x58"]
+[gd_scene load_steps=3 format=3 uid="uid://cpba4hwya5x58"]
 
 [ext_resource type="Script" uid="uid://du5bh3va3f882" path="res://scenes/prism_rectangle.gd" id="1_ey0pt"]
+[ext_resource type="PackedScene" uid="uid://bqo1ek8jegpcy" path="res://scenes/mount.tscn" id="2_q7t2s"]
 
-[node name="PrismTriangle" type="StaticBody2D"]
+[node name="PrismTriangle" type="Node2D"]
 script = ExtResource("1_ey0pt")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="Mount" parent="." instance=ExtResource("2_q7t2s")]
+
+[node name="Fixture" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fixture"]
+position = Vector2(-38.6, 40.4)
+polygon = PackedVector2Array(0, 0, 128, 0, 0, -128)
+
+[node name="Polygon2D" type="Polygon2D" parent="Fixture"]
 position = Vector2(-38.6, 40.4)
 color = Color(1, 1, 1, 0.12549)
 polygon = PackedVector2Array(0, 0, 128, 0, 0, -128)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-38.6, 40.4)
-polygon = PackedVector2Array(0, 0, 128, 0, 0, -128)
-
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="Fixture"]
 position = Vector2(-38.6, 40.4)
 points = PackedVector2Array(0, -128, 128, 0)
 width = 2.0
@@ -22,7 +27,7 @@ default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Line2D2" type="Line2D" parent="."]
+[node name="Line2D2" type="Line2D" parent="Fixture"]
 position = Vector2(-38.6, 40.4)
 points = PackedVector2Array(0, 0, 128, 0)
 width = 2.0
@@ -30,7 +35,7 @@ default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Line2D3" type="Line2D" parent="."]
+[node name="Line2D3" type="Line2D" parent="Fixture"]
 position = Vector2(-38.6, 40.4)
 points = PackedVector2Array(0, 0, 0, -128)
 width = 2.0

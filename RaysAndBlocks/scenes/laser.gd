@@ -22,8 +22,8 @@ var reverse_cast:RayCast2D = null
 func _ready() -> void:
 	laser_scene = load(scene_file_path) as PackedScene
 
-	set_collision_mask_value(Constants.DEFAULT_COLLISION_LAYER, false)
-	set_collision_mask_value(Constants.LASER_COLLISION_LAYER, true)
+	set_collision_mask_value(Constants.CollisionLayer.DEFAULT, false)
+	set_collision_mask_value(Constants.CollisionLayer.LASERS, true)
 
 	var line:Line2D = $Line2D
 	line.hide()
@@ -47,7 +47,7 @@ func _physics_process(_delta:float) -> void:
 func _process_internal_ray() -> void:
 	# The laser beam is inside a body. Reverse cast to find the exit intersection.
 	# Can't collide with anything else until the laser exits the containing body.
-	containing_body.set_collision_layer_value(Constants.LASER_REVERSE_CAST_COLLISION_LAYER, true)
+	containing_body.set_collision_layer_value(Constants.CollisionLayer.REVERSE_CAST, true)
 
 	reverse_cast.force_raycast_update()
 
@@ -67,7 +67,7 @@ func _process_internal_ray() -> void:
 
 		_update_art(Vector2.ZERO, Vector2.ZERO)
 
-	containing_body.set_collision_layer_value(Constants.LASER_REVERSE_CAST_COLLISION_LAYER, false)
+	containing_body.set_collision_layer_value(Constants.CollisionLayer.REVERSE_CAST, false)
 
 func _process_internal_ray_collision(collision_point:Vector2, normal:Vector2) -> void:
 	var angle_of_refraction:float = _get_angle_of_refraction(normal, true)
@@ -116,7 +116,7 @@ func _process_external_ray() -> void:
 
 func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
 	var collider:Object = get_collider()
-	if collider is Block or collider is PrismRectangle or collider is PrismTriangle:
+	if collider is PrismRectangle or collider is PrismTriangle:
 		# Refraction.
 		var collision_object: CollisionObject2D = collider
 
@@ -175,8 +175,8 @@ func _set_containing_body(body:CollisionObject2D) -> void:
 		reverse_cast.target_position = target_position.rotated(PI)
 
 		# FIXME: Make collision layer implementation more robust.
-		reverse_cast.set_collision_mask_value(Constants.DEFAULT_COLLISION_LAYER, false)
-		reverse_cast.set_collision_mask_value(Constants.LASER_REVERSE_CAST_COLLISION_LAYER, true)
+		reverse_cast.set_collision_mask_value(Constants.CollisionLayer.DEFAULT, false)
+		reverse_cast.set_collision_mask_value(Constants.CollisionLayer.REVERSE_CAST, true)
 
 		add_child(reverse_cast)
 	elif reverse_cast:

@@ -1,22 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://dviimd2m2uwof"]
+[gd_scene load_steps=4 format=3 uid="uid://dviimd2m2uwof"]
 
 [ext_resource type="Script" uid="uid://du5bh3va3f882" path="res://scenes/prism_rectangle.gd" id="1_jap6m"]
+[ext_resource type="PackedScene" uid="uid://bqo1ek8jegpcy" path="res://scenes/mount.tscn" id="2_22c7w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jap6m"]
 size = Vector2(96, 112)
 
-[node name="PrismRectangle" type="StaticBody2D"]
+[node name="PrismRectangle" type="Node2D"]
 script = ExtResource("1_jap6m")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
+[node name="Mount" parent="." instance=ExtResource("2_22c7w")]
+
+[node name="Fixture" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixture"]
+shape = SubResource("RectangleShape2D_jap6m")
+
+[node name="Polygon2D" type="Polygon2D" parent="Fixture"]
 position = Vector2(-64, 64)
 color = Color(1, 1, 1, 0.12549)
 polygon = PackedVector2Array(16, -8, 112, -8, 112, -120, 16, -120)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_jap6m")
-
-[node name="Line2D" type="Line2D" parent="."]
+[node name="Line2D" type="Line2D" parent="Fixture"]
 position = Vector2(-38.6, 40.4)
 points = PackedVector2Array(-9.4, -96.4, 86.6, -96.4)
 width = 2.0
@@ -24,7 +29,7 @@ default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Line2D2" type="Line2D" parent="."]
+[node name="Line2D2" type="Line2D" parent="Fixture"]
 position = Vector2(-38.6, 40.4)
 points = PackedVector2Array(86.6, -96.4, 86.6, 15.6)
 width = 2.0
@@ -32,7 +37,7 @@ default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Line2D3" type="Line2D" parent="."]
+[node name="Line2D3" type="Line2D" parent="Fixture"]
 position = Vector2(-38.6, 40.4)
 points = PackedVector2Array(86.6, 15.6, -9.4, 15.6)
 width = 2.0
@@ -40,7 +45,7 @@ default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Line2D4" type="Line2D" parent="."]
+[node name="Line2D4" type="Line2D" parent="Fixture"]
 position = Vector2(-38.6, 40.4)
 points = PackedVector2Array(-9.4, 15.6, -9.4, -96.4)
 width = 2.0
