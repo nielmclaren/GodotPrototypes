@@ -27,13 +27,14 @@ func _ready() -> void:
 
 	var line:Line2D = $Line2D
 	line.hide()
+	var green_line: Line2D = $GreenLine
+	green_line.hide()
+	var red_line: Line2D = $RedLine
+	red_line.hide()
 
 func _physics_process(_delta:float) -> void:
 	if laser_depth >= MAX_LASER_DEPTH:
 		return
-
-	# Indicate depth and external vs. internal
-	($DepthLabel as Label).text = str(laser_depth) + ("i" if containing_body else "x")
 
 	var green_line:Line2D = $GreenLine
 	green_line.hide()
@@ -176,7 +177,6 @@ func _set_containing_body(body:CollisionObject2D) -> void:
 		reverse_cast.position = target_position
 		reverse_cast.target_position = target_position.rotated(PI)
 
-		# FIXME: Make collision layer implementation more robust.
 		reverse_cast.set_collision_mask_value(Constants.CollisionLayer.DEFAULT, false)
 		reverse_cast.set_collision_mask_value(Constants.CollisionLayer.REVERSE_CAST, true)
 
@@ -215,9 +215,15 @@ func _update_art(target_point:Vector2, normal:Vector2) -> void:
 	line.show()
 
 	var green_line:Line2D = $GreenLine
-	if normal.length() > 0:
+	if Constants.IS_DEBUG and normal.length() > 0:
 		green_line.points[0] = target_point
 		green_line.points[1] = target_point + normal.rotated(-global_rotation) * 20
 		green_line.show()
 	else:
 		green_line.hide()
+
+	var red_line: Line2D = $RedLine
+	if Constants.IS_DEBUG:
+		red_line.show()
+	else:
+		red_line.hide()

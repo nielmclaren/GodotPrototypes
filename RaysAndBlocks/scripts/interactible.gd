@@ -201,7 +201,6 @@ func _get_mouse_location() -> MouseLocation:
 		return MouseLocation.FIXTURE
 	return MouseLocation.NONE
 
-# TODO: Do I need to separate _input_event into mount- and fixture-specific handlers?
 func _input_event(viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton:
 		var mouse_event: InputEventMouseButton = event
