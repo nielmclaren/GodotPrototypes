@@ -83,15 +83,15 @@ rotation = -11.099
 scale = Vector2(0.689147, 0.689147)
 
 [node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("3_2wlag")]
-position = Vector2(637, 485)
+position = Vector2(622, 496)
 rotation = 2.38528
 
 [node name="Mirror3" parent="." groups=["pickable"] instance=ExtResource("3_2wlag")]
-position = Vector2(556, 310)
+position = Vector2(549, 322)
 rotation = 3.16324
 
 [node name="Mirror2" parent="." groups=["pickable"] instance=ExtResource("3_2wlag")]
-position = Vector2(459, 485)
+position = Vector2(465, 492)
 rotation = 0.8188
 
 [node name="Sensor" parent="." instance=ExtResource("4_3ew82")]

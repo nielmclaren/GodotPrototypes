@@ -13,7 +13,7 @@ func _level_selected(level_num: int) -> void:
 
 func _load_level(level_num: int) -> void:
 	if curr_level:
-		curr_level.queue_free()
+		curr_level.free()
 		curr_level = null
 
 	var level_scene: PackedScene = load("res://levels/level_%02d.tscn" % level_num) as PackedScene
