@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqo1ek8jegpcy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xtdpe"]
-size = Vector2(64, 64)
+size = Vector2(48, 48)
 
 [node name="Mount" type="StaticBody2D"]
 
@@ -10,24 +10,24 @@ shape = SubResource("RectangleShape2D_xtdpe")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.446777, 0.446777, 0.446777, 1)
-polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+polygon = PackedVector2Array(-24, -24, 24, -24, 24, 24, -24, 24)
 
 [node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(-32, -32, 32, -32)
+points = PackedVector2Array(-24, -24, 24, -24)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="Line2D2" type="Line2D" parent="."]
-points = PackedVector2Array(32, 32, 32, -32)
+points = PackedVector2Array(24, 24, 24, -24)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="Line2D3" type="Line2D" parent="."]
-points = PackedVector2Array(32, 32, -32, 32)
+points = PackedVector2Array(24, 24, -24, 24)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
 
 [node name="Line2D4" type="Line2D" parent="."]
-points = PackedVector2Array(-32, -32, -32, 32)
+points = PackedVector2Array(-24, -24, -24, 24)
 width = 2.0
 default_color = Color(0, 0, 0, 1)

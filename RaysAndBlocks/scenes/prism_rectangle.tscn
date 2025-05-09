@@ -12,6 +12,7 @@ script = ExtResource("1_jap6m")
 [node name="Mount" parent="." instance=ExtResource("2_22c7w")]
 
 [node name="Fixture" type="StaticBody2D" parent="."]
+z_index = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fixture"]
 shape = SubResource("RectangleShape2D_jap6m")

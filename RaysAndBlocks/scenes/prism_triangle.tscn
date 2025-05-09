@@ -9,6 +9,7 @@ script = ExtResource("1_ey0pt")
 [node name="Mount" parent="." instance=ExtResource("2_q7t2s")]
 
 [node name="Fixture" type="StaticBody2D" parent="."]
+z_index = 1
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fixture"]
 position = Vector2(-38.6, 40.4)
