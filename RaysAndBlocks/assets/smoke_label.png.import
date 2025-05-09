@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c187a082ibknx"
-path="res://.godot/imported/steam_label.png-3a94f418c9336f2e83ba3ed7aed7dd1a.ctex"
+uid="uid://y3sjwb6wqvo7"
+path="res://.godot/imported/smoke_label.png-cfb87ff53093b171643fc223faa7f1a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/steam_label.png"
-dest_files=["res://.godot/imported/steam_label.png-3a94f418c9336f2e83ba3ed7aed7dd1a.ctex"]
+source_file="res://assets/smoke_label.png"
+dest_files=["res://.godot/imported/smoke_label.png-cfb87ff53093b171643fc223faa7f1a3.ctex"]
 
 [params]
 

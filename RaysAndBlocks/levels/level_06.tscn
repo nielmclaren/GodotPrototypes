@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://1sxmh78i5ee3" path="res://scenes/level.gd" id="1_n8w53"]
 [ext_resource type="PackedScene" uid="uid://dviimd2m2uwof" path="res://scenes/prism_rectangle.tscn" id="2_g3bu7"]
 [ext_resource type="Texture2D" uid="uid://d3jlxp712q4w6" path="res://assets/blocking_tiles.png" id="2_n8w53"]
+[ext_resource type="Texture2D" uid="uid://y3sjwb6wqvo7" path="res://assets/smoke_label.png" id="3_ifoay"]
 [ext_resource type="PackedScene" uid="uid://tnrc34yi6e02" path="res://scenes/sensor.tscn" id="4_plso3"]
 [ext_resource type="PackedScene" uid="uid://c22kx7cganyvf" path="res://scenes/emitter.tscn" id="6_6q6br"]
-[ext_resource type="Texture2D" uid="uid://c187a082ibknx" path="res://assets/steam_label.png" id="7_a6hey"]
 [ext_resource type="PackedScene" uid="uid://ddr6it3x0aj6o" path="res://scenes/mirror.tscn" id="7_n8w53"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ifoay"]
@@ -45,8 +45,8 @@ tile_map_data = PackedByteArray("AAAAAAAAAAABAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAA
 tile_set = SubResource("TileSet_kdo1k")
 
 [node name="SteamLabelSprite" type="Sprite2D" parent="."]
-position = Vector2(856, 446)
-texture = ExtResource("7_a6hey")
+position = Vector2(863, 452)
+texture = ExtResource("3_ifoay")
 
 [node name="PrismRect" parent="." instance=ExtResource("2_g3bu7")]
 position = Vector2(208, 419)
