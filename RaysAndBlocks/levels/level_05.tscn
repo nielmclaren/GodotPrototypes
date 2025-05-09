@@ -30,9 +30,9 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_kdo1k"]
 tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 7
 physics_layer_0/collision_mask = 0
-physics_layer_1/collision_layer = 2
+physics_layer_1/collision_layer = 8
 physics_layer_1/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_a6hey")
 
@@ -53,13 +53,13 @@ position = Vector2(910, 470)
 [node name="Sensor" parent="." instance=ExtResource("5_0ffyv")]
 position = Vector2(583, 292)
 
-[node name="Emitter" parent="." instance=ExtResource("6_7c8pi")]
-position = Vector2(72, 546)
-rotation = -1.52839
-
 [node name="Mirror" parent="." instance=ExtResource("7_lljxk")]
 position = Vector2(915, 151)
 
 [node name="Mirror2" parent="." instance=ExtResource("7_lljxk")]
 position = Vector2(464, 491)
 rotation = 1.5708
+
+[node name="Emitter" parent="." instance=ExtResource("6_7c8pi")]
+position = Vector2(72, 546)
+rotation = -1.52839

@@ -6,10 +6,6 @@ signal drag_start
 
 enum CollisionLayer { DEFAULT = 1, MOUNTS = 2, FIXTURES = 3 }
 
-enum EditState { DEFAULT,
-	DRAG, # The drag node doesn't actually move until mouse release, the ghost does.
-	GHOST, GHOST_MOUNT_COLLISION, GHOST_FIXTURE_COLLISION, GHOST_BOTH_COLLISION, GHOST_REVERT, FIXTURE_COLLISION }
-
 var mirror_scene: PackedScene
 
 var mount: StaticBody2D

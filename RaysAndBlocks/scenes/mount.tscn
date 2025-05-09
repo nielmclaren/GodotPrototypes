@@ -9,6 +9,7 @@ size = Vector2(64, 64)
 shape = SubResource("RectangleShape2D_xtdpe")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.446777, 0.446777, 0.446777, 1)
 polygon = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [node name="Line2D" type="Line2D" parent="."]

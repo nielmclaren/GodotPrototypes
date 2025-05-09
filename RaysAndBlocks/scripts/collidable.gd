@@ -1,7 +1,5 @@
 extends StaticBody2D
 
-# TODO Remove the Collidable class.
-
 func _ready() -> void:
 	set_collision_layer_value(Constants.CollisionLayer.DEFAULT, true)
 	set_collision_layer_value(Constants.CollisionLayer.MOUNTS, true)

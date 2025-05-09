@@ -6,7 +6,7 @@ var scene: Node2D = null
 var drag_node: Interactible = null
 var drag_ghost: Interactible = null
 var click_offset: Vector2 = Vector2.ZERO
-var interactibles: Array[Mirror] = []
+var interactibles: Array[Interactible] = []
 
 var is_invalidated: bool = false
 
@@ -72,8 +72,6 @@ func _mouse_released() -> void:
 
 		if drag_ghost.is_colliding():
 			_revert_drag()
-			drag_ghost.set_is_drag_ghost(false)
-			drag_ghost.set_is_reverting(true)
 
 		else:
 			drag_node.global_position = drag_ghost.global_position
@@ -83,6 +81,7 @@ func _mouse_released() -> void:
 			drag_ghost = null
 
 func _revert_drag() -> void:
+	drag_ghost.set_is_drag_ghost(false)
 	drag_ghost.set_is_reverting(true)
 
 	var tween: Tween = drag_ghost.create_tween()

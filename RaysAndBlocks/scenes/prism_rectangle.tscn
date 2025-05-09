@@ -18,7 +18,7 @@ shape = SubResource("RectangleShape2D_jap6m")
 
 [node name="Polygon2D" type="Polygon2D" parent="Fixture"]
 position = Vector2(-64, 64)
-color = Color(1, 1, 1, 0.12549)
+color = Color(1, 1, 1, 0.521569)
 polygon = PackedVector2Array(16, -8, 112, -8, 112, -120, 16, -120)
 
 [node name="Line2D" type="Line2D" parent="Fixture"]

@@ -9,8 +9,6 @@ func _ready() -> void:
 
 	prism_scene = load(scene_file_path) as PackedScene
 
-	drag_handle_radius = 32
-
 func clone() -> Variant:
 	var cloned: PrismRectangle = prism_scene.instantiate()
 	cloned.global_transform = global_transform

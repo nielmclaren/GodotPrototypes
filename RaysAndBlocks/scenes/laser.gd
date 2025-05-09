@@ -115,8 +115,9 @@ func _process_external_ray() -> void:
 			child_laser = null
 
 func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
-	var collider:Object = get_collider()
-	if collider is PrismRectangle or collider is PrismTriangle:
+	var collider: Node2D = get_collider()
+	var collider_parent: Node2D = collider.get_parent()
+	if collider_parent is PrismRectangle or collider_parent is PrismTriangle:
 		# Refraction.
 		var collision_object: CollisionObject2D = collider
 
@@ -133,7 +134,7 @@ func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
 		child_laser.position = point
 		child_laser.global_rotation = _get_refraction_global_rotation(normal, false)
 
-	elif collider is Mirror:
+	elif collider_parent is Mirror:
 		# Reflection.
 		var collision_object: CollisionObject2D = collider
 
@@ -170,6 +171,7 @@ func _set_containing_body(body:CollisionObject2D) -> void:
 	if containing_body:
 		if !reverse_cast:
 			reverse_cast = RayCast2D.new()
+			add_child(reverse_cast)
 
 		reverse_cast.position = target_position
 		reverse_cast.target_position = target_position.rotated(PI)
@@ -178,7 +180,6 @@ func _set_containing_body(body:CollisionObject2D) -> void:
 		reverse_cast.set_collision_mask_value(Constants.CollisionLayer.DEFAULT, false)
 		reverse_cast.set_collision_mask_value(Constants.CollisionLayer.REVERSE_CAST, true)
 
-		add_child(reverse_cast)
 	elif reverse_cast:
 		reverse_cast.queue_free()
 

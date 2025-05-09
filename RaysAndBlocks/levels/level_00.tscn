@@ -9,16 +9,6 @@
 [node name="Level" type="Node2D"]
 script = ExtResource("1_mmdti")
 
-[node name="WallOutlines" type="Node2D" parent="."]
-modulate = Color(0.505344, 0.505344, 0.505344, 1)
-
-[node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("1_wybcj")]
-position = Vector2(592, 209)
-rotation = 2.77845
-
-[node name="Sensor" parent="." instance=ExtResource("2_mmdti")]
-position = Vector2(909, 472)
-
 [node name="Walls" type="Node2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 
@@ -79,6 +69,13 @@ scale = Vector2(0.951486, 0.951486)
 position = Vector2(392, -195)
 rotation = -6.54647
 scale = Vector2(1.31808, 1.31808)
+
+[node name="Sensor" parent="." instance=ExtResource("2_mmdti")]
+position = Vector2(909, 472)
+
+[node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("1_wybcj")]
+position = Vector2(592, 209)
+rotation = 2.77845
 
 [node name="Emitter" parent="." instance=ExtResource("4_iqu7t")]
 position = Vector2(193, 180)

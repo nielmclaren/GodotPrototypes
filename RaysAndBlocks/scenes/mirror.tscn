@@ -1,12 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddr6it3x0aj6o"]
+[gd_scene load_steps=4 format=3 uid="uid://ddr6it3x0aj6o"]
 
 [ext_resource type="Script" uid="uid://bfh1pr2ltv6lb" path="res://scenes/mirror.gd" id="1_dx1wu"]
-[ext_resource type="Texture2D" uid="uid://dxx14s46a07g8" path="res://assets/mirror.png" id="1_scjey"]
 [ext_resource type="PackedScene" uid="uid://bqo1ek8jegpcy" path="res://scenes/mount.tscn" id="2_5823m"]
-[ext_resource type="Texture2D" uid="uid://d1jum3qu46yfw" path="res://assets/mirror_hover.png" id="3_dx1wu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfwl5"]
-size = Vector2(30, 180)
+size = Vector2(32, 176)
 
 [node name="Mirror" type="Node2D"]
 script = ExtResource("1_dx1wu")
@@ -18,8 +16,26 @@ script = ExtResource("1_dx1wu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fixture"]
 shape = SubResource("RectangleShape2D_xfwl5")
 
-[node name="DefaultSprite" type="Sprite2D" parent="Fixture"]
-texture = ExtResource("1_scjey")
+[node name="Polygon2D" type="Polygon2D" parent="Fixture"]
+color = Color(0.68, 0.68, 0.68, 1)
+polygon = PackedVector2Array(-16, -88, 16, -88, 16, 88, -16, 88)
 
-[node name="HoverSprite" type="Sprite2D" parent="Fixture"]
-texture = ExtResource("3_dx1wu")
+[node name="Line2D" type="Line2D" parent="Fixture"]
+points = PackedVector2Array(-16, -88, 16, -88)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D2" type="Line2D" parent="Fixture"]
+points = PackedVector2Array(16, 88, 16, -88)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D3" type="Line2D" parent="Fixture"]
+points = PackedVector2Array(16, 88, -16, 88)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="Line2D4" type="Line2D" parent="Fixture"]
+points = PackedVector2Array(-16, -88, -16, 88)
+width = 2.0
+default_color = Color(0, 0, 0, 1)

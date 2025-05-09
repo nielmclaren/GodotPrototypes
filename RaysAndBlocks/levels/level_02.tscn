@@ -9,24 +9,6 @@
 [node name="Level" type="Node2D"]
 script = ExtResource("1_didps")
 
-[node name="WallOutlines" type="Node2D" parent="."]
-modulate = Color(0.505344, 0.505344, 0.505344, 1)
-
-[node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("2_gia0r")]
-position = Vector2(447, 232)
-rotation = 2.88382
-
-[node name="Mirror2" parent="." groups=["pickable"] instance=ExtResource("2_gia0r")]
-position = Vector2(346, 299)
-rotation = 2.90913
-
-[node name="Mirror3" parent="." groups=["pickable"] instance=ExtResource("2_gia0r")]
-position = Vector2(798, 225)
-rotation = 1.3821
-
-[node name="Sensor" parent="." instance=ExtResource("3_mihb8")]
-position = Vector2(909, 472)
-
 [node name="Walls" type="Node2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 position = Vector2(1152, 648)
@@ -99,6 +81,21 @@ scale = Vector2(1.31808, 1.31808)
 position = Vector2(377, 16)
 rotation = -7.14301
 scale = Vector2(0.815669, 0.815669)
+
+[node name="Sensor" parent="." instance=ExtResource("3_mihb8")]
+position = Vector2(909, 472)
+
+[node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("2_gia0r")]
+position = Vector2(447, 232)
+rotation = 2.88382
+
+[node name="Mirror2" parent="." groups=["pickable"] instance=ExtResource("2_gia0r")]
+position = Vector2(346, 299)
+rotation = 2.90913
+
+[node name="Mirror3" parent="." groups=["pickable"] instance=ExtResource("2_gia0r")]
+position = Vector2(798, 225)
+rotation = 1.3821
 
 [node name="Emitter" parent="." instance=ExtResource("5_cwmx8")]
 position = Vector2(193, 180)

@@ -4,6 +4,8 @@ class_name Interactible
 
 signal drag_start
 
+enum MouseLocation { NONE, MOUNT, FIXTURE }
+
 var interactible_scene: PackedScene
 
 var drag_and_drop: DragAndDrop:
@@ -24,10 +26,6 @@ var is_drag_ghost: bool = false
 var is_reverting: bool = false
 
 var click_offset: Vector2 = Vector2.ZERO
-
-# Mouse presses within the drag handle radius initiate drag and drop. Outside of
-# that radius they initiate rotations.
-var drag_handle_radius: float = 0
 
 func _ready() -> void:
 	interactible_scene = load(scene_file_path) as PackedScene
@@ -70,46 +68,15 @@ func _ready() -> void:
 		fixture.rotation = rotation
 	rotation = 0
 
-	# TODO: Mouse moving between mount and fixture could be a problem. Might need to defer a second enter call.
 	mount.mouse_entered.connect(_mouse_entered)
 	mount.mouse_exited.connect(_mouse_exited)
 	fixture.mouse_entered.connect(_mouse_entered)
 	fixture.mouse_exited.connect(_mouse_exited)
 
-func _mouse_entered() -> void:
-	is_mouse_over = true
-	# TODO: Shouldn't force all interactibles to validate.
-	invalidate()
-
-func _mouse_exited() -> void:
-	is_mouse_over = false
-	if !is_drag_ghost and !is_rotating:
-		CursorManager.cursor_set_shape(Input.CURSOR_ARROW)
-
-	# TODO: Shouldn't force all interactibles to validate.
-	invalidate()
-
 func _physics_process(_delta: float) -> void:
-	_update_mouse_cursor()
-
 	if is_rotating:
 		fixture.rotation = rotate_toward(fixture.rotation, (get_global_mouse_position() - global_position).angle() - click_offset.angle(), 1)
 		invalidate()
-
-# TODO: Move into validation.
-func _update_mouse_cursor() -> void:
-	if is_drag_ghost:
-		CursorManager.cursor_set_shape(Input.CURSOR_DRAG)
-
-	elif is_rotating:
-		CursorManager.cursor_set_shape(Input.CURSOR_CROSS)
-
-	elif is_mouse_over:
-		var mouse_dist: float = get_local_mouse_position().length()
-		if mouse_dist < drag_handle_radius:
-			CursorManager.cursor_set_shape(Input.CURSOR_DRAG)
-		else:
-			CursorManager.cursor_set_shape(Input.CURSOR_CROSS)
 
 func is_colliding() -> bool:
 	return is_mount_colliding()
@@ -145,6 +112,7 @@ func set_is_reverting(v: bool) -> void:
 	fixture.set_collision_layer_value(Constants.CollisionLayer.DEFAULT, false)
 	fixture.set_collision_layer_value(Constants.CollisionLayer.MOUNTS, false)
 	fixture.set_collision_layer_value(Constants.CollisionLayer.FIXTURES, false)
+	fixture.set_collision_layer_value(Constants.CollisionLayer.LASERS, false)
 	fixture.set_collision_layer_value(Constants.CollisionLayer.REVERSE_CAST, false)
 
 	invalidate()
@@ -153,6 +121,9 @@ func invalidate() -> void:
 	drag_and_drop.invalidate()
 
 func validate() -> void:
+	if is_reverting:
+		return
+
 	if is_mount_colliding():
 		if is_drag_original:
 			_mount_rgba(1.0, 0.2, 0.2, 0.7)
@@ -169,6 +140,7 @@ func validate() -> void:
 			_mount_rgba(1.0, 1.0, 1.0, 1.0)
 
 	if is_fixture_colliding():
+		fixture.set_collision_layer_value(Constants.CollisionLayer.LASERS, false)
 		if is_drag_original:
 			_fixture_rgba(1.0, 0.2, 0.2, 0.7)
 		elif is_drag_ghost:
@@ -177,11 +149,57 @@ func validate() -> void:
 			_fixture_rgba(1.0, 0.2, 0.2, 1.0)
 	else:
 		if is_drag_original:
+			fixture.set_collision_layer_value(Constants.CollisionLayer.LASERS, false)
 			_fixture_rgba(1.0, 1.0, 1.0, 0.7)
 		elif is_drag_ghost:
+			fixture.set_collision_layer_value(Constants.CollisionLayer.LASERS, true)
 			_fixture_rgba(1.0, 1.0, 1.0, 0.7)
 		else:
+			fixture.set_collision_layer_value(Constants.CollisionLayer.LASERS, true)
 			_fixture_rgba(1.0, 1.0, 1.0, 1.0)
+
+func _mouse_entered() -> void:
+	is_mouse_over = true
+	_refresh_cursor()
+
+	# TODO: Shouldn't force all interactibles to validate.
+	invalidate()
+
+func _mouse_exited() -> void:
+	# Hovering mount and fixture will generate two enter events and leaving one for the other will generate an exit event.
+	# So check whether we're still hovering mount or fixture.
+	is_mouse_over = _get_mouse_location() != MouseLocation.NONE
+
+	_refresh_cursor()
+
+	# TODO: Shouldn't force all interactibles to validate.
+	invalidate()
+
+func _refresh_cursor() -> void:
+	if is_drag_ghost:
+		CursorManager.cursor_set_shape(Input.CURSOR_DRAG)
+	elif is_rotating:
+		CursorManager.cursor_set_shape(Input.CURSOR_CROSS)
+	elif is_mouse_over:
+		var mouse_location: MouseLocation = _get_mouse_location()
+		match mouse_location:
+			MouseLocation.MOUNT:
+				CursorManager.cursor_set_shape(Input.CURSOR_DRAG)
+			MouseLocation.FIXTURE:
+				CursorManager.cursor_set_shape(Input.CURSOR_CROSS)
+			MouseLocation.NONE:
+				CursorManager.cursor_set_shape(Input.CURSOR_ARROW)
+	else:
+		CursorManager.cursor_set_shape(Input.CURSOR_ARROW)
+
+func _get_mouse_location() -> MouseLocation:
+	var mount_rect: Rect2 = ($Mount/CollisionShape2D as CollisionShape2D).shape.get_rect()
+	if mount_rect.has_point(mount.get_local_mouse_position()):
+		return MouseLocation.MOUNT
+	var fixture_rect: Rect2 = ($Fixture/CollisionShape2D as CollisionShape2D).shape.get_rect()
+	if fixture_rect.has_point(fixture.get_local_mouse_position()):
+		return MouseLocation.FIXTURE
+	return MouseLocation.NONE
 
 # TODO: Do I need to separate _input_event into mount- and fixture-specific handlers?
 func _input_event(viewport: Viewport, event: InputEvent, _shape_idx: int) -> void:
@@ -192,13 +210,16 @@ func _input_event(viewport: Viewport, event: InputEvent, _shape_idx: int) -> voi
 			viewport.set_input_as_handled()
 
 func _mouse_pressed() -> void:
-	click_offset = get_local_mouse_position()
+	click_offset = fixture.get_local_mouse_position()
 
-	var mouse_dist: float = get_local_mouse_position().length()
-	if mouse_dist < drag_handle_radius:
-		drag_start.emit(self)
-	else:
-		is_rotating = true
+	var mouse_location: MouseLocation = _get_mouse_location()
+	match mouse_location:
+		MouseLocation.MOUNT:
+			drag_start.emit(self)
+		MouseLocation.FIXTURE:
+			is_rotating = true
+		MouseLocation.NONE:
+			pass
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

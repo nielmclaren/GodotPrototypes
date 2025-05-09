@@ -11,23 +11,9 @@
 [node name="Level" type="Node2D"]
 script = ExtResource("1_mllcm")
 
-[node name="WallOutlines" type="Node2D" parent="."]
-modulate = Color(0.505344, 0.505344, 0.505344, 1)
-
 [node name="Pit" parent="." instance=ExtResource("2_q7ibo")]
 position = Vector2(401, 19)
 scale = Vector2(1.4191, 2.31062)
-
-[node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("3_j0sdw")]
-position = Vector2(915, 172)
-rotation = 2.39817
-
-[node name="Mirror2" parent="." groups=["pickable"] instance=ExtResource("3_j0sdw")]
-position = Vector2(996, 491)
-rotation = 0.541405
-
-[node name="Sensor" parent="." instance=ExtResource("4_jy02f")]
-position = Vector2(909, 472)
 
 [node name="Walls" type="Node2D" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -108,9 +94,6 @@ rotation = -11.4426
 scale = Vector2(-1.1387, -1.1387)
 metadata/_edit_lock_ = true
 
-[node name="Emitter" parent="." instance=ExtResource("6_kjd3d")]
-position = Vector2(253, 191)
-
 [node name="Wall" parent="." instance=ExtResource("6_q7ibo")]
 position = Vector2(116, 309)
 rotation = 1.5708
@@ -134,3 +117,18 @@ rotation = 1.5708
 [node name="Wall6" parent="." instance=ExtResource("6_q7ibo")]
 position = Vector2(1046, 310)
 rotation = 1.5708
+
+[node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("3_j0sdw")]
+position = Vector2(915, 172)
+rotation = 2.39817
+
+[node name="Mirror2" parent="." groups=["pickable"] instance=ExtResource("3_j0sdw")]
+position = Vector2(996, 491)
+rotation = 0.541405
+scale = Vector2(1, 1)
+
+[node name="Sensor" parent="." instance=ExtResource("4_jy02f")]
+position = Vector2(909, 472)
+
+[node name="Emitter" parent="." instance=ExtResource("6_kjd3d")]
+position = Vector2(253, 191)
