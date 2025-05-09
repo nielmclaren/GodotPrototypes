@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c187a082ibknx" path="res://assets/steam_label.png" id="7_a6hey"]
 [ext_resource type="PackedScene" uid="uid://ddr6it3x0aj6o" path="res://scenes/mirror.tscn" id="7_n8w53"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a6hey"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ifoay"]
 texture = ExtResource("2_n8w53")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -35,7 +35,7 @@ physics_layer_0/collision_layer = 7
 physics_layer_0/collision_mask = 0
 physics_layer_1/collision_layer = 8
 physics_layer_1/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_a6hey")
+sources/0 = SubResource("TileSetAtlasSource_ifoay")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_n8w53")
