@@ -19,6 +19,7 @@ config/icon="uid://c732ljael0ub1"
 
 Constants="*res://scripts/constants.gd"
 CursorManager="*res://scripts/cursor_manager.gd"
+LevelFileManager="*res://scripts/level_file_manager.gd"
 
 [debug]
 

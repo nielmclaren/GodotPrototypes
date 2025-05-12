@@ -19,3 +19,4 @@ scale = Vector2(2.75575, -1.67454)
 shape = SubResource("RectangleShape2D_butph")
 
 [node name="Laser" parent="." instance=ExtResource("3_2ci5l")]
+position = Vector2(40, 0)
