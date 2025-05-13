@@ -8,20 +8,30 @@ font_size = 38
 [sub_resource type="LabelSettings" id="LabelSettings_u8eb6"]
 font_size = 30
 
-[node name="GameCompletePopup" type="Node2D"]
+[node name="GameCompletePopup" type="Window"]
+initial_position = 1
+size = Vector2i(400, 250)
+transient = true
+exclusive = true
+unresizable = true
+borderless = true
+always_on_top = true
+popup_window = true
 script = ExtResource("1_u8eb6")
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 512.0
-offset_bottom = 256.0
+offset_top = -3.0
+offset_right = 400.0
+offset_bottom = 253.0
+color = Color(0.817521, 0.817521, 0.817521, 1)
 
 [node name="Label" type="Label" parent="."]
 modulate = Color(0, 0, 0, 1)
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 480.0
-offset_bottom = 112.0
+offset_left = -24.0
+offset_top = 29.0
+offset_right = 424.0
+offset_bottom = 109.0
 text = "The End"
 label_settings = SubResource("LabelSettings_sugp2")
 horizontal_alignment = 1
@@ -29,10 +39,10 @@ vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
 modulate = Color(0, 0, 0, 1)
-offset_left = 32.0
-offset_top = 112.0
-offset_right = 480.0
-offset_bottom = 192.0
+offset_left = -24.0
+offset_top = 125.0
+offset_right = 424.0
+offset_bottom = 205.0
 text = "Thanks for playing!"
 label_settings = SubResource("LabelSettings_u8eb6")
 horizontal_alignment = 1

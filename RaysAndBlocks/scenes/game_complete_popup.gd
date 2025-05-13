@@ -1,3 +1,3 @@
-extends Node2D
+extends Window
 
 class_name GameCompletePopup

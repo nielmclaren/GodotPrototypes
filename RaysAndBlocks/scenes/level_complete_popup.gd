@@ -1,12 +1,14 @@
-extends Node2D
+extends Window
 
 class_name LevelCompletePopup
 
+@export var next_button: Button
+
 signal next_clicked
 
+
 func _ready() -> void:
-	var next: Button = $NextButton
-	next.pressed.connect(_next_button_pressed)
+	next_button.pressed.connect(_next_button_pressed)
 
 
 func _next_button_pressed() -> void:

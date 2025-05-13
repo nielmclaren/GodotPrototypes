@@ -14,6 +14,12 @@ func _ready() -> void:
 
 	_load_level(Constants.START_LEVEL_INDEX)
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_released("escape"):
+		var tree: SceneTree = get_tree()
+		tree.root.propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+		tree.quit()
+
 func _level_selected(level_index: int) -> void:
 	curr_level_index = level_index
 	_load_level(level_index)

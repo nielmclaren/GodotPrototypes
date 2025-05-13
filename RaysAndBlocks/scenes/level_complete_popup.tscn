@@ -5,27 +5,38 @@
 [sub_resource type="LabelSettings" id="LabelSettings_sugp2"]
 font_size = 38
 
-[node name="LevelCompletePopup" type="Node2D"]
+[node name="LevelCompletePopup" type="Window" node_paths=PackedStringArray("next_button")]
+initial_position = 1
+size = Vector2i(400, 250)
+transient = true
+exclusive = true
+unresizable = true
+borderless = true
+always_on_top = true
+popup_window = true
 script = ExtResource("1_x5fk6")
+next_button = NodePath("NextButton")
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 512.0
-offset_bottom = 256.0
+offset_top = -3.0
+offset_right = 400.0
+offset_bottom = 253.0
+color = Color(0.817521, 0.817521, 0.817521, 1)
 
 [node name="NextButton" type="Button" parent="."]
-offset_left = 232.0
-offset_top = 200.0
-offset_right = 277.0
-offset_bottom = 231.0
+offset_left = 168.0
+offset_top = 189.0
+offset_right = 213.0
+offset_bottom = 220.0
 text = "Next"
 
 [node name="Label" type="Label" parent="."]
 modulate = Color(0, 0, 0, 1)
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 480.0
-offset_bottom = 176.0
+offset_left = -24.0
+offset_top = 13.0
+offset_right = 432.0
+offset_bottom = 157.0
 text = "Level Complete"
 label_settings = SubResource("LabelSettings_sugp2")
 horizontal_alignment = 1

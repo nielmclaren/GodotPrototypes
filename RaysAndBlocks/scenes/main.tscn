@@ -37,8 +37,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_sugp2")
 
 [node name="LevelCompletePopup" parent="PopupLayer" instance=ExtResource("4_jyhfs")]
 visible = false
-position = Vector2(328, 168)
 
 [node name="GameCompletePopup" parent="PopupLayer" instance=ExtResource("5_tbgi4")]
 visible = false
-position = Vector2(328, 168)
