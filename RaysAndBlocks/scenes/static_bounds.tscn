@@ -23,6 +23,7 @@ shape = SubResource("WorldBoundaryShape2D_4ples")
 position = Vector2(568, 648)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+position = Vector2(0, -8)
 shape = SubResource("WorldBoundaryShape2D_tsc2h")
 
 [node name="Left" type="StaticBody2D" parent="."]

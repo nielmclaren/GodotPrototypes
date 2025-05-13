@@ -30,15 +30,17 @@ func _ready() -> void:
 
 	sprite.set_frame(0)
 
-func _process(_delta: float) -> void:
-	if is_hit:
+func _physics_process(_delta: float) -> void:
+	if is_hit and !Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		var now: float = Time.get_ticks_msec()
 		if !is_hit_prev:
+			print("new hit")
 			hit_time = now
 
 			sprite.set_frame(1)
 			sprite.play()
 		elif !is_activated_emitted and now - ACTIVATION_DELAY_MS > hit_time:
+			print("activated")
 			is_active = true
 			activated.emit()
 			is_activated_emitted = true
@@ -51,6 +53,7 @@ func _process(_delta: float) -> void:
 
 		is_active = false
 		is_activated_emitted = false
+		is_hit = false
 		is_hit_prev = false
 
 
