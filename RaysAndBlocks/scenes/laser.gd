@@ -152,8 +152,8 @@ func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
 		child_laser.position = point
 		child_laser.global_rotation = _get_reflection_global_rotation(normal)
 
-	elif collider is Sensor:
-		var sensor:Sensor = collider
+	elif collider_parent is Sensor and collider.name == "Receiver":
+		var sensor:Sensor = collider_parent
 		sensor.register_laser_collision(self)
 
 		if child_laser:

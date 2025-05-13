@@ -54,6 +54,7 @@ rotation = -0.426015
 
 [node name="Sensor" parent="." instance=ExtResource("4_plso3")]
 position = Vector2(1044, 323)
+rotation = -1.5708
 
 [node name="Sensor2" parent="." instance=ExtResource("4_plso3")]
 position = Vector2(400, 532)

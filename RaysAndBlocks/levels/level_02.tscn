@@ -62,9 +62,14 @@ position = Vector2(-103, 234)
 rotation = -6.80731
 scale = Vector2(1.31673, 1.31673)
 
+[node name="Wall15" parent="Walls" instance=ExtResource("4_2owmk")]
+position = Vector2(275, 57.0007)
+rotation = -7.85397
+scale = Vector2(0.667636, 0.667636)
+
 [node name="Wall11" parent="Walls" instance=ExtResource("4_2owmk")]
-position = Vector2(100, -142)
-rotation = -7.03802
+position = Vector2(66.9999, 45.0002)
+rotation = -6.28318
 scale = Vector2(0.951486, 0.951486)
 
 [node name="Wall12" parent="Walls" instance=ExtResource("4_2owmk")]

@@ -31,12 +31,12 @@ rotation = 2.59232
 scale = Vector2(1.03401, 1.03401)
 
 [node name="Wall05" parent="Walls" instance=ExtResource("3_y1gos")]
-position = Vector2(1256, 577)
+position = Vector2(1181, 468)
 rotation = 0.277712
 scale = Vector2(1.26351, 1.26351)
 
 [node name="Wall06" parent="Walls" instance=ExtResource("3_y1gos")]
-position = Vector2(861, 713)
+position = Vector2(802, 593)
 rotation = -2.03241
 scale = Vector2(0.936233, 0.936233)
 
@@ -46,7 +46,7 @@ rotation = -5.16036
 scale = Vector2(1.10555, 1.10555)
 
 [node name="Wall08" parent="Walls" instance=ExtResource("3_y1gos")]
-position = Vector2(154, 746)
+position = Vector2(149, 701)
 rotation = -2.24103
 scale = Vector2(1.31673, 1.31673)
 
@@ -71,7 +71,7 @@ rotation = -6.54647
 scale = Vector2(1.31808, 1.31808)
 
 [node name="Sensor" parent="." instance=ExtResource("2_mmdti")]
-position = Vector2(909, 472)
+position = Vector2(894, 477)
 
 [node name="Mirror" parent="." groups=["pickable"] instance=ExtResource("1_wybcj")]
 position = Vector2(592, 209)
