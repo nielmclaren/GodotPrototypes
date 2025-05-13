@@ -12,7 +12,7 @@ func _ready() -> void:
 
 	level_complete_popup.next_clicked.connect(_level_popup_next_clicked)
 
-	_load_level(Constants.START_LEVEL_INDEX)
+	_load_level(0)
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("escape"):
@@ -33,7 +33,7 @@ func _load_level(level_index: int) -> void:
 		curr_level.free()
 		curr_level = null
 
-	var level_scene: PackedScene = load("res://levels/level_%02d.tscn" % level_index) as PackedScene
+	var level_scene: PackedScene = load("res://levels/level_%02d.tscn" % LevelFileManager.get_level_num(level_index)) as PackedScene
 	var level: Level = level_scene.instantiate()
 	add_child(level)
 
@@ -43,7 +43,7 @@ func _load_level(level_index: int) -> void:
 	curr_level_index = level_index
 
 func _level_completed() -> void:
-	if curr_level_index + 1 >= LevelFileManager.get_num_levels():
+	if curr_level_index + 1 >= LevelFileManager.size():
 		game_complete_popup.show()
 		GlobalState.is_game_input_enabled = false
 	else:
