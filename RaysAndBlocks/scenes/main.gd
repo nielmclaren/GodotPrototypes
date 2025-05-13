@@ -45,9 +45,12 @@ func _load_level(level_index: int) -> void:
 func _level_completed() -> void:
 	if curr_level_index + 1 >= LevelFileManager.get_num_levels():
 		game_complete_popup.show()
+		GlobalState.is_game_input_enabled = false
 	else:
 		level_complete_popup.show()
+		GlobalState.is_game_input_enabled = false
 
 func _level_popup_next_clicked() -> void:
 	level_complete_popup.hide()
 	_load_next_level()
+	GlobalState.is_game_input_enabled = true

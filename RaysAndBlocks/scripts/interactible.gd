@@ -74,6 +74,9 @@ func _ready() -> void:
 	fixture.mouse_exited.connect(_mouse_exited)
 
 func _physics_process(_delta: float) -> void:
+	if !GlobalState.is_game_input_enabled:
+		return
+
 	if is_rotating:
 		fixture.rotation = rotate_toward(fixture.rotation, (get_global_mouse_position() - global_position).angle() - click_offset.angle(), 1)
 		invalidate()
@@ -159,6 +162,9 @@ func validate() -> void:
 			_fixture_rgba(1.0, 1.0, 1.0, 1.0)
 
 func _mouse_entered() -> void:
+	if !GlobalState.is_game_input_enabled:
+		return
+
 	is_mouse_over = true
 	_refresh_cursor()
 
@@ -209,6 +215,9 @@ func _input_event(viewport: Viewport, event: InputEvent, _shape_idx: int) -> voi
 			viewport.set_input_as_handled()
 
 func _mouse_pressed() -> void:
+	if !GlobalState.is_game_input_enabled:
+		return
+
 	click_offset = fixture.get_local_mouse_position()
 
 	var mouse_location: MouseLocation = _get_mouse_location()
@@ -227,6 +236,9 @@ func _input(event: InputEvent) -> void:
 			_mouse_released()
 
 func _mouse_released() -> void:
+	if !GlobalState.is_game_input_enabled:
+		return
+
 	is_rotating = false
 	CursorManager.cursor_set_shape(Input.CURSOR_ARROW)
 
