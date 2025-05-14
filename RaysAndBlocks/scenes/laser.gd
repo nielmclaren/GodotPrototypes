@@ -59,17 +59,12 @@ func _process_internal_ray() -> void:
 	if reverse_cast.is_colliding():
 		var point:Vector2 = to_local(reverse_cast.get_collision_point())
 		var normal:Vector2 = reverse_cast.get_collision_normal().rotated(PI)
-
 		_update_art(point, reverse_cast.get_collision_normal())
 		_process_internal_ray_collision(point, normal)
 
 	else:
 		print("WARN: reverse raycast for internal laser didn't collide.")
-
-		if child_laser:
-			child_laser.queue_free()
-			child_laser = null
-
+		_destroy_child_laser()
 		_update_art(Vector2.ZERO, Vector2.ZERO)
 
 	containing_body.set_collision_layer_value(Constants.CollisionLayer.REVERSE_CAST, false)
@@ -77,11 +72,9 @@ func _process_internal_ray() -> void:
 func _process_internal_ray_collision(collision_point:Vector2, normal:Vector2) -> void:
 	var angle_of_refraction:float = _get_angle_of_refraction(normal, true)
 
-	if not child_laser:
-		child_laser = _instantiate_laser(laser_depth + 1)
+	_ensure_child_laser()
 
 	# Prevent child laser from colliding with the body where it originates.
-	child_laser.clear_exceptions()
 	child_laser.add_exception(containing_body)
 
 	if PI/2 - abs(angle_of_refraction) < deg_to_rad(MAX_CRITICAL_ANGLE_DETECTION_ERROR):
@@ -108,30 +101,23 @@ func _process_external_ray() -> void:
 	if is_colliding():
 		var cast_point:Vector2 = to_local(get_collision_point())
 		var normal:Vector2 = get_collision_normal()
-
 		_update_art(cast_point, normal)
 		_process_external_ray_collision(cast_point, normal)
 
 	else:
 		_update_art(target_position, Vector2.ZERO)
-
-		if child_laser:
-			child_laser.queue_free()
-			child_laser = null
+		_destroy_child_laser()
 
 func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
 	var collider: Node2D = get_collider()
-	laser_collider.register_laser_collision(collider)
+	var collision_response: Constants.LaserCollisionResponse = laser_collider.register_laser_collision(collider)
 
-	var collision_response: Constants.LaserCollisionResponse = laser_collider.get_laser_collision_response(collider)
 	if collision_response == Constants.LaserCollisionResponse.REFRACT:
 		var collision_object: CollisionObject2D = collider
 
-		if not child_laser:
-			child_laser = _instantiate_laser(laser_depth + 1)
+		_ensure_child_laser()
 
 		# Prevent child laser from colliding with the body where it originates.
-		child_laser.clear_exceptions()
 		child_laser.add_exception(collision_object)
 
 		# Child laser will be inside the body.
@@ -143,11 +129,9 @@ func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
 	elif collision_response == Constants.LaserCollisionResponse.REFLECT:
 		var collision_object: CollisionObject2D = collider
 
-		if not child_laser:
-			child_laser = _instantiate_laser(laser_depth + 1)
+		_ensure_child_laser()
 
 		# Prevent child laser from colliding with the body where it originates.
-		child_laser.clear_exceptions()
 		child_laser.add_exception(collision_object)
 
 		# Child laser will be outside the body.
@@ -158,10 +142,7 @@ func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
 
 	else:
 		# Collided with a wall or viewport bounds. Dead end.
-		if child_laser:
-			child_laser.queue_free()
-			child_laser = null
-
+		_destroy_child_laser()
 
 func _set_containing_body(body:CollisionObject2D) -> void:
 	containing_body = body
@@ -180,12 +161,24 @@ func _set_containing_body(body:CollisionObject2D) -> void:
 	elif reverse_cast:
 		reverse_cast.queue_free()
 
+func _ensure_child_laser() -> void:
+	if not child_laser:
+		child_laser = _instantiate_laser(laser_depth + 1)
+
+	# Reset
+	child_laser.clear_exceptions()
+
 func _instantiate_laser(depth:int) -> Laser:
 	var laser:Laser = laser_scene.instantiate()
 	laser.laser_depth = depth
 	laser.laser_collider = laser_collider
 	add_child(laser)
 	return laser
+
+func _destroy_child_laser() -> void:
+	if child_laser:
+		child_laser.queue_free()
+		child_laser = null
 
 func _get_angle_of_refraction(normal:Vector2, is_internal:bool) -> float:
 	var direction:Vector2 = Vector2.from_angle(global_rotation)
