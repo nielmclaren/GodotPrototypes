@@ -60,5 +60,5 @@ func _physics_process(_delta: float) -> void:
 
 # TODO: There's no guarantee that Laser._physics_process() will be called
 #       exactly once for each call to `Sensor._process()`.
-func register_laser_collision(_laser: Laser) -> void:
+func register_laser_collision() -> void:
 	is_hit = true

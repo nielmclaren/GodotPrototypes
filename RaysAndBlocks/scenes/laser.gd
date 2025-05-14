@@ -121,6 +121,8 @@ func _process_external_ray() -> void:
 
 func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
 	var collider: Node2D = get_collider()
+	laser_collider.register_laser_collision(collider)
+
 	var collision_response: Constants.LaserCollisionResponse = laser_collider.get_laser_collision_response(collider)
 	if collision_response == Constants.LaserCollisionResponse.REFRACT:
 		var collision_object: CollisionObject2D = collider
@@ -159,11 +161,6 @@ func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
 		if child_laser:
 			child_laser.queue_free()
 			child_laser = null
-
-	var collider_parent: Node2D = collider.get_parent()
-	if collider_parent is Sensor and collider.name == "Receiver":
-		var sensor:Sensor = collider_parent
-		sensor.register_laser_collision(self)
 
 
 func _set_containing_body(body:CollisionObject2D) -> void:

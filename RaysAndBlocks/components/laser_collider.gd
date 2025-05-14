@@ -11,6 +11,12 @@ func init(scene: Node2D) -> void:
 	_register_collidables(scene)
 
 
+func register_laser_collision(collision_object: Object) -> void:
+	var collidable: LaserCollidable = laser_collidables.get(collision_object)
+	if collidable and collidable.sensor:
+		collidable.sensor.register_laser_collision()
+
+
 func get_laser_collision_response(collision_object: Object) -> Constants.LaserCollisionResponse:
 	var collidable: LaserCollidable = laser_collidables.get(collision_object)
 	if collidable:
