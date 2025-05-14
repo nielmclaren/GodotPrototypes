@@ -1,47 +1,85 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddr6it3x0aj6o"]
+[gd_scene load_steps=7 format=3 uid="uid://ddr6it3x0aj6o"]
 
-[ext_resource type="Script" uid="uid://bfh1pr2ltv6lb" path="res://scenes/mirror.gd" id="1_dx1wu"]
-[ext_resource type="PackedScene" uid="uid://bqo1ek8jegpcy" path="res://scenes/mount.tscn" id="2_5823m"]
+[ext_resource type="PackedScene" uid="uid://cfqsap61jlrbg" path="res://components/drag_rotation.tscn" id="1_652kc"]
+[ext_resource type="PackedScene" uid="uid://b2f4b8gkn4eq4" path="res://components/drag_translation.tscn" id="2_nha6m"]
 [ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laser_collidable.tscn" id="3_nha6m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfwl5"]
 size = Vector2(32, 176)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_652kc"]
+size = Vector2(32, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nha6m"]
+size = Vector2(32, 80)
+
 [node name="Mirror" type="Node2D"]
-script = ExtResource("1_dx1wu")
 
-[node name="Mount" parent="." instance=ExtResource("2_5823m")]
-
-[node name="Fixture" type="StaticBody2D" parent="."]
-z_index = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fixture"]
-shape = SubResource("RectangleShape2D_xfwl5")
-
-[node name="Polygon2D" type="Polygon2D" parent="Fixture"]
+[node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.68, 0.68, 0.68, 1)
 polygon = PackedVector2Array(-16, -88, 16, -88, 16, 88, -16, 88)
+metadata/_edit_lock_ = true
 
-[node name="Line2D" type="Line2D" parent="Fixture"]
+[node name="LaserHitArea" type="Area2D" parent="."]
+collision_layer = 8
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserHitArea"]
+shape = SubResource("RectangleShape2D_xfwl5")
+metadata/_edit_lock_ = true
+
+[node name="RotateHandle" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="BottomCollisionShape2D" type="CollisionShape2D" parent="RotateHandle"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_652kc")
+metadata/_edit_lock_ = true
+
+[node name="TopCollisionShape2D" type="CollisionShape2D" parent="RotateHandle"]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_652kc")
+metadata/_edit_lock_ = true
+
+[node name="TranslateHandle" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TranslateHandle"]
+shape = SubResource("RectangleShape2D_nha6m")
+metadata/_edit_lock_ = true
+
+[node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(-16, -88, 16, -88)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
-[node name="Line2D2" type="Line2D" parent="Fixture"]
+[node name="Line2D2" type="Line2D" parent="."]
 points = PackedVector2Array(16, 88, 16, -88)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
-[node name="Line2D3" type="Line2D" parent="Fixture"]
+[node name="Line2D3" type="Line2D" parent="."]
 points = PackedVector2Array(16, 88, -16, 88)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
-[node name="Line2D4" type="Line2D" parent="Fixture"]
+[node name="Line2D4" type="Line2D" parent="."]
 points = PackedVector2Array(-16, -88, -16, 88)
 width = 2.0
 default_color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="DragRotation" parent="." node_paths=PackedStringArray("body", "handle") instance=ExtResource("1_652kc")]
+body = NodePath("..")
+handle = NodePath("../RotateHandle")
+
+[node name="DragTranslation" parent="." node_paths=PackedStringArray("body", "handle") instance=ExtResource("2_nha6m")]
+body = NodePath("..")
+handle = NodePath("../TranslateHandle")
 
 [node name="LaserCollidable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("3_nha6m")]
-collision_object = NodePath("../Fixture")
+collision_object = NodePath("../LaserHitArea")
 collision_response = 1

@@ -27,6 +27,7 @@ func set_laser_collider(collider: LaserCollider) -> void:
 func _ready() -> void:
 	laser_scene = load(scene_file_path) as PackedScene
 
+	collide_with_areas = true
 	set_collision_mask_value(Constants.CollisionLayer.DEFAULT, false)
 	set_collision_mask_value(Constants.CollisionLayer.LASERS, true)
 
