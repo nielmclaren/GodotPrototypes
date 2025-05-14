@@ -162,11 +162,13 @@ func _set_containing_body(body: CollisionObject2D) -> void:
 			reverse_cast = RayCast2D.new()
 			add_child(reverse_cast)
 
+			reverse_cast.collide_with_areas = true
+
+			reverse_cast.set_collision_mask_value(Constants.CollisionLayer.DEFAULT, false)
+			reverse_cast.set_collision_mask_value(Constants.CollisionLayer.REVERSE_CAST, true)
+
 		reverse_cast.position = target_position
 		reverse_cast.target_position = target_position.rotated(PI)
-
-		reverse_cast.set_collision_mask_value(Constants.CollisionLayer.DEFAULT, false)
-		reverse_cast.set_collision_mask_value(Constants.CollisionLayer.REVERSE_CAST, true)
 
 	elif reverse_cast:
 		reverse_cast.queue_free()
