@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0uj330bisn3v"]
-
-[ext_resource type="Texture2D" uid="uid://dw721b1g0qrr5" path="res://wall01_outline.svg" id="1_wgqbl"]
-
-[node name="WallOutline01" type="Node2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_wgqbl")
