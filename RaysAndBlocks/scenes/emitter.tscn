@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c22kx7cganyvf"]
+[gd_scene load_steps=6 format=3 uid="uid://c22kx7cganyvf"]
 
 [ext_resource type="Script" uid="uid://c5q6jyrxhucas" path="res://scripts/collidable.gd" id="1_68xa4"]
 [ext_resource type="Texture2D" uid="uid://cuadof6a26o40" path="res://assets/emitter.png" id="1_q2f0b"]
 [ext_resource type="PackedScene" uid="uid://dxnvwykrolsl4" path="res://scenes/laser.tscn" id="3_2ci5l"]
+[ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laser_collidable.tscn" id="4_1htqb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_butph"]
 size = Vector2(24.3128, 17.9153)
@@ -20,3 +21,6 @@ shape = SubResource("RectangleShape2D_butph")
 
 [node name="Laser" parent="." instance=ExtResource("3_2ci5l")]
 position = Vector2(40, 0)
+
+[node name="LaserCollidable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("4_1htqb")]
+collision_object = NodePath("..")

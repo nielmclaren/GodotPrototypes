@@ -9,6 +9,7 @@ const REFRACTIVE_INDEX_GLASS:float = 1.52
 # A refraction is considered an internal reflection instead if it's within ±(error) of ±π.
 const MAX_CRITICAL_ANGLE_DETECTION_ERROR:float = 3.0
 
+var laser_collider: LaserCollider
 var laser_scene:PackedScene
 var child_laser:Laser
 var laser_depth:int = 0
@@ -18,6 +19,9 @@ var containing_body:CollisionObject2D = null
 
 # A ray cast backwards to find the exit point of an internal ray.
 var reverse_cast:RayCast2D = null
+
+func set_laser_collider(collider: LaserCollider) -> void:
+	laser_collider = collider
 
 func _ready() -> void:
 	laser_scene = load(scene_file_path) as PackedScene
@@ -117,9 +121,8 @@ func _process_external_ray() -> void:
 
 func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
 	var collider: Node2D = get_collider()
-	var collider_parent: Node2D = collider.get_parent()
-	if collider_parent is PrismRectangle or collider_parent is PrismTriangle:
-		# Refraction.
+	var collision_response: Constants.LaserCollisionResponse = laser_collider.get_laser_collision_response(collider)
+	if collision_response == Constants.LaserCollisionResponse.REFRACT:
 		var collision_object: CollisionObject2D = collider
 
 		if not child_laser:
@@ -135,8 +138,7 @@ func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
 		child_laser.position = point
 		child_laser.global_rotation = _get_refraction_global_rotation(normal, false)
 
-	elif collider_parent is Mirror:
-		# Reflection.
+	elif collision_response == Constants.LaserCollisionResponse.REFLECT:
 		var collision_object: CollisionObject2D = collider
 
 		if not child_laser:
@@ -152,19 +154,17 @@ func _process_external_ray_collision(point:Vector2, normal:Vector2) -> void:
 		child_laser.position = point
 		child_laser.global_rotation = _get_reflection_global_rotation(normal)
 
-	elif collider_parent is Sensor and collider.name == "Receiver":
-		var sensor:Sensor = collider_parent
-		sensor.register_laser_collision(self)
-
-		if child_laser:
-			child_laser.queue_free()
-			child_laser = null
-
 	else:
 		# Collided with a wall or viewport bounds. Dead end.
 		if child_laser:
 			child_laser.queue_free()
 			child_laser = null
+
+	var collider_parent: Node2D = collider.get_parent()
+	if collider_parent is Sensor and collider.name == "Receiver":
+		var sensor:Sensor = collider_parent
+		sensor.register_laser_collision(self)
+
 
 func _set_containing_body(body:CollisionObject2D) -> void:
 	containing_body = body
@@ -186,6 +186,7 @@ func _set_containing_body(body:CollisionObject2D) -> void:
 func _instantiate_laser(depth:int) -> Laser:
 	var laser:Laser = laser_scene.instantiate()
 	laser.laser_depth = depth
+	laser.laser_collider = laser_collider
 	add_child(laser)
 	return laser
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dviimd2m2uwof"]
+[gd_scene load_steps=5 format=3 uid="uid://dviimd2m2uwof"]
 
 [ext_resource type="Script" uid="uid://du5bh3va3f882" path="res://scenes/prism_rectangle.gd" id="1_jap6m"]
 [ext_resource type="PackedScene" uid="uid://bqo1ek8jegpcy" path="res://scenes/mount.tscn" id="2_22c7w"]
+[ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laser_collidable.tscn" id="3_sphg6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jap6m"]
 size = Vector2(96, 112)
@@ -53,3 +54,7 @@ width = 2.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
+
+[node name="LaserCollidable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("3_sphg6")]
+collision_object = NodePath("../Fixture")
+collision_response = 2

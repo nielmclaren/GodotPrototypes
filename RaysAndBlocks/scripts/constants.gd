@@ -2,6 +2,9 @@ extends Node
 
 enum CollisionLayer { DEFAULT = 1, MOUNTS = 2, FIXTURES = 3, LASERS = 4, REVERSE_CAST = 5 }
 
+enum LaserCollisionResponse { ABSORB, REFLECT, REFRACT }
+
+
 const IS_DEBUG: bool = false
 
 # The numbers in this array match the file names.

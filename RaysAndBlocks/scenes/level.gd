@@ -4,10 +4,14 @@ class_name Level
 
 signal completed
 
+var laser_collider: LaserCollider
 var drag_and_drop: DragAndDrop
 var sensors: Array[Sensor] = []
 
 func _ready() -> void:
+	laser_collider = LaserCollider.new()
+	laser_collider.init(self)
+
 	drag_and_drop = DragAndDrop.new()
 	drag_and_drop.init(self)
 
