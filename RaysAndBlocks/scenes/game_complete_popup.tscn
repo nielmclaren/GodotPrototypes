@@ -1,6 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8gw1bnvnwf5y"]
-
-[ext_resource type="Script" uid="uid://dmnjktpot3jxw" path="res://scenes/game_complete_popup.gd" id="1_u8eb6"]
+[gd_scene load_steps=3 format=3 uid="uid://c8gw1bnvnwf5y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sugp2"]
 font_size = 38
@@ -17,7 +15,6 @@ unresizable = true
 borderless = true
 always_on_top = true
 popup_window = true
-script = ExtResource("1_u8eb6")
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]

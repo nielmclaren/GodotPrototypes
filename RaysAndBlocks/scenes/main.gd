@@ -2,7 +2,7 @@ extends Node2D
 
 @export var level_change_ui: LevelChangeUI
 @export var level_complete_popup: LevelCompletePopup
-@export var game_complete_popup: GameCompletePopup
+@export var game_complete_popup: Window
 
 var curr_level_index: int
 var curr_level: Level
