@@ -1,6 +1,5 @@
-extends Node
-
 class_name DragAndDrop
+extends Node
 
 var scene: Node2D = null
 var drag_node: Interactible = null
@@ -10,11 +9,13 @@ var interactibles: Array[Interactible] = []
 
 var is_invalidated: bool = false
 
+
 # Adds functionality to any children that implement the `drag_start` signal.
 func init(s: Node2D) -> void:
 	scene = s
 	_register_interactibles(scene)
 	invalidate()
+
 
 func _register_interactibles(parent_scene: Node2D) -> void:
 	var children: Array[Node] = parent_scene.get_children()
@@ -24,6 +25,7 @@ func _register_interactibles(parent_scene: Node2D) -> void:
 			interactible.drag_and_drop = self
 			interactible.drag_start.connect(_node_clicked)
 			interactibles.push_front(interactible)
+
 
 func _node_clicked(node: Interactible) -> void:
 	click_offset = scene.get_global_mouse_position() - node.global_position
@@ -37,6 +39,7 @@ func _node_clicked(node: Interactible) -> void:
 	drag_ghost.global_position = scene.get_global_mouse_position() - click_offset
 	drag_ghost.add_collision_exception_with(node)
 
+
 func physics_process(_delta: float) -> void:
 	if drag_ghost:
 		drag_ghost.global_position = scene.get_global_mouse_position() - click_offset
@@ -45,8 +48,10 @@ func physics_process(_delta: float) -> void:
 	if is_invalidated:
 		validate()
 
+
 func invalidate() -> void:
 	is_invalidated = true
+
 
 func validate() -> void:
 	is_invalidated = false
@@ -57,11 +62,13 @@ func validate() -> void:
 	if drag_ghost:
 		drag_ghost.validate()
 
+
 func unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		var mouse_event: InputEventMouseButton = event
 		if mouse_event.button_index == MOUSE_BUTTON_LEFT and !mouse_event.pressed:
 			_mouse_released()
+
 
 func _mouse_released() -> void:
 	if drag_node:
@@ -80,6 +87,7 @@ func _mouse_released() -> void:
 			drag_ghost.queue_free()
 			drag_ghost = null
 
+
 func _revert_drag() -> void:
 	drag_ghost.set_is_drag_ghost(false)
 	drag_ghost.set_is_reverting(true)
@@ -91,14 +99,14 @@ func _revert_drag() -> void:
 	# Use currying to ensure the correct ghost is freed. This solves an issue where the
 	# new ghost is freed if a node is dragged before the previous tween is finished.
 	var remove_ghost: Callable = func(ghost: Interactible) -> Callable:
-		return func() -> void:
-			ghost.queue_free()
+		return func() -> void: ghost.queue_free()
 	var handler: Callable = remove_ghost.call(drag_ghost)
 	tween.finished.connect(handler)
 
 	# `queue_free()` will happen after the revert animation but this
 	# reference needs to be set to null immediately.
 	drag_ghost = null
+
 
 func _revert_drag_tween_finished() -> void:
 	drag_ghost.queue_free()

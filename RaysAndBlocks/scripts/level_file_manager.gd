@@ -4,14 +4,18 @@ const LEVELS_DIR: String = "res://levels"
 
 var _level_nums: Array[int] = []
 
+
 func get_level_num(index: int) -> int:
 	return Constants.ENABLED_LEVELS[index]
+
 
 func get_level_nums() -> Array[int]:
 	return _level_nums
 
+
 func size() -> int:
 	return _level_nums.size()
+
 
 func _init() -> void:
 	var level_num_pattern: RegEx = RegEx.new()

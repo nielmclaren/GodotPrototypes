@@ -1,5 +1,6 @@
 extends StaticBody2D
 
+
 func _ready() -> void:
 	set_collision_layer_value(Constants.CollisionLayer.DEFAULT, true)
 	set_collision_layer_value(Constants.CollisionLayer.MOUNTS, true)

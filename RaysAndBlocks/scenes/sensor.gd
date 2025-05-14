@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name Sensor
+extends Node2D
 
 signal activated
 
@@ -17,6 +16,7 @@ var hit_time: float
 var is_active: bool
 var is_activated_emitted: bool = false
 
+
 func _ready() -> void:
 	base.set_collision_layer_value(Constants.CollisionLayer.DEFAULT, true)
 	base.set_collision_layer_value(Constants.CollisionLayer.MOUNTS, true)
@@ -29,6 +29,7 @@ func _ready() -> void:
 	receiver.set_collision_layer_value(Constants.CollisionLayer.LASERS, true)
 
 	sprite.set_frame(0)
+
 
 func _physics_process(_delta: float) -> void:
 	if !GlobalState.is_game_input_enabled:

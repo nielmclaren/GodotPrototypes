@@ -1,6 +1,5 @@
-extends Node
-
 class_name LaserCollider
+extends Node
 
 # Keys are CollisionObject2Ds and values are LaserCollidables
 var laser_collidables: Dictionary = {}
@@ -9,6 +8,11 @@ var laser_collidables: Dictionary = {}
 func init(scene: Node2D) -> void:
 	_init_top_level_lasers(scene)
 	_register_collidables(scene)
+
+
+func register_collidable(collidable: LaserCollidable) -> void:
+	var collision_object: CollisionObject2D = collidable.collision_object
+	laser_collidables[collision_object] = collidable
 
 
 func register_laser_collision(collision_object: Object) -> Constants.LaserCollisionResponse:

@@ -1,7 +1,8 @@
 @tool
 extends EditorScript
 
-var outline_scene:PackedScene
+var outline_scene: PackedScene
+
 
 func _run() -> void:
 	print("Running")

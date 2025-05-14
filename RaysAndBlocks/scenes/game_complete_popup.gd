@@ -1,3 +1,2 @@
-extends Window
-
 class_name GameCompletePopup
+extends Window

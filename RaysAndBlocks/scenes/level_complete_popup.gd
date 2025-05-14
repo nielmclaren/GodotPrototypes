@@ -1,6 +1,5 @@
-extends Window
-
 class_name LevelCompletePopup
+extends Window
 
 @export var next_button: Button
 

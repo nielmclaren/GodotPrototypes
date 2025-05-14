@@ -1,13 +1,14 @@
+class_name PrismRectangle
 extends Interactible
 
-class_name PrismRectangle
-
 var prism_scene: PackedScene
+
 
 func _ready() -> void:
 	super._ready()
 
 	prism_scene = load(scene_file_path) as PackedScene
+
 
 func clone() -> Variant:
 	var cloned: PrismRectangle = prism_scene.instantiate()
