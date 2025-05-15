@@ -1,6 +1,11 @@
 extends Node
 
-enum CollisionLayer { DEFAULT = 1, MOUNTS = 2, FIXTURES = 3, LASERS = 4, REVERSE_CAST = 5 }
+enum CollisionLayer {
+	DEFAULT = 1, # For mouse events.
+	PHYSICAL = 2, # For collisions between walls, mirrors, and prisms.
+	LASERS = 4, # For lasers to hit walls, mirrors, and prisms.
+	REVERSE_CAST = 5 # Used as needed for lasers. Leave empty.
+	}
 
 enum LaserCollisionResponse { ABSORB, REFLECT, REFRACT }
 

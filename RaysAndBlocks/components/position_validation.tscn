@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://by7a7yvibjivy"]
+
+[ext_resource type="Script" uid="uid://btqwmgl8muxxu" path="res://components/position_validation.gd" id="1_j88dn"]
+
+[node name="PositionValidation" type="Node"]
+script = ExtResource("1_j88dn")

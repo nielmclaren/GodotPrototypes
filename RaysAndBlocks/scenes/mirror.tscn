@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddr6it3x0aj6o"]
+[gd_scene load_steps=8 format=3 uid="uid://ddr6it3x0aj6o"]
 
 [ext_resource type="PackedScene" uid="uid://cfqsap61jlrbg" path="res://components/drag_rotation.tscn" id="1_652kc"]
 [ext_resource type="PackedScene" uid="uid://b2f4b8gkn4eq4" path="res://components/drag_translation.tscn" id="2_nha6m"]
 [ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laser_collidable.tscn" id="3_nha6m"]
+[ext_resource type="PackedScene" uid="uid://by7a7yvibjivy" path="res://components/position_validation.tscn" id="4_5823m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfwl5"]
 size = Vector2(32, 176)
@@ -21,7 +22,8 @@ polygon = PackedVector2Array(-16, -88, 16, -88, 16, 88, -16, 88)
 metadata/_edit_lock_ = true
 
 [node name="LaserHitArea" type="Area2D" parent="."]
-collision_layer = 8
+collision_layer = 10
+collision_mask = 2
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LaserHitArea"]
@@ -83,3 +85,7 @@ handle = NodePath("../TranslateHandle")
 [node name="LaserCollidable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("3_nha6m")]
 collision_object = NodePath("../LaserHitArea")
 collision_response = 1
+
+[node name="PositionValidation" parent="." node_paths=PackedStringArray("body", "hit_area") instance=ExtResource("4_5823m")]
+body = NodePath("..")
+hit_area = NodePath("../LaserHitArea")

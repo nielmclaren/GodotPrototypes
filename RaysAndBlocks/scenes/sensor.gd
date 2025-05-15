@@ -19,13 +19,11 @@ var is_activated_emitted: bool = false
 
 func _ready() -> void:
 	base.set_collision_layer_value(Constants.CollisionLayer.DEFAULT, true)
-	base.set_collision_layer_value(Constants.CollisionLayer.MOUNTS, true)
-	base.set_collision_layer_value(Constants.CollisionLayer.FIXTURES, true)
+	base.set_collision_layer_value(Constants.CollisionLayer.PHYSICAL, true)
 	base.set_collision_layer_value(Constants.CollisionLayer.LASERS, true)
 
 	receiver.set_collision_layer_value(Constants.CollisionLayer.DEFAULT, true)
-	receiver.set_collision_layer_value(Constants.CollisionLayer.MOUNTS, true)
-	receiver.set_collision_layer_value(Constants.CollisionLayer.FIXTURES, true)
+	receiver.set_collision_layer_value(Constants.CollisionLayer.PHYSICAL, true)
 	receiver.set_collision_layer_value(Constants.CollisionLayer.LASERS, true)
 
 	sprite.set_frame(0)
