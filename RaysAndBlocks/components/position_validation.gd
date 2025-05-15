@@ -1,3 +1,4 @@
+# If the hit area has a physical collision then allow lasers to shoot through it.
 class_name PositionValidation
 extends Node
 
