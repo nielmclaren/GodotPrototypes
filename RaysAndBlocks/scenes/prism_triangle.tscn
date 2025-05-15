@@ -1,17 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpba4hwya5x58"]
+[gd_scene load_steps=5 format=3 uid="uid://cpba4hwya5x58"]
 
+[ext_resource type="Texture2D" uid="uid://ue5du62n1cv8" path="res://assets/grip_dots.svg" id="1_6bmqa"]
 [ext_resource type="PackedScene" uid="uid://b8itc88ra4sr4" path="res://components/drag_move_rotate.tscn" id="1_hfbel"]
 [ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laser_collidable.tscn" id="3_hfbel"]
 [ext_resource type="PackedScene" uid="uid://by7a7yvibjivy" path="res://components/position_validation.tscn" id="4_6bmqa"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7t2s"]
-size = Vector2(64, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfbel"]
-size = Vector2(16, 48)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bmqa"]
-size = Vector2(48, 48)
 
 [node name="PrismTriangle" type="Node2D"]
 
@@ -26,35 +18,48 @@ metadata/_edit_lock_ = true
 [node name="RotateHandle" type="Area2D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="BottomCollisionShape2D" type="CollisionShape2D" parent="RotateHandle"]
-position = Vector2(-8, 32)
-shape = SubResource("RectangleShape2D_q7t2s")
-metadata/_edit_lock_ = true
-
-[node name="TopCollisionShape2D" type="CollisionShape2D" parent="RotateHandle"]
-position = Vector2(-32, 0)
-shape = SubResource("RectangleShape2D_hfbel")
-metadata/_edit_lock_ = true
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RotateHandle"]
-polygon = PackedVector2Array(24, -24, 24, 40, 88, 40)
-metadata/_edit_lock_ = true
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="RotateHandle"]
-polygon = PackedVector2Array(-40, -88, -40, -24, 24, -24)
-metadata/_edit_lock_ = true
+polygon = PackedVector2Array(-38, 40, 89, 40, 66, 17, -15, 17, -15, -64, -38, -87)
 
 [node name="TranslateHandle" type="Area2D" parent="."]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TranslateHandle"]
-shape = SubResource("RectangleShape2D_6bmqa")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TranslateHandle"]
+polygon = PackedVector2Array(-15, 17, 66, 17, -15, -63)
 metadata/_edit_lock_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(-38.6, 40.4)
-color = Color(1, 1, 1, 0.12549)
+color = Color(1, 1, 1, 0.521569)
 polygon = PackedVector2Array(0, 0, 128, 0, 0, -128)
+metadata/_edit_lock_ = true
+
+[node name="HoverArt" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="HoverArt"]
+clip_children = 1
+position = Vector2(-38.6, 40.4)
+polygon = PackedVector2Array(0, 0, 128, 0, 0, -128)
+metadata/_edit_lock_ = true
+
+[node name="GripDots2" type="Sprite2D" parent="HoverArt/Polygon2D"]
+position = Vector2(46.6, 25.6)
+scale = Vector2(1, 1)
+texture = ExtResource("1_6bmqa")
+metadata/_edit_lock_ = true
+
+[node name="GripDots4" type="Sprite2D" parent="HoverArt/Polygon2D"]
+position = Vector2(141.6, 25.6)
+scale = Vector2(1, 1)
+texture = ExtResource("1_6bmqa")
+metadata/_edit_lock_ = true
+
+[node name="GripDots3" type="Sprite2D" parent="HoverArt/Polygon2D"]
+position = Vector2(-24.4, -74.4)
+rotation = 3.14159
+scale = Vector2(1, 1)
+texture = ExtResource("1_6bmqa")
 metadata/_edit_lock_ = true
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -84,10 +89,11 @@ begin_cap_mode = 2
 end_cap_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="DragMoveRotate" parent="." node_paths=PackedStringArray("body", "translation_handle", "rotation_handle") instance=ExtResource("1_hfbel")]
+[node name="DragMoveRotate" parent="." node_paths=PackedStringArray("body", "translation_handle", "rotation_handle", "hover_art") instance=ExtResource("1_hfbel")]
 body = NodePath("..")
 translation_handle = NodePath("../TranslateHandle")
 rotation_handle = NodePath("../RotateHandle")
+hover_art = NodePath("../HoverArt")
 
 [node name="LaserCollidable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("3_hfbel")]
 collision_object = NodePath("../LaserHitArea")

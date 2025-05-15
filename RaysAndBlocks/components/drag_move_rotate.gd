@@ -4,6 +4,7 @@ extends Node
 @export var body: Node2D
 @export var translation_handle: Area2D
 @export var rotation_handle: Area2D
+@export var hover_art: Node2D
 
 var is_translation_mouse_over: bool = false
 var is_rotation_mouse_over: bool = false
@@ -24,6 +25,8 @@ func _ready() -> void:
 	rotation_handle.mouse_exited.connect(_rotation_mouse_exited)
 	rotation_handle.input_event.connect(_rotation_input_event)
 
+	_hide_hover_art()
+
 
 func _physics_process(_delta: float) -> void:
 	if !GlobalState.is_game_input_enabled:
@@ -38,13 +41,27 @@ func _physics_process(_delta: float) -> void:
 
 	if is_translating:
 		CursorManager.cursor_set_shape(Input.CURSOR_DRAG)
+		_show_hover_art()
 	elif is_rotating or is_rotation_mouse_over:
 		CursorManager.cursor_set_shape(Input.CURSOR_CROSS)
+		_show_hover_art()
 	elif is_translation_mouse_over:
 		# When rotating, moving the mouse over the translation handle should not change to drag cursor.
 		CursorManager.cursor_set_shape(Input.CURSOR_DRAG)
+		_show_hover_art()
 	else:
-		CursorManager.cursor_set_shape(Input.CURSOR_ARROW)
+		CursorManager.cursor_clear_shape()
+		_hide_hover_art()
+
+
+func _show_hover_art() -> void:
+	if hover_art:
+		hover_art.show()
+
+
+func _hide_hover_art() -> void:
+	if hover_art:
+		hover_art.hide()
 
 
 func _translation_mouse_entered() -> void:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://dviimd2m2uwof"]
+[gd_scene load_steps=8 format=3 uid="uid://dviimd2m2uwof"]
 
 [ext_resource type="PackedScene" uid="uid://b8itc88ra4sr4" path="res://components/drag_move_rotate.tscn" id="1_sphg6"]
+[ext_resource type="Texture2D" uid="uid://ue5du62n1cv8" path="res://assets/grip_dots.svg" id="1_tn8wt"]
 [ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laser_collidable.tscn" id="3_sphg6"]
 [ext_resource type="PackedScene" uid="uid://by7a7yvibjivy" path="res://components/position_validation.tscn" id="4_tn8wt"]
 
@@ -16,29 +17,56 @@ size = Vector2(96, 48)
 [node name="PrismRectangle" type="Node2D"]
 
 [node name="LaserHitArea" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LaserHitArea"]
 shape = SubResource("RectangleShape2D_jap6m")
+metadata/_edit_lock_ = true
 
 [node name="RotateHandle" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="BottomCollisionShape2D" type="CollisionShape2D" parent="RotateHandle"]
 position = Vector2(0, 40)
 shape = SubResource("RectangleShape2D_mhnrd")
+metadata/_edit_lock_ = true
 
 [node name="TopCollisionShape2D" type="CollisionShape2D" parent="RotateHandle"]
 position = Vector2(0, -40)
 shape = SubResource("RectangleShape2D_mhnrd")
+metadata/_edit_lock_ = true
 
 [node name="TranslateHandle" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TranslateHandle"]
 shape = SubResource("RectangleShape2D_chtxd")
+metadata/_edit_lock_ = true
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 position = Vector2(-64, 64)
 color = Color(1, 1, 1, 0.521569)
 polygon = PackedVector2Array(16, -8, 112, -8, 112, -120, 16, -120)
+metadata/_edit_lock_ = true
+
+[node name="HoverArt" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="HoverArt"]
+clip_children = 1
+color = Color(0.68, 0.68, 0.68, 1)
+polygon = PackedVector2Array(-48, -56, 48, -56, 48, 56, -48, 56)
+metadata/_edit_lock_ = true
+
+[node name="GripDots" type="Sprite2D" parent="HoverArt/Polygon2D"]
+position = Vector2(0, 73)
+texture = ExtResource("1_tn8wt")
+metadata/_edit_lock_ = true
+
+[node name="GripDots2" type="Sprite2D" parent="HoverArt/Polygon2D"]
+position = Vector2(0, -73)
+texture = ExtResource("1_tn8wt")
+metadata/_edit_lock_ = true
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2(-38.6, 40.4)
@@ -47,6 +75,7 @@ width = 2.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="Line2D2" type="Line2D" parent="."]
 position = Vector2(-38.6, 40.4)
@@ -55,6 +84,7 @@ width = 2.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="Line2D3" type="Line2D" parent="."]
 position = Vector2(-38.6, 40.4)
@@ -63,6 +93,7 @@ width = 2.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="Line2D4" type="Line2D" parent="."]
 position = Vector2(-38.6, 40.4)
@@ -71,11 +102,13 @@ width = 2.0
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
+metadata/_edit_lock_ = true
 
-[node name="DragMoveRotate" parent="." node_paths=PackedStringArray("body", "translation_handle", "rotation_handle") instance=ExtResource("1_sphg6")]
+[node name="DragMoveRotate" parent="." node_paths=PackedStringArray("body", "translation_handle", "rotation_handle", "hover_art") instance=ExtResource("1_sphg6")]
 body = NodePath("..")
 translation_handle = NodePath("../TranslateHandle")
 rotation_handle = NodePath("../RotateHandle")
+hover_art = NodePath("../HoverArt")
 
 [node name="LaserCollidable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("3_sphg6")]
 collision_object = NodePath("../LaserHitArea")
