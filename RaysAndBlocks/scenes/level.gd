@@ -4,16 +4,12 @@ extends Node2D
 signal completed
 
 var laser_collider: LaserCollider
-var drag_and_drop: DragAndDrop
 var sensors: Array[Sensor] = []
 
 
 func _ready() -> void:
 	laser_collider = LaserCollider.new()
 	laser_collider.init(self)
-
-	drag_and_drop = DragAndDrop.new()
-	drag_and_drop.init(self)
 
 	_init_sensors()
 
@@ -33,11 +29,3 @@ func _sensor_activated() -> void:
 
 func _is_sensor_active(sensor: Sensor) -> bool:
 	return sensor.is_active
-
-
-func _physics_process(delta: float) -> void:
-	drag_and_drop.physics_process(delta)
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	drag_and_drop.unhandled_input(event)
