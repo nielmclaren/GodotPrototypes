@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cfqsap61jlrbg"]
-
-[ext_resource type="Script" uid="uid://c85uvvb2i7sw6" path="res://components/drag_rotation.gd" id="1_b3xbx"]
-
-[node name="DragRotation" type="Node"]
-script = ExtResource("1_b3xbx")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://ddr6it3x0aj6o"]
 
-[ext_resource type="PackedScene" uid="uid://cfqsap61jlrbg" path="res://components/drag_rotation.tscn" id="1_652kc"]
-[ext_resource type="PackedScene" uid="uid://b2f4b8gkn4eq4" path="res://components/drag_translation.tscn" id="2_nha6m"]
+[ext_resource type="PackedScene" uid="uid://b8itc88ra4sr4" path="res://components/drag_move_rotate.tscn" id="2_5823m"]
 [ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laser_collidable.tscn" id="3_nha6m"]
 [ext_resource type="PackedScene" uid="uid://by7a7yvibjivy" path="res://components/position_validation.tscn" id="4_5823m"]
+[ext_resource type="Texture2D" uid="uid://ue5du62n1cv8" path="res://assets/grip_dots.svg" id="5_0dm0a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xfwl5"]
 size = Vector2(32, 176)
@@ -48,6 +48,24 @@ metadata/_edit_lock_ = true
 shape = SubResource("RectangleShape2D_nha6m")
 metadata/_edit_lock_ = true
 
+[node name="HoverArt" type="Node2D" parent="."]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="Polygon2D2" type="Polygon2D" parent="HoverArt"]
+clip_children = 1
+color = Color(0.68, 0.68, 0.68, 1)
+polygon = PackedVector2Array(-16, -88, 16, -88, 16, 88, -16, 88)
+metadata/_edit_lock_ = true
+
+[node name="GripDots" type="Sprite2D" parent="HoverArt/Polygon2D2"]
+position = Vector2(12, 90)
+texture = ExtResource("5_0dm0a")
+
+[node name="GripDots2" type="Sprite2D" parent="HoverArt/Polygon2D2"]
+position = Vector2(-2, -90)
+texture = ExtResource("5_0dm0a")
+
 [node name="Line2D" type="Line2D" parent="."]
 points = PackedVector2Array(-16, -88, 16, -88)
 width = 2.0
@@ -72,13 +90,10 @@ width = 2.0
 default_color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="DragRotation" parent="." node_paths=PackedStringArray("body", "handle") instance=ExtResource("1_652kc")]
+[node name="DragMoveRotate" parent="." node_paths=PackedStringArray("body", "translation_handle", "rotation_handle") instance=ExtResource("2_5823m")]
 body = NodePath("..")
-handle = NodePath("../RotateHandle")
-
-[node name="DragTranslation" parent="." node_paths=PackedStringArray("body", "handle") instance=ExtResource("2_nha6m")]
-body = NodePath("..")
-handle = NodePath("../TranslateHandle")
+translation_handle = NodePath("../TranslateHandle")
+rotation_handle = NodePath("../RotateHandle")
 
 [node name="LaserCollidable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("3_nha6m")]
 collision_object = NodePath("../LaserHitArea")

@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://dviimd2m2uwof"]
+[gd_scene load_steps=7 format=3 uid="uid://dviimd2m2uwof"]
 
-[ext_resource type="PackedScene" uid="uid://cfqsap61jlrbg" path="res://components/drag_rotation.tscn" id="2_tn8wt"]
-[ext_resource type="PackedScene" uid="uid://b2f4b8gkn4eq4" path="res://components/drag_translation.tscn" id="3_4yre0"]
+[ext_resource type="PackedScene" uid="uid://b8itc88ra4sr4" path="res://components/drag_move_rotate.tscn" id="1_sphg6"]
 [ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laser_collidable.tscn" id="3_sphg6"]
 [ext_resource type="PackedScene" uid="uid://by7a7yvibjivy" path="res://components/position_validation.tscn" id="4_tn8wt"]
 
@@ -73,13 +72,10 @@ default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="DragRotation" parent="." node_paths=PackedStringArray("body", "handle") instance=ExtResource("2_tn8wt")]
+[node name="DragMoveRotate" parent="." node_paths=PackedStringArray("body", "translation_handle", "rotation_handle") instance=ExtResource("1_sphg6")]
 body = NodePath("..")
-handle = NodePath("../RotateHandle")
-
-[node name="DragTranslation" parent="." node_paths=PackedStringArray("body", "handle") instance=ExtResource("3_4yre0")]
-body = NodePath("..")
-handle = NodePath("../TranslateHandle")
+translation_handle = NodePath("../TranslateHandle")
+rotation_handle = NodePath("../RotateHandle")
 
 [node name="LaserCollidable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("3_sphg6")]
 collision_object = NodePath("../LaserHitArea")

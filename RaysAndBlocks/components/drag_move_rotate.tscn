@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8itc88ra4sr4"]
+
+[ext_resource type="Script" uid="uid://vxwdhlitvklq" path="res://components/drag_move_rotate.gd" id="1_t6jry"]
+
+[node name="DragMoveRotate" type="Node"]
+script = ExtResource("1_t6jry")

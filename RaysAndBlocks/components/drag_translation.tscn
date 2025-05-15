@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2f4b8gkn4eq4"]
-
-[ext_resource type="Script" uid="uid://bum1qucq81uhx" path="res://components/drag_translation.gd" id="1_0uqpt"]
-
-[node name="DragTranslation" type="Node"]
-script = ExtResource("1_0uqpt")
