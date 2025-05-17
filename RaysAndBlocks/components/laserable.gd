@@ -1,9 +1,15 @@
-class_name LaserCollidable
+class_name Laserable
 extends Node
 
 @export var collision_object: CollisionObject2D
-@export var collision_response: Constants.LaserCollisionResponse
+@export var collision_response: Constants.LaserHitResponse
 @export var sensor: Sensor  # Optional
+
+func register_laser_hit() -> Constants.LaserHitResponse:
+	if sensor:
+		sensor.register_laser_hit()
+	return collision_response
+
 
 func _ready() -> void:
 	collision_object.set_collision_layer_value(Constants.CollisionLayer.DEFAULT, false)

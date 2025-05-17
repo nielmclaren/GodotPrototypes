@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b8itc88ra4sr4" path="res://components/drag_move_rotate.tscn" id="1_sphg6"]
 [ext_resource type="Texture2D" uid="uid://ue5du62n1cv8" path="res://assets/grip_dots.svg" id="1_tn8wt"]
-[ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laser_collidable.tscn" id="3_sphg6"]
+[ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laserable.tscn" id="3_sphg6"]
 [ext_resource type="PackedScene" uid="uid://by7a7yvibjivy" path="res://components/position_validation.tscn" id="4_tn8wt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jap6m"]
@@ -110,7 +110,7 @@ translation_handle = NodePath("../TranslateHandle")
 rotation_handle = NodePath("../RotateHandle")
 hover_art = NodePath("../HoverArt")
 
-[node name="LaserCollidable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("3_sphg6")]
+[node name="Laserable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("3_sphg6")]
 collision_object = NodePath("../LaserHitArea")
 collision_response = 2
 

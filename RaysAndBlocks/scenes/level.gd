@@ -3,13 +3,13 @@ extends Node2D
 
 signal completed
 
-var laser_collider: LaserCollider
+var laserable_lookup: LaserableLookup
 var sensors: Array[Sensor] = []
 
 
 func _ready() -> void:
-	laser_collider = LaserCollider.new()
-	laser_collider.init(self)
+	laserable_lookup = LaserableLookup.new()
+	laserable_lookup.init(self)
 
 	_init_sensors()
 

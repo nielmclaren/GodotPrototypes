@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ue5du62n1cv8" path="res://assets/grip_dots.svg" id="1_6bmqa"]
 [ext_resource type="PackedScene" uid="uid://b8itc88ra4sr4" path="res://components/drag_move_rotate.tscn" id="1_hfbel"]
-[ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laser_collidable.tscn" id="3_hfbel"]
+[ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laserable.tscn" id="3_hfbel"]
 [ext_resource type="PackedScene" uid="uid://by7a7yvibjivy" path="res://components/position_validation.tscn" id="4_6bmqa"]
 
 [node name="PrismTriangle" type="Node2D"]
@@ -45,20 +45,17 @@ metadata/_edit_lock_ = true
 
 [node name="GripDots2" type="Sprite2D" parent="HoverArt/Polygon2D"]
 position = Vector2(46.6, 25.6)
-scale = Vector2(1, 1)
 texture = ExtResource("1_6bmqa")
 metadata/_edit_lock_ = true
 
 [node name="GripDots4" type="Sprite2D" parent="HoverArt/Polygon2D"]
 position = Vector2(141.6, 25.6)
-scale = Vector2(1, 1)
 texture = ExtResource("1_6bmqa")
 metadata/_edit_lock_ = true
 
 [node name="GripDots3" type="Sprite2D" parent="HoverArt/Polygon2D"]
 position = Vector2(-24.4, -74.4)
 rotation = 3.14159
-scale = Vector2(1, 1)
 texture = ExtResource("1_6bmqa")
 metadata/_edit_lock_ = true
 
@@ -95,7 +92,7 @@ translation_handle = NodePath("../TranslateHandle")
 rotation_handle = NodePath("../RotateHandle")
 hover_art = NodePath("../HoverArt")
 
-[node name="LaserCollidable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("3_hfbel")]
+[node name="Laserable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("3_hfbel")]
 collision_object = NodePath("../LaserHitArea")
 collision_response = 2
 

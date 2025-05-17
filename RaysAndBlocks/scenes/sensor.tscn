@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fm1bthwjpfo1" path="res://scenes/sensor.gd" id="1_4bfv1"]
 [ext_resource type="Texture2D" uid="uid://x3184wind0pa" path="res://assets/sensors.svg" id="2_42blq"]
-[ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laser_collidable.tscn" id="3_p17wr"]
+[ext_resource type="PackedScene" uid="uid://bx4pmfqhws80d" path="res://components/laserable.tscn" id="3_p17wr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_42blq"]
 atlas = ExtResource("2_42blq")
@@ -66,7 +66,7 @@ metadata/_edit_lock_ = true
 position = Vector2(0, 15)
 shape = SubResource("RectangleShape2D_gdirw")
 
-[node name="LaserCollidable" parent="." node_paths=PackedStringArray("collision_object", "sensor") instance=ExtResource("3_p17wr")]
+[node name="Laserable" parent="." node_paths=PackedStringArray("collision_object", "sensor") instance=ExtResource("3_p17wr")]
 collision_object = NodePath("../Receiver")
 collision_response = 3
 sensor = NodePath("..")

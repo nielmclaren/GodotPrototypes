@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx4pmfqhws80d"]
+
+[ext_resource type="Script" uid="uid://ca3c846swqew2" path="res://components/laserable.gd" id="1_g7xpj"]
+
+[node name="Laserable" type="Node"]
+script = ExtResource("1_g7xpj")
+collision_response = null

@@ -8,7 +8,7 @@ const REFRACTIVE_INDEX_GLASS: float = 1.52
 # A refraction is considered an internal reflection instead if it's within ±(error) of ±π.
 const MAX_CRITICAL_ANGLE_DETECTION_ERROR: float = 3.0
 
-var laser_collider: LaserCollider
+var laserable_lookup: LaserableLookup
 var laser_scene: PackedScene
 var child_laser: Laser
 var laser_depth: int = 0
@@ -18,10 +18,6 @@ var containing_body: CollisionObject2D = null
 
 # A ray cast backwards to find the exit point of an internal ray.
 var reverse_cast: RayCast2D = null
-
-
-func set_laser_collider(collider: LaserCollider) -> void:
-	laser_collider = collider
 
 
 func _ready() -> void:
@@ -117,11 +113,11 @@ func _process_external_ray() -> void:
 
 func _process_external_ray_collision(point: Vector2, normal: Vector2) -> void:
 	var collider: Node2D = get_collider()
-	var collision_response: Constants.LaserCollisionResponse = (
-		laser_collider.register_laser_collision(collider)
+	var collision_response: Constants.LaserHitResponse = (
+		laserable_lookup.register_laser_hit(collider)
 	)
 
-	if collision_response == Constants.LaserCollisionResponse.REFRACT:
+	if collision_response == Constants.LaserHitResponse.REFRACT:
 		var collision_object: CollisionObject2D = collider
 
 		_ensure_child_laser()
@@ -135,7 +131,7 @@ func _process_external_ray_collision(point: Vector2, normal: Vector2) -> void:
 		child_laser.position = point
 		child_laser.global_rotation = _get_refraction_global_rotation(normal, false)
 
-	elif collision_response == Constants.LaserCollisionResponse.REFLECT:
+	elif collision_response == Constants.LaserHitResponse.REFLECT:
 		var collision_object: CollisionObject2D = collider
 
 		_ensure_child_laser()
@@ -185,7 +181,7 @@ func _ensure_child_laser() -> void:
 func _instantiate_laser(depth: int) -> Laser:
 	var laser: Laser = laser_scene.instantiate()
 	laser.laser_depth = depth
-	laser.laser_collider = laser_collider
+	laser.laserable_lookup = laserable_lookup
 	add_child(laser)
 	return laser
 

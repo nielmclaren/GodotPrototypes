@@ -7,7 +7,7 @@ enum CollisionLayer {
 	REVERSE_CAST = 5 # Used as needed for lasers. Leave empty.
 	}
 
-enum LaserCollisionResponse { ABSORB, REFLECT, REFRACT }
+enum LaserHitResponse { ABSORB, REFLECT, REFRACT }
 
 const IS_DEBUG: bool = false
 
