@@ -1,10 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8gw1bnvnwf5y"]
+[gd_scene load_steps=2 format=3 uid="uid://c8gw1bnvnwf5y"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_sugp2"]
-font_size = 38
-
-[sub_resource type="LabelSettings" id="LabelSettings_u8eb6"]
-font_size = 30
+[sub_resource type="LabelSettings" id="LabelSettings_ovukn"]
+font_size = 35
 
 [node name="GameCompletePopup" type="Window"]
 initial_position = 1
@@ -23,24 +20,24 @@ offset_right = 400.0
 offset_bottom = 253.0
 color = Color(0.817521, 0.817521, 0.817521, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="TitleLabel" type="Label" parent="."]
 modulate = Color(0, 0, 0, 1)
 offset_left = -24.0
-offset_top = 29.0
+offset_top = -19.0
 offset_right = 424.0
-offset_bottom = 109.0
-text = "The End"
-label_settings = SubResource("LabelSettings_sugp2")
+offset_bottom = 125.0
+text = "The End... for Now"
+label_settings = SubResource("LabelSettings_ovukn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label2" type="Label" parent="."]
-modulate = Color(0, 0, 0, 1)
-offset_left = -24.0
-offset_top = 125.0
-offset_right = 424.0
-offset_bottom = 205.0
-text = "Thanks for playing!"
-label_settings = SubResource("LabelSettings_u8eb6")
+[node name="MessageLabel" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 94.0
+offset_right = 384.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Thanks for playing my game so early in its life. I'm really excited about the ideas coming up. Stay tuned!"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3

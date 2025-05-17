@@ -3,6 +3,7 @@ extends Node2D
 @export var level_change_ui: LevelChangeUI
 @export var level_complete_popup: LevelCompletePopup
 @export var game_complete_popup: Window
+@export var modal: ColorRect
 
 var curr_level_index: int
 var curr_level: Level
@@ -62,13 +63,16 @@ func _level_changed() -> void:
 func _level_completed() -> void:
 	if curr_level_index + 1 >= LevelFileManager.size():
 		game_complete_popup.show()
+		modal.show()
 		GlobalState.is_game_input_enabled = false
 	else:
 		level_complete_popup.show()
+		modal.show()
 		GlobalState.is_game_input_enabled = false
 
 
 func _level_popup_next_clicked() -> void:
 	level_complete_popup.hide()
+	modal.hide()
 	_load_next_level()
 	GlobalState.is_game_input_enabled = true

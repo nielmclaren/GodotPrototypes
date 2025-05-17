@@ -13,11 +13,12 @@ content_margin_right = 8.0
 content_margin_bottom = 8.0
 bg_color = Color(0.423529, 0.423529, 0.423529, 0.501961)
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("level_change_ui", "level_complete_popup", "game_complete_popup")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("level_change_ui", "level_complete_popup", "game_complete_popup", "modal")]
 script = ExtResource("1_0xm2m")
 level_change_ui = NodePath("HUD/LevelChangeUI")
 level_complete_popup = NodePath("PopupLayer/LevelCompletePopup")
 game_complete_popup = NodePath("PopupLayer/GameCompletePopup")
+modal = NodePath("PopupLayer/Modal")
 
 [node name="StaticBounds" parent="." instance=ExtResource("2_0xm2m")]
 visible = false
@@ -34,6 +35,13 @@ grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_sugp2")
 
 [node name="PopupLayer" type="CanvasLayer" parent="."]
+
+[node name="Modal" type="ColorRect" parent="PopupLayer"]
+visible = false
+offset_right = 400.0
+offset_bottom = 256.0
+scale = Vector2(2.8719, 2.49276)
+color = Color(0, 0, 0, 0.666667)
 
 [node name="LevelCompletePopup" parent="PopupLayer" instance=ExtResource("4_jyhfs")]
 visible = false
