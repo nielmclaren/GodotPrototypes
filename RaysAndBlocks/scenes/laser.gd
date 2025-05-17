@@ -1,6 +1,7 @@
 class_name Laser
 extends RayCast2D
 
+@export var line: Line2D
 @export var color: Constants.LaserColor
 
 # The maximum number of reflections or refractions originating from a single ray.
@@ -29,11 +30,11 @@ func _ready() -> void:
 	set_collision_mask_value(Constants.CollisionLayer.DEFAULT, false)
 	set_collision_mask_value(Constants.CollisionLayer.LASERS, true)
 
-	var line: Line2D = $Line2D
+	_init_art()
 	line.hide()
-	var green_line: Line2D = $GreenLine
+	var green_line: Line2D = $GreenDebugLine
 	green_line.hide()
-	var red_line: Line2D = $RedLine
+	var red_line: Line2D = $RedDebugLine
 	red_line.hide()
 
 
@@ -41,7 +42,7 @@ func _physics_process(_delta: float) -> void:
 	if laser_depth >= MAX_LASER_DEPTH:
 		return
 
-	var green_line: Line2D = $GreenLine
+	var green_line: Line2D = $GreenDebugLine
 	green_line.hide()
 
 	if containing_body:
@@ -180,6 +181,7 @@ func _ensure_child_laser() -> void:
 
 func _instantiate_laser(depth: int) -> Laser:
 	var laser: Laser = laser_scene.instantiate()
+	laser.color = color
 	laser.laser_depth = depth
 	laser.laserable_lookup = laserable_lookup
 	add_child(laser)
@@ -215,12 +217,17 @@ func _get_reflection_global_rotation(normal: Vector2) -> float:
 	return direction.rotated(2 * direction.angle_to(reverse_normal)).angle()
 
 
+func _init_art() -> void:
+	line.modulate.r = 255 if color == Constants.LaserColor.RED else 0
+	line.modulate.g = 255 if color == Constants.LaserColor.GREEN else 0
+	line.modulate.b = 255 if color == Constants.LaserColor.BLUE else 0
+
+
 func _update_art(target_point: Vector2, normal: Vector2) -> void:
-	var line: Line2D = $Line2D
 	line.points[1] = target_point
 	line.show()
 
-	var green_line: Line2D = $GreenLine
+	var green_line: Line2D = $GreenDebugLine
 	if Constants.IS_DEBUG and normal.length() > 0:
 		green_line.points[0] = target_point
 		green_line.points[1] = target_point + normal.rotated(-global_rotation) * 20
@@ -228,7 +235,7 @@ func _update_art(target_point: Vector2, normal: Vector2) -> void:
 	else:
 		green_line.hide()
 
-	var red_line: Line2D = $RedLine
+	var red_line: Line2D = $RedDebugLine
 	if Constants.IS_DEBUG:
 		red_line.show()
 	else:

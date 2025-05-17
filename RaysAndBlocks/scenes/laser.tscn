@@ -1,21 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxnvwykrolsl4"]
+[gd_scene load_steps=3 format=3 uid="uid://dxnvwykrolsl4"]
 
 [ext_resource type="Script" uid="uid://cnen2sx8sj0av" path="res://scenes/laser.gd" id="1_fn5yt"]
 
-[node name="Laser" type="RayCast2D"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xmihv"]
+blend_mode = 1
+
+[node name="Laser" type="RayCast2D" node_paths=PackedStringArray("line")]
 target_position = Vector2(1322, 0)
 script = ExtResource("1_fn5yt")
+line = NodePath("Line2D")
 
 [node name="Line2D" type="Line2D" parent="."]
+material = SubResource("CanvasItemMaterial_xmihv")
 points = PackedVector2Array(0, 0, 10, 0)
 width = 2.0
 
-[node name="RedLine" type="Line2D" parent="."]
+[node name="RedDebugLine" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 20, 0)
 width = 3.0
 default_color = Color(1, 0, 0, 1)
 
-[node name="GreenLine" type="Line2D" parent="."]
+[node name="GreenDebugLine" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 20, 0)
 width = 3.0
 default_color = Color(0, 1, 0, 1)
