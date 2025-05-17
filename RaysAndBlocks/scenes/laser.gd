@@ -1,6 +1,8 @@
 class_name Laser
 extends RayCast2D
 
+@export var color: Constants.LaserColor
+
 # The maximum number of reflections or refractions originating from a single ray.
 const MAX_LASER_DEPTH: int = 10
 const REFRACTIVE_INDEX_GLASS: float = 1.52
@@ -80,7 +82,6 @@ func _process_internal_ray_collision(collision_point: Vector2, normal: Vector2) 
 
 	if PI / 2 - abs(angle_of_refraction) < deg_to_rad(MAX_CRITICAL_ANGLE_DETECTION_ERROR):
 		# Refraction angle is greater than the critical angle. Process an internal reflection instead.
-
 		# Child laser will be inside the body.
 		child_laser._set_containing_body(containing_body)
 
@@ -89,7 +90,6 @@ func _process_internal_ray_collision(collision_point: Vector2, normal: Vector2) 
 
 	else:
 		# Refraction.
-
 		# Child laser will be outside the body.
 		child_laser._set_containing_body(null)
 
@@ -113,8 +113,8 @@ func _process_external_ray() -> void:
 
 func _process_external_ray_collision(point: Vector2, normal: Vector2) -> void:
 	var collider: Node2D = get_collider()
-	var collision_response: Constants.LaserHitResponse = laserable_lookup.register_laser_hit(
-		collider
+	var collision_response: Constants.LaserHitResponse = (
+		laserable_lookup.register_laser_hit(collider)
 	)
 
 	if collision_response == Constants.LaserHitResponse.REFRACT:

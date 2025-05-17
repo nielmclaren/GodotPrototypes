@@ -24,3 +24,4 @@ position = Vector2(40, 0)
 
 [node name="Laserable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("4_1htqb")]
 collision_object = NodePath("..")
+collision_response = null
