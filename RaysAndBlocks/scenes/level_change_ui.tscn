@@ -2,17 +2,31 @@
 
 [ext_resource type="Script" uid="uid://8wrbv3afua4b" path="res://scenes/level_change_ui.gd" id="1_pm6wq"]
 
-[node name="LevelChangeUI" type="PanelContainer"]
+[node name="LevelChangeUI" type="PanelContainer" node_paths=PackedStringArray("title_label", "level_button_container")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
 script = ExtResource("1_pm6wq")
+title_label = NodePath("HBoxContainer/TitleLabel")
+level_button_container = NodePath("HBoxContainer/HFlowContainer")
 
-[node name="HFlowContainer" type="HFlowContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 metadata/_edit_group_ = true
 
-[node name="Label" type="Label" parent="HFlowContainer"]
+[node name="TitleLabel" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "This is the title"
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HFlowContainer" type="HBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="LevelLabel" type="Label" parent="HBoxContainer/HFlowContainer"]
 layout_mode = 2
 text = "Level"

@@ -1,7 +1,15 @@
 class_name LevelChangeUI
 extends PanelContainer
 
+@export var title_label: Label
+@export var level_button_container: Container
+
 signal level_selected
+
+
+func level_changed(level_num: int) -> void:
+	var metadata: LevelMetadata = LevelMetadata.get_num(level_num)
+	title_label.text = metadata.title
 
 
 func _ready() -> void:
@@ -22,7 +30,7 @@ func _instantiate_level_button(level_index: int, button_group: ButtonGroup) -> v
 	button.set_pressed_no_signal(level_index == 0)
 	button.text = "%02d" % LevelFileManager.get_level_num(level_index)
 	button.pressed.connect(_button_clicked.bind(level_index))
-	$HFlowContainer.add_child(button)
+	level_button_container.add_child(button)
 
 
 func _button_clicked(level_index: int) -> void:

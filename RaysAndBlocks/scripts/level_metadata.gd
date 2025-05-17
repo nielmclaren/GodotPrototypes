@@ -26,17 +26,19 @@ func complete(arg: String) -> LevelMetadata:
 static func get_all() -> Array[LevelMetadata]:
 	return [
 		LevelMetadata.new(1, 0, "The Basics").complete("Your light bending journey has begun!"),
-		LevelMetadata.new(0, 1, "Restricted Area: Do Not Enter"),
-		LevelMetadata.new(0, 2, "Choke Point").complete(
+		LevelMetadata.new(1, 1, "Area Restricted: Do Not Enter"),
+		LevelMetadata.new(1, 2, "Choke Point").complete(
 			"You made it through the choke point. Fortunately, lasers not exactly thicc."
 		),
-		LevelMetadata.new(0, 3, "The Skull").complete("That was a tricky one!"),
-		LevelMetadata.new(0, 4, "The Other Side of the Mirror"),
-		LevelMetadata.new(0, 5, "Spiral"),
-		LevelMetadata.new(0, 6, "Wall of Steam"),
-		LevelMetadata.new(0, 7, "Hairpins"),
-		LevelMetadata.new(0, 8, "Side-Stepping"),
-		LevelMetadata.new(1, 9, "Double Vision")
+		LevelMetadata.new(1, 3, "The Skull").complete("That was a tricky one!"),
+		LevelMetadata.new(1, 4, "The Other Side of the Mirror"),
+		LevelMetadata.new(1, 5, "Spiral"),
+		LevelMetadata.new(1, 6, "Wall of Steam"),
+		LevelMetadata.new(1, 7, "Hairpins"),
+		LevelMetadata.new(1, 8, "Side-Stepping"),
+		LevelMetadata.new(1, 9, "Double Vision").complete(
+			"You are now a master of the rectangular prism!"
+		)
 	]
 
 

@@ -50,6 +50,14 @@ func _load_level(level_index: int) -> void:
 	curr_level = level
 	curr_level_index = level_index
 
+	_level_changed()
+
+
+func _level_changed() -> void:
+	var level_num: int = LevelFileManager.get_level_num(curr_level_index)
+	level_change_ui.level_changed(level_num)
+	level_complete_popup.level_changed(level_num)
+
 
 func _level_completed() -> void:
 	if curr_level_index + 1 >= LevelFileManager.size():
