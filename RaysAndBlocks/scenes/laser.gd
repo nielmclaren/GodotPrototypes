@@ -113,8 +113,8 @@ func _process_external_ray() -> void:
 
 func _process_external_ray_collision(point: Vector2, normal: Vector2) -> void:
 	var collider: Node2D = get_collider()
-	var collision_response: Constants.LaserHitResponse = (
-		laserable_lookup.register_laser_hit(collider)
+	var collision_response: Constants.LaserHitResponse = laserable_lookup.register_laser_hit(
+		collider
 	)
 
 	if collision_response == Constants.LaserHitResponse.REFRACT:

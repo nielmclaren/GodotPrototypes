@@ -1,11 +1,6 @@
 extends Node
 
-enum CollisionLayer {
-	DEFAULT = 1, # For mouse events.
-	PHYSICAL = 2, # For collisions between walls, mirrors, and prisms.
-	LASERS = 4, # For lasers to hit walls, mirrors, and prisms.
-	REVERSE_CAST = 5 # Used as needed for lasers. Leave empty.
-	}
+enum CollisionLayer { DEFAULT = 1, PHYSICAL = 2, LASERS = 4, REVERSE_CAST = 5 }  # For mouse events.  # For collisions between walls, mirrors, and prisms.  # For lasers to hit walls, mirrors, and prisms.  # Used as needed for lasers. Leave empty.
 
 enum LaserHitResponse { ABSORB, REFLECT, REFRACT }
 
@@ -20,7 +15,7 @@ const ENABLED_LEVELS: Array[int] = [
 	#4,  # Two-Sided (mirror, two-sided)
 	#5,  # Spiral (mirror and rect)
 	#6,  # Intro to Steam (mirror and rect)
-	7, # Three Hard Turns (rect prism hard turn)
-	8, # Do-Si-Do (rect prism do-si-do)
-	9 # Twice Two Lasers (rect prism hard turn + do-si-do)
+	7,  # Three Hard Turns (rect prism hard turn)
+	8,  # Do-Si-Do (rect prism do-si-do)
+	9  # Twice Two Lasers (rect prism hard turn + do-si-do)
 ]

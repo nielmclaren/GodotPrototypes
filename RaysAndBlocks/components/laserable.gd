@@ -5,6 +5,7 @@ extends Node
 @export var collision_response: Constants.LaserHitResponse
 @export var sensor: Sensor  # Optional
 
+
 func register_laser_hit() -> Constants.LaserHitResponse:
 	if sensor:
 		sensor.register_laser_hit()

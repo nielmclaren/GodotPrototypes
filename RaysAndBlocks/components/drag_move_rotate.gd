@@ -37,7 +37,9 @@ func _physics_process(_delta: float) -> void:
 
 	if is_rotating:
 		var to_mouse: Vector2 = body.get_global_mouse_position() - body.global_position
-		body.rotation = rotate_toward(body.rotation, to_mouse.angle() - rotation_click_offset.angle(), 1)
+		body.rotation = rotate_toward(
+			body.rotation, to_mouse.angle() - rotation_click_offset.angle(), 1
+		)
 
 	if is_translating:
 		CursorManager.cursor_set_shape(Input.CURSOR_DRAG)
@@ -110,6 +112,7 @@ func _rotation_mouse_pressed() -> void:
 
 	is_rotating = true
 	rotation_click_offset = body.get_local_mouse_position()
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
