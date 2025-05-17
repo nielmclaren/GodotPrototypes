@@ -4,4 +4,3 @@
 
 [node name="Laserable" type="Node"]
 script = ExtResource("1_g7xpj")
-collision_response = null
