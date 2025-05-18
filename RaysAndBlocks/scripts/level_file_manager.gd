@@ -32,4 +32,4 @@ func _init() -> void:
 			if metadata and metadata.enabled:
 				_level_nums.push_back(level_num)
 
-	_level_metadatas = LevelMetadata.get_all()
+	_level_metadatas = LevelMetadata.get_enabled()

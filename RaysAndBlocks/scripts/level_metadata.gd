@@ -33,7 +33,7 @@ static func get_all() -> Array[LevelMetadata]:
 			"You got it. Sometimes lasers can go places objects can't."
 		),
 		LevelMetadata.new(0, 2, "Choke Point").complete(
-			"You made it through the choke point. Fortunately, lasers are not exactly thicc."
+			"Straight through the bottleneck and onto the next level."
 		),
 		LevelMetadata.new(0, 3, "The Skull").complete("That was a tricky one!"),
 		LevelMetadata.new(0, 4, "The Other Side of the Mirror").complete(
@@ -42,18 +42,18 @@ static func get_all() -> Array[LevelMetadata]:
 		###
 		### Rectangular Prisms
 		###
-		LevelMetadata.new(0, 5, "Spiral").complete(
+		LevelMetadata.new(1, 5, "Spiral").complete(
 			"You just performed 'internal reflection.' You're well on your way to enlightenment."
 		),
-		LevelMetadata.new(0, 6, "Wall of Steam").complete(
-			"Sometimes objects can go places that lasers can't. Full steam ahead!"
+		LevelMetadata.new(1, 6, "Wall of Steam").complete(
+			"Sometimes objects can go places that lasers can't."
 		),
-		LevelMetadata.new(0, 7, "Hairpins").complete("Turn and burn!"),
-		LevelMetadata.new(0, 8, "Side-Stepping").complete("A little do-si-do."),
-		LevelMetadata.new(0, 9, "Double Vision").complete(
+		LevelMetadata.new(1, 7, "Hairpins").complete("Three sharp turns but your wits are the sharpest of all."),
+		LevelMetadata.new(1, 8, "Side-Stepping").complete("A little do-si-do. The only dancing a rectangular prism do."),
+		LevelMetadata.new(1, 9, "Double Vision").complete(
 			"You are now a master of the rectangular prism!"
 		),
-		LevelMetadata.new(1, 10, "Playground")
+		LevelMetadata.new(0, 10, "Playground")
 	]
 
 

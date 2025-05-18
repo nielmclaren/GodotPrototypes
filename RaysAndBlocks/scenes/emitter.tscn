@@ -20,6 +20,7 @@ scale = Vector2(2.75575, -1.67454)
 shape = SubResource("RectangleShape2D_butph")
 
 [node name="LaserRed" parent="." instance=ExtResource("3_2ci5l")]
+visible = false
 position = Vector2(40, 0)
 
 [node name="LaserGreen" parent="." instance=ExtResource("3_2ci5l")]
@@ -27,6 +28,7 @@ position = Vector2(40, 0)
 color = 1
 
 [node name="LaserBlue" parent="." instance=ExtResource("3_2ci5l")]
+visible = false
 position = Vector2(40, 0)
 color = 2
 

@@ -5,7 +5,9 @@ extends Node2D
 @export var game_complete_popup: Window
 @export var modal: ColorRect
 
+# Index out of the list of enabled levels.
 var curr_level_index: int
+
 var curr_level: Level
 
 
@@ -14,7 +16,7 @@ func _ready() -> void:
 
 	level_complete_popup.next_clicked.connect(_level_popup_next_clicked)
 
-	_load_level(LevelMetadata.get_enabled()[0].level_num)
+	_load_level(0)
 
 
 func _process(_delta: float) -> void:
@@ -25,7 +27,6 @@ func _process(_delta: float) -> void:
 
 
 func _level_selected(level_index: int) -> void:
-	curr_level_index = level_index
 	_load_level(level_index)
 
 
@@ -39,8 +40,9 @@ func _load_level(level_index: int) -> void:
 		curr_level.free()
 		curr_level = null
 
+	var level_num: int = LevelFileManager.get_level_num(level_index)
 	var level_scene: PackedScene = (
-		load("res://levels/level_%02d.tscn" % LevelFileManager.get_level_num(level_index))
+		load("res://levels/level_%02d.tscn" % level_num)
 		as PackedScene
 	)
 	var level: Level = level_scene.instantiate()

@@ -13,7 +13,11 @@ func level_changed(level_num: int) -> void:
 
 
 func _ready() -> void:
-	_instantiate_level_buttons()
+	if Constants.IS_DEBUG:
+		level_button_container.show()
+		_instantiate_level_buttons()
+	else:
+		level_button_container.hide()
 
 
 func _instantiate_level_buttons() -> void:
