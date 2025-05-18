@@ -28,32 +28,39 @@ static func get_all() -> Array[LevelMetadata]:
 		###
 		### Mirrors
 		###
-		LevelMetadata.new(1, 0, "The Basics").complete("Your light bending journey has begun!"),
-		LevelMetadata.new(1, 1, "Area Restricted: Do Not Enter").complete(
+		LevelMetadata.new(0, 0, "The Basics").complete("Your light bending journey has begun!"),
+		LevelMetadata.new(0, 1, "Area Restricted: Do Not Enter").complete(
 			"You got it. Sometimes lasers can go places objects can't."
 		),
-		LevelMetadata.new(1, 2, "Choke Point").complete(
+		LevelMetadata.new(0, 2, "Choke Point").complete(
 			"You made it through the choke point. Fortunately, lasers are not exactly thicc."
 		),
-		LevelMetadata.new(1, 3, "The Skull").complete("That was a tricky one!"),
-		LevelMetadata.new(1, 4, "The Other Side of the Mirror").complete(
+		LevelMetadata.new(0, 3, "The Skull").complete("That was a tricky one!"),
+		LevelMetadata.new(0, 4, "The Other Side of the Mirror").complete(
 			"Now you're seeing both sides of the mirror."
 		),
 		###
 		### Rectangular Prisms
 		###
-		LevelMetadata.new(1, 5, "Spiral").complete(
+		LevelMetadata.new(0, 5, "Spiral").complete(
 			"You just performed 'internal reflection.' You're well on your way to enlightenment."
 		),
-		LevelMetadata.new(1, 6, "Wall of Steam").complete(
+		LevelMetadata.new(0, 6, "Wall of Steam").complete(
 			"Sometimes objects can go places that lasers can't. Full steam ahead!"
 		),
-		LevelMetadata.new(1, 7, "Hairpins").complete("Turn and burn!"),
-		LevelMetadata.new(1, 8, "Side-Stepping").complete("A little do-si-do."),
-		LevelMetadata.new(1, 9, "Double Vision").complete(
+		LevelMetadata.new(0, 7, "Hairpins").complete("Turn and burn!"),
+		LevelMetadata.new(0, 8, "Side-Stepping").complete("A little do-si-do."),
+		LevelMetadata.new(0, 9, "Double Vision").complete(
 			"You are now a master of the rectangular prism!"
-		)
+		),
+		LevelMetadata.new(1, 10, "Playground")
 	]
+
+
+static func get_enabled() -> Array[LevelMetadata]:
+	var is_enabled: Callable = func(level_metadata: LevelMetadata) -> bool:
+		return level_metadata.enabled
+	return get_all().filter(is_enabled)
 
 
 static func get_num(level_num_arg: int) -> LevelMetadata:

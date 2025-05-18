@@ -14,7 +14,7 @@ func _ready() -> void:
 
 	level_complete_popup.next_clicked.connect(_level_popup_next_clicked)
 
-	_load_level(0)
+	_load_level(LevelMetadata.get_enabled()[0].level_num)
 
 
 func _process(_delta: float) -> void:
