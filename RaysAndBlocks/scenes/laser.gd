@@ -198,11 +198,32 @@ func _get_angle_of_refraction(normal: Vector2, is_internal: bool) -> float:
 	var direction: Vector2 = Vector2.from_angle(global_rotation)
 	var reverse_normal: Vector2 = normal.rotated(PI)
 	var in_angle: float = reverse_normal.angle_to(direction)
+	var wavelength: float = _get_wavelength()
+	var refractive_index: float = _get_refractive_index(wavelength)
 
 	if is_internal:
-		return asin(sin(in_angle) * REFRACTIVE_INDEX_GLASS)
+		return asin(sin(in_angle) * refractive_index)
 
-	return asin(sin(in_angle) / REFRACTIVE_INDEX_GLASS)
+	return asin(sin(in_angle) / refractive_index)
+
+
+func _get_wavelength() -> float:
+	match color:
+		Constants.LaserColor.RED:
+			return 694.3 # Ruby
+		Constants.LaserColor.GREEN:
+			return 532 # Frequency-doubled Nd:YAG
+		Constants.LaserColor.BLUE:
+			return 355 # Frequency-trebled Nd:YAG
+		_:
+			print("ERROR Bad laser colour.")
+			return 532
+
+
+func _get_refractive_index(wavelength: float) -> float:
+	var a: float = 1.3223
+	var b: float = 3552
+	return a + b / pow(wavelength, 2)
 
 
 func _get_refraction_global_rotation(normal: Vector2, is_internal: bool) -> float:

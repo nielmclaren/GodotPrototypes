@@ -1,4 +1,4 @@
-class_name wavelength
+class_name Wavelength
 extends Node
 
 const GAMMA: float = 0.80;
@@ -17,7 +17,7 @@ func wavelength_to_rgb(wavelength: float) -> Color:
 	var blue: float
 
 	if (wavelength >= 380) and (wavelength < 440):
-		red = -(wavelength - 440) / (440 - 380);
+		red = - (wavelength - 440) / (440 - 380);
 		green = 0.0;
 		blue = 1.0;
 	elif (wavelength >= 440) and (wavelength < 490):
@@ -27,14 +27,14 @@ func wavelength_to_rgb(wavelength: float) -> Color:
 	elif (wavelength >= 490) and (wavelength < 510):
 		red = 0.0;
 		green = 1.0;
-		blue = -(wavelength - 510) / (510 - 490);
+		blue = - (wavelength - 510) / (510 - 490);
 	elif (wavelength >= 510) and (wavelength < 580):
 		red = (wavelength - 510) / (580 - 510);
 		green = 1.0;
 		blue = 0.0;
 	elif (wavelength >= 580) and (wavelength < 645):
 		red = 1.0;
-		green = -(wavelength - 645) / (645 - 580);
+		green = - (wavelength - 645) / (645 - 580);
 		blue = 0.0;
 	elif (wavelength >= 645) and (wavelength < 781):
 		red = 1.0;
