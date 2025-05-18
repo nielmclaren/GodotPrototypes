@@ -114,8 +114,8 @@ func _process_external_ray() -> void:
 
 func _process_external_ray_collision(point: Vector2, normal: Vector2) -> void:
 	var collider: Node2D = get_collider()
-	var collision_response: Constants.LaserHitResponse = (
-		laserable_lookup.register_laser_hit(collider)
+	var collision_response: Constants.LaserHitResponse = laserable_lookup.register_laser_hit(
+		collider
 	)
 
 	if collision_response == Constants.LaserHitResponse.REFRACT:
@@ -210,18 +210,18 @@ func _get_angle_of_refraction(normal: Vector2, is_internal: bool) -> float:
 func _get_wavelength() -> float:
 	match color:
 		Constants.LaserColor.RED:
-			return 694.3 # Ruby
+			return 694.3  # Ruby
 		Constants.LaserColor.GREEN:
-			return 532 # Frequency-doubled Nd:YAG
+			return 532  # Frequency-doubled Nd:YAG
 		Constants.LaserColor.BLUE:
-			return 355 # Frequency-trebled Nd:YAG
+			return 355  # Frequency-trebled Nd:YAG
 		_:
 			print("ERROR Bad laser colour.")
 			return 532
 
 
 func _get_refractive_index(wavelength: float) -> float:
-	var a: float = 1.3223 # Water
+	var a: float = 1.3223  # Water
 	var b: float = 3552
 
 	#a = 1.3223 # Water
@@ -232,12 +232,12 @@ func _get_refractive_index(wavelength: float) -> float:
 
 	#a = 1.458 # Fused Silica
 	#b = 3540
-	
-	#a = 1.728 # Dense flint glass SF10
-	#b = 13420
-	
-	a = 1.67 # Barium flint glass BaF10
-	b = 7430
+
+	a = 1.728  # Dense flint glass SF10
+	b = 13420
+
+	#a = 1.67 # Barium flint glass BaF10
+	#b = 7430
 	return a + b / pow(wavelength, 2)
 
 
