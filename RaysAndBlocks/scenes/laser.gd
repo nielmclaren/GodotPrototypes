@@ -5,7 +5,7 @@ extends RayCast2D
 @export var color: Constants.LaserColor
 
 # The maximum number of reflections or refractions originating from a single ray.
-const MAX_LASER_DEPTH: int = 10
+const MAX_LASER_DEPTH: int = 100
 const REFRACTIVE_INDEX_GLASS: float = 1.52
 
 # A refraction is considered an internal reflection instead if it's within ±(error) of ±π.
@@ -221,8 +221,23 @@ func _get_wavelength() -> float:
 
 
 func _get_refractive_index(wavelength: float) -> float:
-	var a: float = 1.3223
+	var a: float = 1.3223 # Water
 	var b: float = 3552
+
+	#a = 1.3223 # Water
+	#b = 3552
+
+	#a = 1.5220 # Hard crown glass
+	#b = 4590
+
+	#a = 1.458 # Fused Silica
+	#b = 3540
+	
+	#a = 1.728 # Dense flint glass SF10
+	#b = 13420
+	
+	a = 1.67 # Barium flint glass BaF10
+	b = 7430
 	return a + b / pow(wavelength, 2)
 
 

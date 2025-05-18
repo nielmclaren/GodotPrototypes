@@ -13,7 +13,7 @@ line = NodePath("Line2D")
 [node name="Line2D" type="Line2D" parent="."]
 material = SubResource("CanvasItemMaterial_xmihv")
 points = PackedVector2Array(0, 0, 10, 0)
-width = 2.0
+width = 3.0
 
 [node name="RedDebugLine" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 20, 0)
