@@ -28,15 +28,15 @@ static func get_all() -> Array[LevelMetadata]:
 		###
 		### Mirrors
 		###
-		LevelMetadata.new(0, 0, "The Basics").complete("Your light bending journey has begun!"),
-		LevelMetadata.new(0, 1, "Area Restricted: Do Not Enter").complete(
+		LevelMetadata.new(1, 0, "The Basics").complete("Your light bending journey has begun!"),
+		LevelMetadata.new(1, 1, "Area Restricted: Do Not Enter").complete(
 			"You got it. Sometimes lasers can go places objects can't."
 		),
-		LevelMetadata.new(0, 2, "Choke Point").complete(
+		LevelMetadata.new(1, 2, "Choke Point").complete(
 			"Straight through the bottleneck and onto the next level."
 		),
-		LevelMetadata.new(0, 3, "The Skull").complete("That was a tricky one!"),
-		LevelMetadata.new(0, 4, "The Other Side of the Mirror").complete(
+		LevelMetadata.new(1, 3, "The Skull").complete("That was a tricky one!"),
+		LevelMetadata.new(1, 4, "The Other Side of the Mirror").complete(
 			"Now you're seeing both sides of the mirror."
 		),
 		###
