@@ -8,7 +8,7 @@ signal next_clicked
 
 
 func level_changed(level_num: int) -> void:
-	var metadata: LevelMetadata = LevelMetadata.get_num(level_num)
+	var metadata: LevelMetadata = LevelManager.get_level_metadata_by_num(level_num)
 	message_label.text = metadata.complete_message
 
 

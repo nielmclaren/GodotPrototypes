@@ -3,7 +3,7 @@ extends Node
 
 @export var collision_object: CollisionObject2D
 @export var collision_response: Constants.LaserHitResponse
-@export var sensor: Sensor # Optional
+@export var sensor: Sensor  # Optional
 
 
 func register_laser_hit() -> Constants.LaserHitResponse:
