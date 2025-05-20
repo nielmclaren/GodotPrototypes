@@ -6,10 +6,6 @@ extends RayCast2D
 
 # The maximum number of reflections or refractions originating from a single ray.
 const MAX_LASER_DEPTH: int = 100
-const REFRACTIVE_INDEX_GLASS: float = 1.52
-
-# A refraction is considered an internal reflection instead if it's within ±(error) of ±π.
-const MAX_CRITICAL_ANGLE_DETECTION_ERROR: float = 3.0
 
 var laserable_lookup: LaserableLookup
 var laser_scene: PackedScene
@@ -61,8 +57,9 @@ func _process_internal_ray() -> void:
 
 	if reverse_cast.is_colliding():
 		var point: Vector2 = to_local(reverse_cast.get_collision_point())
+		# Normal is backwards because of reverse cast so rotate it by PI.
 		var normal: Vector2 = reverse_cast.get_collision_normal().rotated(PI)
-		_update_art(point, reverse_cast.get_collision_normal())
+		_update_art(point, normal)
 		_process_internal_ray_collision(point, normal)
 
 	else:
@@ -74,14 +71,18 @@ func _process_internal_ray() -> void:
 
 
 func _process_internal_ray_collision(collision_point: Vector2, normal: Vector2) -> void:
-	var angle_of_refraction: float = _get_angle_of_refraction(normal, true)
+	var in_material: Constants.LaserMaterial = laserable_lookup.get_laser_material(containing_body)
+	var out_material: Constants.LaserMaterial = Constants.LaserMaterial.VACUUM
+	var direction: Vector2 = Vector2.from_angle(global_rotation)
+	var in_angle: float = normal.angle_to(direction)
+	var wavelength: float = LightPhysics.get_wavelength(color)
 
 	_ensure_child_laser()
 
 	# Prevent child laser from colliding with the body where it originates.
 	child_laser.add_exception(containing_body)
 
-	if PI / 2 - abs(angle_of_refraction) < deg_to_rad(MAX_CRITICAL_ANGLE_DETECTION_ERROR):
+	if LightPhysics.is_internal_reflection(in_angle, wavelength, in_material, out_material):
 		# Refraction angle is greater than the critical angle. Process an internal reflection instead.
 		# Child laser will be inside the body.
 		child_laser._set_containing_body(containing_body)
@@ -95,7 +96,9 @@ func _process_internal_ray_collision(collision_point: Vector2, normal: Vector2) 
 		child_laser._set_containing_body(null)
 
 		child_laser.position = collision_point
-		child_laser.global_rotation = _get_refraction_global_rotation(normal, true)
+		child_laser.global_rotation = _get_refraction_global_rotation(
+			normal, in_material, out_material
+		)
 
 
 func _process_external_ray() -> void:
@@ -120,6 +123,10 @@ func _process_external_ray_collision(point: Vector2, normal: Vector2) -> void:
 
 	if collision_response == Constants.LaserHitResponse.REFRACT:
 		var collision_object: CollisionObject2D = collider
+		var in_material: Constants.LaserMaterial = Constants.LaserMaterial.VACUUM
+		var out_material: Constants.LaserMaterial = laserable_lookup.get_laser_material(
+			collision_object
+		)
 
 		_ensure_child_laser()
 
@@ -130,7 +137,9 @@ func _process_external_ray_collision(point: Vector2, normal: Vector2) -> void:
 		child_laser._set_containing_body(collision_object)
 
 		child_laser.position = point
-		child_laser.global_rotation = _get_refraction_global_rotation(normal, false)
+		child_laser.global_rotation = _get_refraction_global_rotation(
+			normal, in_material, out_material
+		)
 
 	elif collision_response == Constants.LaserHitResponse.REFLECT:
 		var collision_object: CollisionObject2D = collider
@@ -155,6 +164,7 @@ func _set_containing_body(body: CollisionObject2D) -> void:
 	containing_body = body
 
 	if containing_body:
+		# Since there is a containing body, a reverse cast will be needed to calculate the exit point.
 		if !reverse_cast:
 			reverse_cast = RayCast2D.new()
 			add_child(reverse_cast)
@@ -194,56 +204,16 @@ func _destroy_child_laser() -> void:
 		child_laser = null
 
 
-func _get_angle_of_refraction(normal: Vector2, is_internal: bool) -> float:
+func _get_refraction_global_rotation(
+	normal: Vector2, in_material: Constants.LaserMaterial, out_material: Constants.LaserMaterial
+) -> float:
 	var direction: Vector2 = Vector2.from_angle(global_rotation)
 	var reverse_normal: Vector2 = normal.rotated(PI)
 	var in_angle: float = reverse_normal.angle_to(direction)
-	var wavelength: float = _get_wavelength()
-	var refractive_index: float = _get_refractive_index(wavelength)
-
-	if is_internal:
-		return asin(sin(in_angle) * refractive_index)
-
-	return asin(sin(in_angle) / refractive_index)
-
-
-func _get_wavelength() -> float:
-	match color:
-		Constants.LaserColor.RED:
-			return 694.3  # Ruby
-		Constants.LaserColor.GREEN:
-			return 532  # Frequency-doubled Nd:YAG
-		Constants.LaserColor.BLUE:
-			return 355  # Frequency-trebled Nd:YAG
-		_:
-			print("ERROR Bad laser colour.")
-			return 532
-
-
-func _get_refractive_index(wavelength: float) -> float:
-	var a: float = 1.3223  # Water
-	var b: float = 3552
-
-	#a = 1.3223 # Water
-	#b = 3552
-
-	#a = 1.5220 # Hard crown glass
-	#b = 4590
-
-	#a = 1.458 # Fused Silica
-	#b = 3540
-
-	a = 1.728  # Dense flint glass SF10
-	b = 13420
-
-	#a = 1.67 # Barium flint glass BaF10
-	#b = 7430
-	return a + b / pow(wavelength, 2)
-
-
-func _get_refraction_global_rotation(normal: Vector2, is_internal: bool) -> float:
-	var reverse_normal: Vector2 = normal.rotated(PI)
-	var out_angle: float = _get_angle_of_refraction(normal, is_internal)
+	var wavelength: float = LightPhysics.get_wavelength(color)
+	var out_angle: float = LightPhysics.get_angle_of_refraction(
+		in_angle, wavelength, in_material, out_material
+	)
 	return reverse_normal.rotated(out_angle).angle()
 
 

@@ -95,6 +95,7 @@ hover_art = NodePath("../HoverArt")
 [node name="Laserable" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("3_hfbel")]
 collision_object = NodePath("../LaserHitArea")
 collision_response = 2
+laser_material = 2
 
 [node name="PositionValidation" parent="." node_paths=PackedStringArray("body", "hit_area") instance=ExtResource("4_6bmqa")]
 body = NodePath("..")

@@ -23,6 +23,11 @@ func register_laser_hit(collision_object: Object) -> Constants.LaserHitResponse:
 	return Constants.LaserHitResponse.ABSORB
 
 
+func get_laser_material(collision_object: Object) -> Constants.LaserMaterial:
+	var laserable: Laserable = laserables.get(collision_object)
+	return laserable.laser_material
+
+
 func _init_top_level_lasers(scene: Node2D) -> void:
 	var children: Array[Node] = scene.get_children()
 	for child: Node in children:

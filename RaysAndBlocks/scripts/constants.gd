@@ -6,4 +6,6 @@ enum LaserHitResponse { ABSORB, REFLECT, REFRACT }
 
 enum LaserColor { RED, GREEN, BLUE }
 
+enum LaserMaterial { DEFAULT, VACUUM, GLASS, WATER }
+
 const IS_DEBUG: bool = true

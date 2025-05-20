@@ -21,6 +21,7 @@ Constants="*res://scripts/constants.gd"
 CursorManager="*res://scripts/cursor_manager.gd"
 LevelManager="*res://scripts/level_manager.gd"
 GlobalState="*res://scripts/global_state.gd"
+LightPhysics="*res://scripts/light_physics.gd"
 
 [debug]
 

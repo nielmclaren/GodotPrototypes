@@ -3,6 +3,7 @@ extends Node
 
 @export var collision_object: CollisionObject2D
 @export var collision_response: Constants.LaserHitResponse
+@export var laser_material: Constants.LaserMaterial
 @export var sensor: Sensor  # Optional
 
 
