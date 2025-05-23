@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dky5aw1r2ijhf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dm0k"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7dm0k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7dm0k"]
+size = Vector2(715.5, 313)
+
+[node name="Main" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(89, 86)
+rotation = 0.766133
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+scale = Vector2(3.38146, 3.38146)
+shape = SubResource("CircleShape2D_7dm0k")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(51, 0)
+scale = Vector2(3.38146, 3.38146)
+shape = SubResource("CircleShape2D_7dm0k")
+
+[node name="Polygon2D" type="Polygon2D" parent="RigidBody2D"]
+polygon = PackedVector2Array(-1, -30, -25, -22, -33, 2, -25, 26, -9, 34, 15, 26, 31, 18, 47, 34, 71, 26, 87, 10, 79, -22, 63, -30, 39, -30, 23, -22)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-8, 600)
+scale = Vector2(1.63728, 0.183444)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(357.25, 156.25)
+scale = Vector2(715.5, 313.5)
+texture = SubResource("CanvasTexture_7dm0k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(357.25, 156.5)
+shape = SubResource("RectangleShape2D_7dm0k")
