@@ -33,13 +33,13 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	if is_translating:
-		body.global_position = body.get_global_mouse_position() - translation_click_offset
+		body.global_position = snapped(body.get_global_mouse_position() - translation_click_offset, Vector2(5, 5))
 
 	if is_rotating:
 		var to_mouse: Vector2 = body.get_global_mouse_position() - body.global_position
-		body.rotation = rotate_toward(
+		body.rotation = snapped(rotate_toward(
 			body.rotation, to_mouse.angle() - rotation_click_offset.angle(), 1
-		)
+		), deg_to_rad(5))
 
 	if is_translating:
 		CursorManager.cursor_set_shape(Input.CURSOR_DRAG)
